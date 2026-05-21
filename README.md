@@ -9,7 +9,7 @@ This project predicts the winner of professional MLBB matches with a focus on "S
 *   **V7 Ensemble Engine:** Combines XGBoost, LightGBM, and Random Forest for robust, regularized predictions.
 *   **Dual-Track Elo System:** Tracks separate Elo ratings for Regular Season and Playoffs to capture "clutch" performance.
 *   **Pillar 3 Data Integrity:** 
-    *   **IGN Normalization:** Consolidates fragmented player identities (e.g., merging "RTZY" and "karltzy") to maintain accurate skill history.
+    IGN Normalization: Consolidates fragmented player identities (e.g., merging "BON CHAN" and "Bon Chan") to maintain accurate skill history.
     *   **Glicko-2 Stability:** Match-based rating updates to prevent "volatility traps" caused by single-map losses.
 *   **Draft & Meta Analysis:** Features include Hero Comfort Mastery, Patch Practice, Side Advantage, and Series Momentum.
 *   **Master Pipeline:** A clean, walk-forward validation system that achieves a **realistic ~66-67% accuracy** on unseen games (Industry Standard).

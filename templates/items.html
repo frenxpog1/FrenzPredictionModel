@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLBB Items Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">
+                <span class="logo-icon">⚔️</span>
+                <h1>MLBB Analytics</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="heroes.html">Heroes</a></li>
+                <li><a href="items.html" class="active">Items</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h2>Items Database</h2>
+                <p class="subtitle">86 Items · Patch 1.9.22</p>
+            </div>
+            <div class="filter-row">
+                <button class="filter-btn active" onclick="filterType('all', this)">All</button>
+                <button class="filter-btn" onclick="filterType('Attack', this)">⚔️ Attack</button>
+                <button class="filter-btn" onclick="filterType('Magic', this)">🔮 Magic</button>
+                <button class="filter-btn" onclick="filterType('Defense', this)">🛡️ Defense</button>
+                <button class="filter-btn" onclick="filterType('Movement', this)">👟 Movement</button>
+            </div>
+        </div>
+
+        <div class="grid" id="item-grid">
+
+            <!-- Attack Items -->
+            <div class="card item-card" data-type="Attack">
+                <div class="item-header">
+                    <span class="item-emoji">⚔️</span>
+                    <div>
+                        <h3>Malefic Roar</h3>
+                        <span class="type-tag type-attack">Attack</span>
+                    </div>
+                    <span class="item-cost">💰 2060</span>
+                </div>
+                <div class="item-stats">
+                    <span>+60 Physical ATK</span>
+                    <span>+40% Armor Pen</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Unique – Armor Buster: Basic attacks ignore 20% of structure armor.</p>
+            </div>
+
+            <div class="card item-card" data-type="Attack">
+                <div class="item-header">
+                    <span class="item-emoji">⚔️</span>
+                    <div>
+                        <h3>Blade of Despair</h3>
+                        <span class="type-tag type-attack">Attack</span>
+                    </div>
+                    <span class="item-cost">💰 3010</span>
+                </div>
+                <div class="item-stats">
+                    <span>+160 Physical ATK</span>
+                    <span>+5% Move Speed</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Despair: Deals extra 25% damage to enemies in abnormal state.</p>
+            </div>
+
+            <div class="card item-card" data-type="Attack">
+                <div class="item-header">
+                    <span class="item-emoji">⚔️</span>
+                    <div>
+                        <h3>Endless Battle</h3>
+                        <span class="type-tag type-attack">Attack</span>
+                    </div>
+                    <span class="item-cost">💰 2470</span>
+                </div>
+                <div class="item-stats">
+                    <span>+65 Physical ATK</span>
+                    <span>+25 Magical Power</span>
+                    <span>+250 HP</span>
+                    <span>+300 Mana</span>
+                    <span>+10% CD Reduction</span>
+                    <span>+5% Move Speed</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Divine Justice: After using a skill, the next basic attack deals 85% true damage.</p>
+            </div>
+
+            <div class="card item-card" data-type="Attack">
+                <div class="item-header">
+                    <span class="item-emoji">⚔️</span>
+                    <div>
+                        <h3>Windtalker</h3>
+                        <span class="type-tag type-attack">Attack</span>
+                    </div>
+                    <span class="item-cost">💰 1910</span>
+                </div>
+                <div class="item-stats">
+                    <span>+35 Physical ATK</span>
+                    <span>+20% Attack Speed</span>
+                    <span>+10% Crit Chance</span>
+                    <span>+5% Move Speed</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Every 5 basic attacks triggers a whirlwind dealing 200 magic damage.</p>
+            </div>
+
+            <!-- Magic Items -->
+            <div class="card item-card" data-type="Magic">
+                <div class="item-header">
+                    <span class="item-emoji">🔮</span>
+                    <div>
+                        <h3>Holy Crystal</h3>
+                        <span class="type-tag type-magic">Magic</span>
+                    </div>
+                    <span class="item-cost">💰 2180</span>
+                </div>
+                <div class="item-stats">
+                    <span>+100 Magical Power</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Mystery: Increases Magical Attack by 21–35% based on level.</p>
+            </div>
+
+            <div class="card item-card" data-type="Magic">
+                <div class="item-header">
+                    <span class="item-emoji">🔮</span>
+                    <div>
+                        <h3>Lightning Truncheon</h3>
+                        <span class="type-tag type-magic">Magic</span>
+                    </div>
+                    <span class="item-cost">💰 2090</span>
+                </div>
+                <div class="item-stats">
+                    <span>+75 Magical Power</span>
+                    <span>+300 Mana</span>
+                    <span>+10% CD Reduction</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> After using a skill, next basic attack bounces to 3 enemies dealing 20–1000 magic damage.</p>
+            </div>
+
+            <div class="card item-card" data-type="Magic">
+                <div class="item-header">
+                    <span class="item-emoji">🔮</span>
+                    <div>
+                        <h3>Divine Glaive</h3>
+                        <span class="type-tag type-magic">Magic</span>
+                    </div>
+                    <span class="item-cost">💰 1970</span>
+                </div>
+                <div class="item-stats">
+                    <span>+65 Magical Power</span>
+                    <span>+35% Magic Pen</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Spellbreaker: Each 1% enemy Magic Def above 50 grants +1% extra Magic Pen, up to 20%.</p>
+            </div>
+
+            <!-- Defense Items -->
+            <div class="card item-card" data-type="Defense">
+                <div class="item-header">
+                    <span class="item-emoji">🛡️</span>
+                    <div>
+                        <h3>Antique Cuirass</h3>
+                        <span class="type-tag type-defense">Defense</span>
+                    </div>
+                    <span class="item-cost">💰 1810</span>
+                </div>
+                <div class="item-stats">
+                    <span>+700 HP</span>
+                    <span>+45 Physical Defense</span>
+                    <span>+6 HP Regen</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Deter: When hit by a skill, reduces enemy's ATK by 8% for 2s (stacks to 3).</p>
+            </div>
+
+            <div class="card item-card" data-type="Defense">
+                <div class="item-header">
+                    <span class="item-emoji">🛡️</span>
+                    <div>
+                        <h3>Immortality</h3>
+                        <span class="type-tag type-defense">Defense</span>
+                    </div>
+                    <span class="item-cost">💰 2120</span>
+                </div>
+                <div class="item-stats">
+                    <span>+800 HP</span>
+                    <span>+40 Physical Defense</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Immortal: Resurrects 2.5s after death with 15% HP. 210s cooldown.</p>
+            </div>
+
+            <div class="card item-card" data-type="Defense">
+                <div class="item-header">
+                    <span class="item-emoji">🛡️</span>
+                    <div>
+                        <h3>Athena's Shield</h3>
+                        <span class="type-tag type-defense">Defense</span>
+                    </div>
+                    <span class="item-cost">💰 2050</span>
+                </div>
+                <div class="item-stats">
+                    <span>+900 HP</span>
+                    <span>+62 Magic Defense</span>
+                    <span>+4 HP Regen</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Shield: Receives a Magic Absorb Shield of 170–1150 every 30s.</p>
+            </div>
+
+            <!-- Movement Items -->
+            <div class="card item-card" data-type="Movement">
+                <div class="item-header">
+                    <span class="item-emoji">👟</span>
+                    <div>
+                        <h3>Demon Shoes</h3>
+                        <span class="type-tag type-movement">Movement</span>
+                    </div>
+                    <span class="item-cost">💰 720</span>
+                </div>
+                <div class="item-stats">
+                    <span>+6 Mana Regen</span>
+                    <span>+40 Move Speed</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Mysticism: Assists or kills restore 10% Max Mana.</p>
+            </div>
+
+            <div class="card item-card" data-type="Movement">
+                <div class="item-header">
+                    <span class="item-emoji">👟</span>
+                    <div>
+                        <h3>Tough Boots</h3>
+                        <span class="type-tag type-movement">Movement</span>
+                    </div>
+                    <span class="item-cost">💰 770</span>
+                </div>
+                <div class="item-stats">
+                    <span>+22 Magic Defense</span>
+                    <span>+40 Move Speed</span>
+                </div>
+                <p class="passive"><strong>Passive:</strong> Fortitude: Reduces duration of crowd control by 30%.</p>
+            </div>
+
+            <div class="card item-card" data-type="Movement">
+                <div class="item-header">
+                    <span class="item-emoji">👟</span>
+                    <div>
+                        <h3>Swift Boots</h3>
+                        <span class="type-tag type-movement">Movement</span>
+                    </div>
+                    <span class="item-cost">💰 710</span>
+                </div>
+                <div class="item-stats">
+                    <span>+15% Attack Speed</span>
+                    <span>+40 Move Speed</span>
+                </div>
+                <p class="passive">Best for Marksman and auto-attack based heroes.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>MLBB Analytics Dashboard · MPL PH Season 14 · Data updated May 2025</p>
+    </footer>
+
+    <script>
+        function filterType(type, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.item-card').forEach(card => {
+                if (type === 'all' || card.dataset.type === type) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

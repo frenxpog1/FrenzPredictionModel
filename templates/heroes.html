@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLBB Heroes Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo"><span class="logo-icon">⚔️</span><h1>MLBB Analytics</h1></div>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="heroes.html" class="active">Heroes</a></li>
+                <li><a href="items.html">Items</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h2>Heroes Database</h2>
+                <p class="subtitle" id="hero-subtitle">127 Heroes · All Seasons</p>
+            </div>
+            <div class="filter-row">
+                <label style="color:var(--muted);font-size:.85rem;align-self:center">Season:</label>
+                <select id="hero-season-select" class="select-input" onchange="applyHeroFilters()">
+                    <option value="all">All Seasons</option>
+                    <!-- populated by JS -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Search + Role Filter -->
+        <div class="filter-panel" style="margin-bottom:24px;">
+            <div class="filter-group">
+                <label>Search</label>
+                <input type="text" id="hero-search" class="search-input" placeholder="Hero name…" oninput="applyHeroFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Sort By</label>
+                <div class="filter-row">
+                    <button class="filter-btn active" onclick="setHeroSort('picks',this)">📈 Picks</button>
+                    <button class="filter-btn" onclick="setHeroSort('bans',this)">🚫 Bans</button>
+                    <button class="filter-btn" onclick="setHeroSort('winrate',this)">🏆 Win Rate</button>
+                    <button class="filter-btn" onclick="setHeroSort('pb',this)">⚡ P+B Rate</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Grid -->
+        <div class="grid" id="hero-grid">
+            <p class="loading-msg" style="grid-column:1/-1">
+                Loading… run <code>python export_data.py</code> first.
+            </p>
+        </div>
+    </main>
+
+    <footer><p>MLBB Analytics · MPL PH Seasons 1–17 · Powered by Liquipedia data</p></footer>
+
+    <script src="../static/data.js" onerror="document.getElementById('hero-grid').innerHTML='<p class=\'loading-msg\' style=\'grid-column:1/-1\'>⚠️ Run <code>python export_data.py</code> to generate data.</p>'"></script>
+    <script>
+    let heroSort = 'picks';
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (typeof MLBB_DATA === 'undefined') return;
+        // Populate season dropdown
+        const sel = document.getElementById('hero-season-select');
+        (MLBB_DATA.seasons || []).forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s; opt.textContent = `Season ${s}`;
+            sel.appendChild(opt);
+        });
+        applyHeroFilters();
+    });
+
+    function setHeroSort(sort, btn) {
+        heroSort = sort;
+        document.querySelectorAll('#hero-grid ~ * .filter-btn, .filter-panel .filter-btn').forEach(b => {
+            if (['📈 Picks','🚫 Bans','🏆 Win Rate','⚡ P+B Rate'].some(l => b.textContent.includes(l.split(' ')[1]))) {
+                b.classList.remove('active');
+            }
+        });
+        btn.classList.add('active');
+        applyHeroFilters();
+    }
+
+    function applyHeroFilters() {
+        if (typeof MLBB_DATA === 'undefined') return;
+        const season = document.getElementById('hero-season-select').value;
+        const search = (document.getElementById('hero-search').value || '').toLowerCase().trim();
+
+        // Aggregate hero stats from matches
+        const stats = {};
+        (MLBB_DATA.matches || []).forEach(m => {
+            if (season !== 'all' && m.season != season) return;
+            (m.games || []).forEach(g => {
+                const bluePicks = g.picks?.blue || [];
+                const redPicks  = g.picks?.red  || [];
+                const blueBans  = g.bans?.blue   || [];
+                const redBans   = g.bans?.red    || [];
+                const winner    = g.winner;
+
+                [...bluePicks.map(h=>({h,team:g.blue_side_team})), ...redPicks.map(h=>({h,team:g.red_side_team}))].forEach(({h,team}) => {
+                    if (!h || h.startsWith('Mock')) return;
+                    if (!stats[h]) stats[h] = { picks:0, bans:0, wins:0 };
+                    stats[h].picks++;
+                    if (team === winner) stats[h].wins++;
+                });
+                [...blueBans, ...redBans].forEach(h => {
+                    if (!h || h.startsWith('Mock')) return;
+                    if (!stats[h]) stats[h] = { picks:0, bans:0, wins:0 };
+                    stats[h].bans++;
+                });
+            });
+        });
+
+        let entries = Object.entries(stats)
+            .filter(([name]) => !search || name.toLowerCase().includes(search));
+
+        // Sort
+        if (heroSort === 'picks')   entries.sort((a,b) => b[1].picks - a[1].picks);
+        if (heroSort === 'bans')    entries.sort((a,b) => b[1].bans - a[1].bans);
+        if (heroSort === 'winrate') entries = entries.filter(([,s]) => s.picks >= 2).sort((a,b) => (b[1].wins/b[1].picks)-(a[1].wins/a[1].picks));
+        if (heroSort === 'pb')      entries.sort((a,b) => (b[1].picks+b[1].bans)-(a[1].picks+a[1].bans));
+
+        document.getElementById('hero-subtitle').textContent =
+            `${entries.length} Heroes · ${season === 'all' ? 'All Seasons' : 'Season '+season}`;
+
+        const grid = document.getElementById('hero-grid');
+        if (!entries.length) {
+            grid.innerHTML = '<p class="loading-msg" style="grid-column:1/-1">No hero data — real drafts required.</p>';
+            return;
+        }
+
+        const maxPicks = Math.max(...entries.map(([,s])=>s.picks),1);
+        grid.innerHTML = entries.map(([name, s], i) => {
+            const wr = s.picks ? ((s.wins/s.picks)*100).toFixed(1) : '0.0';
+            const pbRate = s.picks + s.bans;
+            const tier = getTier(parseFloat(wr), s.picks);
+            const barPct = Math.round((s.picks / maxPicks)*100);
+            return `<div class="card hero-card">
+                <div class="hero-header">
+                    <span class="hero-rank-num">${i+1}</span>
+                    <div>
+                        <h3>${esc(name)}</h3>
+                    </div>
+                    <span class="meta-tier ${tier.cls}">${tier.label}</span>
+                </div>
+                <div class="hero-bar-wrap">
+                    <div class="hero-bar"><div style="width:${barPct}%"></div></div>
+                </div>
+                <div class="stats">
+                    <span>📈 <strong>${s.picks}</strong> picks</span>
+                    <span>🚫 <strong>${s.bans}</strong> bans</span>
+                    <span>🏆 <strong>${wr}%</strong> WR</span>
+                    <span>⚡ <strong>${pbRate}</strong> P+B</span>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function getTier(wr, picks) {
+        if (picks < 2) return { cls:'tier-b', label:'Data Limited' };
+        if (wr >= 55)  return { cls:'tier-s', label:'S-Tier' };
+        if (wr >= 50)  return { cls:'tier-a', label:'A-Tier' };
+        if (wr >= 45)  return { cls:'tier-b', label:'B-Tier' };
+        return { cls:'tier-c', label:'C-Tier' };
+    }
+
+    function esc(str) {
+        return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    </script>
+</body>
+</html>

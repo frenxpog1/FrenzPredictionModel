@@ -1,0 +1,333 @@
+rank,player,role,last_team,seasons,last_season,games_played,wins,win_rate,elo
+1,KarlTzy,Jungler,Team Liquid PH,"S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S17",17,244,164,67.2,1867.6
+2,Sanji,Middle,Team Liquid PH,"S10, S11, S12, S13, S14, S15, S16, S17",17,136,99,72.8,1793.1
+3,Sanford,EXP Lane,Team Liquid PH,"S8, S10, S11, S12, S13, S14, S15, S16, S17",17,153,107,69.9,1756.8
+4,Jaypee,Roamer,Team Liquid PH,"S2, S3, S4, S5, S6, S7, S10, S12, S13, S14, S15, S16, S17",17,157,112,71.3,1710.5
+5,Kyle,Jungler,Team Falcons PH,"S10, S11, S12, S13, S14, S15, S16, S17",17,132,82,62.1,1698.4
+6,K1NGKONG,Jungler,ONIC PH,"S11, S12, S14, S15, S16, S17",17,93,54,58.1,1648.1
+7,Super Frince,Middle,ONIC PH,"S9, S10, S12, S13, S14, S15, S16, S17",17,127,80,63.0,1644.5
+8,FlapTzy,EXP Lane,Team Falcons PH,"S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S17",17,191,115,60.2,1637.7
+9,Super Marco,Gold Lane,Team Falcons PH,"S9, S10, S11, S12, S13, S14, S15, S16, S17",17,146,87,59.6,1637.4
+10,AeronnShikii,Gold Lane,Team Liquid PH,S17,17,14,13,92.9,1627.0
+11,Dai Ki,Gold Lane,Team Liquid PH,S17,17,14,13,92.9,1627.0
+12,Teddyqt,Gold Lane,Team Liquid PH,S17,17,14,13,92.9,1627.0
+13,Owgwen,Roamer,Team Falcons PH,"S10, S11, S12, S13, S14, S15, S16, S17",17,132,82,62.1,1619.0
+14,Kirk,EXP Lane,ONIC PH,"S11, S13, S14, S15, S16, S17",17,98,63,64.3,1611.5
+15,Santi Sucre,Roamer,Team Liquid PH,S17,17,14,13,92.9,1608.8
+16,Ferdz,EXP Lane,Team Falcons PH,"S16, S17",17,29,17,58.6,1607.0
+17,Oheb,Gold Lane,Team Liquid PH,"S7, S8, S9, S10, S12, S13, S14, S15, S16",16,156,100,64.1,1605.1
+18,Hadji,Middle,Team Falcons PH,"S8, S9, S10, S12, S13, S14, S15, S16, S17",17,146,77,52.7,1601.9
+19,Brusko,Roamer,ONIC PH,"S12, S14, S15, S16, S17",17,79,54,68.4,1601.7
+20,Perkz,Roamer,Omega Esports,"S10, S12, S13, S14, S15, S16, S17",17,131,73,55.7,1578.6
+21,Kelra,Gold Lane,ONIC PH,"S7, S8, S9, S10, S11, S12, S14, S15, S16",16,151,86,57.0,1577.6
+22,Ar Sy,,Team Liquid PH,S15,15,18,15,83.3,1562.0
+23,YukTzy,Gold Lane,Team Liquid PH,S15,15,18,15,83.3,1557.8
+24,Demonkite,Jungler,Aurora,"S8, S9, S10, S13, S14, S15, S16, S17",17,133,85,63.9,1547.6
+25,Edward,EXP Lane,Aurora,"S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S17",17,209,132,63.2,1539.2
+26,Savero,Gold Lane,ONIC PH,S17,17,14,9,64.3,1537.6
+27,Yue,Middle,Aurora,"S11, S12, S13, S14, S15, S16, S17",17,121,74,61.2,1535.5
+28,Tictac,,Team Liquid PH,S16,16,19,13,68.4,1534.4
+29,Renejay,Roamer,Aurora,"S6, S7, S8, S9, S10, S11, S12, S14, S15",15,144,72,50.0,1532.4
+30,Pandora,Flex,Team Falcons PH,"S9, S10, S11, S12, S13, S14, S15",15,117,70,59.8,1523.9
+31,SpiderMilez,Roamer,ONIC PH,"S12, S13, S14",14,46,28,60.9,1522.9
+32,Hate,Flex,ONIC PH,"S4, S5, S6, S7, S8, S15, S16",16,118,74,62.7,1517.6
+33,Ryota,EXP Lane,ONIC PH,"S7, S9, S10, S11, S12, S13, S14, S16, S17",17,134,62,46.3,1514.5
+34,Calad,Flex,Aurora,"S12, S13, S15, S16, S17",17,84,52,61.9,1511.8
+35,Domengkite,Gold Lane,Aurora,"S11, S12, S13, S14, S15, S16, S17",17,109,59,54.1,1509.1
+36,Owl,Gold Lane,Twisted Minds PH,"S11, S12, S17",17,51,28,54.9,1505.4
+37,Vinjaz,Flex,TNC Pro Team,S16,16,18,7,38.9,1504.3
+38,Tracy,Roamer,Twisted Minds PH,S17,17,14,6,42.9,1504.2
+39,Ribo,Flex,Omega Esports,"S1, S2, S3, S4, S5, S6, S7, S8, S12, S13, S14",14,148,92,62.2,1503.7
+40,EJJJ,EXP Lane,Team Liquid PH,S13,13,17,12,70.6,1502.7
+41,Panda,,RSG PH,"S2, S3, S4, S7, S8, S9, S10, S13",13,111,60,54.1,1502.1
+42,Dalyot,,RSG PH,S13,13,17,10,58.8,1501.7
+43,Bam,,ONIC PH,"S12, S13",13,30,16,53.3,1501.7
+44,Jem,EXP Lane,ONIC PH,"S12, S13",13,30,16,53.3,1501.6
+45,BOSS A,Gold Lane,ONIC PH,"S11, S12, S13",13,45,22,48.9,1501.4
+46,Rapidoot,Roamer,ONIC PH,"S9, S10, S12, S13",13,62,32,51.6,1501.2
+47,RTZY,Middle,RSG PH,"S7, S8, S12, S13",13,63,31,49.2,1501.1
+48,Eson,Roamer,Blacklist Intl.,"S1, S2, S3, S4, S6, S7, S8, S9, S10, S13",13,141,88,62.4,1500.7
+49,Trebor,,Team Falcons PH,"S5, S6, S15",15,40,14,35.0,1500.6
+50,Rindo,Jungler,Blacklist Intl.,S12,12,19,11,57.9,1500.4
+51,Eyon,Middle,Blacklist Intl.,S12,12,19,11,57.9,1500.3
+52,Dominic,EXP Lane,Blacklist Intl.,S12,12,19,11,57.9,1500.3
+53,Mumukid,Middle,AP.Bren,S12,12,17,10,58.8,1500.3
+54,Wise,Jungler,Blacklist Intl.,"S4, S5, S7, S8, S10, S11",11,95,74,77.9,1500.3
+55,OhMyV33NUS,Roamer,Blacklist Intl.,"S7, S8, S10, S11",11,69,54,78.3,1500.2
+56,EMANN,Gold Lane,RSG PH,"S8, S9, S10, S11, S12",12,85,49,57.6,1500.2
+57,Super Red,Gold Lane,Blacklist Intl.,S11,11,18,11,61.1,1500.1
+58,Archer,Gold Lane,Blacklist Intl.,S11,11,18,11,61.1,1500.1
+59,Goyong,Middle,Minana EVOS,S12,12,14,6,42.9,1500.1
+60,Boyet,Jungler,Minana EVOS,S12,12,14,6,42.9,1500.1
+61,Ducky,,AP.Bren,"S7, S10, S11",11,49,30,61.2,1500.1
+62,Bitoy,,Minana EVOS,"S1, S12",12,19,6,31.6,1500.1
+63,Jian,Gold Lane,Team Liquid PH,S11,11,18,14,77.8,1500.1
+64,Vrendon Lin,,AP.Bren,"S9, S11",11,33,21,63.6,1500.1
+65,Drixx,Jungler,BSB,S6,6,12,1,8.3,1500.0
+66,YNot,,Omega Esports,S7,7,15,6,40.0,1500.0
+67,Vhen,Gold Lane,Invictus Godz,S1,1,10,4,40.0,1500.0
+68,Yeb,,Cignal Ultra,"S6, S7",7,26,4,15.4,1500.0
+69,Bensanity,Roamer,Cignal Ultra,"S6, S7",7,26,4,15.4,1500.0
+70,Serein,,Cignal Ultra,S6,6,13,4,30.8,1500.0
+71,Tsujin,Gold Lane,Cignal Ultra,S6,6,13,4,30.8,1500.0
+72,ImbaDeejay,,Minana EVOS,"S6, S7, S8, S12",12,54,14,25.9,1500.0
+73,Hadess,Jungler,Team Liquid PH,"S6, S7, S8, S9",9,59,28,47.5,1500.0
+74,Ana,Gold Lane,BSB,S6,6,12,1,8.3,1500.0
+75,Unseen,Middle,BnK Blufire,"S5, S6",6,21,2,9.5,1500.0
+76,Chester,Middle,Nexplay EVOS,S6,6,12,5,41.7,1500.0
+77,Mb,EXP Lane,Nexplay EVOS,S6,6,12,5,41.7,1500.0
+78,Arcadia,,Team Liquid PH,"S5, S6, S7, S8, S9",9,59,34,57.6,1500.0
+79,Basic,Middle,ULVL,S5,5,10,2,20.0,1500.0
+80,Deb,Roamer,ULVL,S5,5,10,2,20.0,1500.0
+81,Riddler,Middle,Blacklist Intl.,S5,5,11,5,45.5,1500.0
+82,Kap Wan,Roamer,BSB,"S5, S6",6,22,4,18.2,1500.0
+83,Wilson,EXP Lane,BSB,"S5, S6",6,22,4,18.2,1500.0
+84,Jeraxnu,Middle,BSB,S5,5,10,3,30.0,1500.0
+85,Sman,Roamer,BSB,S5,5,10,3,30.0,1500.0
+86,Nina,S,SGD Omega,S5,5,11,7,63.6,1500.0
+87,Hadjizy,Jungler,Omega Esports,"S5, S6, S7",7,41,24,58.5,1500.0
+88,Markyyyyy,Gold Lane,ONIC PH,"S6, S7, S8",8,46,27,58.7,1500.0
+89,Wolf,,ONIC PH,"S6, S7, S8",8,46,27,58.7,1500.0
+90,Kairi,Middle,ONIC PH,"S6, S7, S8",8,58,34,58.6,1500.0
+91,Aaronqt,Middle,Team Liquid PH,"S6, S7, S8, S9",9,54,23,42.6,1500.0
+92,Jimnest,Roamer,Nexplay EVOS,S6,6,12,5,41.7,1500.0
+93,Toshi,Gold Lane,TNC Pro Team,"S7, S8",8,29,10,34.5,1500.0
+94,Kirito,EXP Lane,Invictus Godz,S1,1,10,4,40.0,1500.0
+95,Moht,Roamer,Work-Auster Force,S7,7,15,9,60.0,1500.0
+96,Lift,,TNC Pro Team,"S7, S8",8,29,13,44.8,1500.0
+97,KEVIER,Jungler,Blacklist Intl.,"S9, S10",10,31,15,48.4,1500.0
+98,Choox,Jungler,ONIC PH,"S9, S10",10,32,16,50.0,1500.0
+99,Jeff,,ONIC PH,"S9, S10",10,32,16,50.0,1500.0
+100,Amethyst,,Omega Esports,"S9, S10",10,34,17,50.0,1500.0
+101,KingSalman,Flex,TNC Pro Team,"S9, S10",10,31,12,38.7,1500.0
+102,URESHIII,EXP Lane,Nexplay EVOS,S9,9,15,6,40.0,1500.0
+103,Elpizo,Roamer,Nexplay EVOS,"S9, S10",10,29,8,27.6,1500.0
+104,CADENZA,Roamer,Nexplay EVOS,S9,9,15,6,40.0,1500.0
+105,Donut,Gold Lane,Nexplay EVOS,"S9, S10",10,29,8,27.6,1500.0
+106,Joy Boy,Roamer,AP.Bren,"S9, S10",10,31,15,48.4,1500.0
+107,Mikko,Roamer,Omega Esports,"S10, S11",11,30,14,46.7,1500.0
+108,Hjidoue,,Omega Esports,S10,10,15,8,53.3,1500.0
+109,Micophobia,Roamer,Nexplay EVOS,S10,10,14,2,14.3,1500.0
+110,Pancake,Roamer,ONIC PH,S11,11,15,6,40.0,1500.0
+111,Frinceee,Middle,ONIC PH,S11,11,15,6,40.0,1500.0
+112,Wrecker,Middle,RSG PH,"S8, S9, S10",10,50,32,64.0,1500.0
+113,Duckeyyy,,AP.Bren,"S5, S6, S8, S9",9,55,33,60.0,1500.0
+114,Hesa,Gold Lane,Nexplay EVOS,"S8, S9",9,32,14,43.8,1500.0
+115,Arvs,Middle,PlayBook Esports,S7,7,13,3,23.1,1500.0
+116,Invoker,EXP Lane,Team Liquid PH,"S7, S8",8,28,15,53.6,1500.0
+117,Aspect,Jungler,Team Liquid PH,"S7, S8",8,41,18,43.9,1500.0
+118,Jaymeister,Roamer,Team Liquid PH,"S7, S8",8,28,15,53.6,1500.0
+119,Flysolo,Roamer,Team Liquid PH,"S7, S8",8,28,15,53.6,1500.0
+120,Rk3,Middle,Team Liquid PH,"S7, S8, S9",9,43,23,53.5,1500.0
+121,Dogie,Roamer,Nexplay EVOS,"S7, S8, S9, S10",10,60,22,36.7,1500.0
+122,Jake The Dog,Gold Lane,PlayBook Esports,S7,7,13,3,23.1,1500.0
+123,Midnight,,Nexplay EVOS,S8,8,17,8,47.1,1500.0
+124,Dex Star,Middle,Blacklist Intl.,"S7, S8, S9, S10",10,65,46,70.8,1500.0
+125,Janus,Jungler,Cignal Ultra,S7,7,13,0,0.0,1500.0
+126,Allidap,EXP Lane,Omega Esports,"S8, S9",9,37,16,43.2,1500.0
+127,Hito,Gold Lane,Omega Esports,S8,8,18,7,38.9,1500.0
+128,Malik,Jungler,AP.Bren,"S8, S9",9,28,10,35.7,1500.0
+129,Rimuru,Jungler,AP.Bren,S8,8,14,5,35.7,1500.0
+130,Lastii,Roamer,AP.Bren,S5,5,12,9,75.0,1500.0
+131,Rhea,EXP Lane,Cignal Ultra,"S6, S7",7,26,4,15.4,1500.0
+132,Kil Ler,EXP Lane,Blacklist Intl.,"S4, S5, S6",6,33,15,45.5,1500.0
+133,Lex,EXP Lane,SGD Omega,"S2, S3",3,23,12,52.2,1500.0
+134,Jana,Middle,Digital Devils No Limit,S1,1,5,0,0.0,1500.0
+135,Jieo,Roamer,Geek Fam PH,"S1, S4, S5",5,25,5,20.0,1500.0
+136,S4ngmu,EXP Lane,Obsidian Raven,S1,1,6,1,16.7,1500.0
+137,Alkaem,Gold Lane,Obsidian Raven,S1,1,6,1,16.7,1500.0
+138,S4gitnu,EXP Lane,Nexplay EVOS,"S1, S4, S5, S6, S9",9,56,24,42.9,1500.0
+139,Burning,Roamer,Obsidian Raven,S1,1,6,1,16.7,1500.0
+140,Basha,Roamer,Obsidian Raven,S1,1,6,1,16.7,1500.0
+141,Jeo,S,Obsidian Gaming,S1,1,10,7,70.0,1500.0
+142,Had ji,S,EVOS Esports PH,S4,4,10,3,30.0,1500.0
+143,Dian,Middle,Omega Esports,"S1, S3, S4, S8",8,50,26,52.0,1500.0
+144,Pakbet,,Omega Esports,"S1, S2, S3, S4, S7, S8, S9, S10, S11",11,128,64,50.0,1500.0
+145,JeffQt4ever,,BnK Blufire,"S1, S2, S3, S4, S6",6,62,27,43.5,1500.0
+146,YoLo,,Nexplay EVOS,"S1, S2, S5, S6",6,45,25,55.6,1500.0
+147,Dale,,Team Liquid PH,"S2, S3, S5, S6, S7, S8",8,77,45,58.4,1500.0
+148,Nick,Jungler,Finesse Solid,S2,2,13,8,61.5,1500.0
+149,Chico,S,No Limit,"S1, S3",3,16,6,37.5,1500.0
+150,Levi,Gold Lane,SGD Omega,"S2, S3",3,23,12,52.2,1500.0
+151,Boo,Roamer,Finesse Solid,S2,2,13,8,61.5,1500.0
+152,Wreck,S,White Rascals,S2,2,9,0,0.0,1500.0
+153,Kenzu,EXP Lane,White Rascals,S2,2,9,0,0.0,1500.0
+154,Snow,Jungler,White Rascals,S2,2,9,0,0.0,1500.0
+155,Ramen,Middle,White Rascals,S2,2,9,0,0.0,1500.0
+156,Naith,Gold Lane,White Rascals,S2,2,9,0,0.0,1500.0
+157,Chalk,Roamer,White Rascals,S2,2,9,0,0.0,1500.0
+158,Bon Chan,,Blacklist Intl.,"S2, S3, S4, S5, S6, S7, S8, S9, S10",10,122,73,59.8,1500.0
+159,Dexter,Middle,Blacklist Intl.,"S2, S3, S4, S5, S6",6,57,27,47.4,1500.0
+160,Hon Da,Roamer,Blacklist Intl.,"S2, S3, S4, S5",5,45,20,44.4,1500.0
+161,Ar Chi,Middle,EVOS Esports PH,"S2, S3",3,24,12,50.0,1500.0
+162,Had Ji,S,EVOS Esports PH,"S2, S3",3,24,12,50.0,1500.0
+163,Ge Dd,Roamer,SxC Imbalance,S2,2,12,6,50.0,1500.0
+164,Danielle,Gold Lane,Digital Devils No Limit,S1,1,5,0,0.0,1500.0
+165,Tets,Roamer,Cignal Ultra,"S1, S2, S3, S4",4,46,26,56.5,1500.0
+166,2yeon,S,HappyFeet,S2,2,9,3,33.3,1500.0
+167,Pauu,EXP Lane,Ownage,"S1, S2, S3",3,27,10,37.0,1500.0
+168,Vmpire,Middle,Invictus Godz,S1,1,10,4,40.0,1500.0
+169,Vladimir,Roamer,Invictus Godz,S1,1,10,4,40.0,1500.0
+170,Helena,Roamer,Invictus Godz,S1,1,10,4,40.0,1500.0
+171,Inuzaki,EXP Lane,White Rascals,S1,1,7,1,14.3,1500.0
+172,Gelido,Gold Lane,White Rascals,S1,1,7,1,14.3,1500.0
+173,Kaizoku,Middle,White Rascals,S1,1,7,1,14.3,1500.0
+174,Shingkalafu,Roamer,White Rascals,S1,1,7,1,14.3,1500.0
+175,Yasu,Roamer,White Rascals,S1,1,7,1,14.3,1500.0
+176,666,Roamer,AP.Bren,"S1, S2",2,23,21,91.3,1500.0
+177,Coco,Gold Lane,AP.Bren,"S1, S2, S3, S4, S5, S8",8,73,50,68.5,1500.0
+178,Pein,EXP Lane,AP.Bren,"S1, S2, S3",3,36,31,86.1,1500.0
+179,Yuji,Middle,STI e-Olympians,"S1, S2, S3, S4, S5",5,56,36,64.3,1500.0
+180,Kevv,EXP Lane,Vicious & Delicious,S1,1,6,0,0.0,1500.0
+181,Jep,Gold Lane,Vicious & Delicious,S1,1,6,0,0.0,1500.0
+182,Boss,Roamer,Vicious & Delicious,S1,1,6,0,0.0,1500.0
+183,Dee,Middle,Cignal Ultra,"S1, S2, S3, S4",4,46,26,56.5,1500.0
+184,Vino,Roamer,Vicious & Delicious,S1,1,6,0,0.0,1500.0
+185,Van,Roamer,Aether Valkyrie,S1,1,9,6,66.7,1500.0
+186,Kenji,EXP Lane,RSG PH,"S1, S2, S3, S4, S5, S6, S7, S8, S9, S10",10,133,79,59.4,1500.0
+187,Ognimod,Roamer,Aether Atlas,"S1, S3",3,18,9,50.0,1500.0
+188,Changu,Gold Lane,Aether Atlas,"S1, S2, S3",3,29,15,51.7,1500.0
+189,L3bron,Jungler,AP.Bren,"S1, S2, S3, S8",8,43,20,46.5,1500.0
+190,EJhay,Roamer,Aether Valkyrie,S1,1,9,6,66.7,1500.0
+191,Link,EXP Lane,Digital Devils Demon Kings,S1,1,9,3,33.3,1500.0
+192,Yb420,EXP Lane,HappyFeet,"S1, S2",2,18,6,33.3,1500.0
+193,Dysania,S,Cignal Ultra,"S1, S2, S3, S4",4,43,20,46.5,1500.0
+194,Crypt,Jungler,Aether Atlas,"S1, S2, S3",3,29,12,41.4,1500.0
+195,Pringles,Roamer,HappyFeet,"S1, S2",2,18,6,33.3,1500.0
+196,Bluffzy,,ONIC PH,"S1, S9, S10",10,44,25,56.8,1500.0
+197,Yakou,Flex,PlayBook Esports,"S1, S2, S3, S4, S7",7,59,29,49.2,1500.0
+198,Ejhay,Roamer,AP.Bren,"S2, S3, S4, S5, S6, S7, S8",8,92,58,63.0,1500.0
+199,Z4pnu,EXP Lane,Omega Esports,"S1, S2, S3, S4, S5, S6, S7, S8, S9, S10",10,139,75,54.0,1500.0
+200,Skyy,Middle,No Limit,S3,3,11,6,54.5,1500.0
+201,Elle,EXP Lane,ArkAngel Wicked Minds,S2,2,1,0,0.0,1500.0
+202,Rafflesia,Roamer,Team Liquid PH,"S3, S4, S5, S6, S7, S8, S9",9,81,50,61.7,1500.0
+203,Luwe,S,Aether Atlas,S3,3,9,3,33.3,1500.0
+204,Dazz,S,Finesse Phoenix,S3,3,9,0,0.0,1500.0
+205,Wave,EXP Lane,Finesse Phoenix,S3,3,9,0,0.0,1500.0
+206,Tian,Jungler,Finesse Phoenix,S3,3,9,0,0.0,1500.0
+207,Dain,Middle,Finesse Phoenix,S3,3,9,0,0.0,1500.0
+208,Toshinu,EXP Lane,Omega Esports,"S4, S5, S6",6,39,26,66.7,1500.0
+209,Touch,Gold Lane,Finesse Phoenix,S3,3,9,0,0.0,1500.0
+210,Russ,Roamer,Finesse Phoenix,S3,3,9,0,0.0,1500.0
+211,Toshiro,S,Execration,S3,3,10,5,50.0,1500.0
+212,E2MAX,Middle,Omega Esports,"S3, S4, S5, S6, S7, S8, S9, S10, S12",12,130,65,50.0,1500.0
+213,Crypzu,Roamer,BnK Blufire,"S4, S5, S6",6,33,8,24.2,1500.0
+214,Beemo,Roamer,PlayBook Esports,"S3, S4, S7",7,34,10,29.4,1500.0
+215,Inyel,Roamer,Ownage,S4,4,10,3,30.0,1500.0
+216,Doof En,Gold Lane,EVOS Esports PH,"S3, S4",4,22,9,40.9,1500.0
+217,Ivan,S,SGD Omega,"S3, S4",4,23,12,52.2,1500.0
+218,Heath,Roamer,RSG PH,"S3, S4, S5, S6, S7, S8, S9",9,96,57,59.4,1500.0
+219,Nicssu,EXP Lane,STI e-Olympians,"S4, S5",5,19,3,15.8,1500.0
+220,Greed,Middle,Aurora,"S4, S5, S6, S7",7,42,31,73.8,1500.0
+221,Zico,,Nexplay EVOS,"S4, S5, S8, S9",9,58,34,58.6,1500.0
+222,Iy4knu,Gold Lane,ONIC PH,"S4, S5, S6, S7, S8",8,87,54,62.1,1500.0
+223,Emem,Jungler,No Limit,S3,3,11,6,54.5,1500.0
+224,OhMyV33Nus,Roamer,ONIC PH,"S4, S5",5,26,20,76.9,1500.0
+225,Fuzaken,Roamer,BnK Blufire,"S2, S3, S4, S6",6,43,20,46.5,1500.0
+226,KurtTzy,Middle,Team Liquid PH,"S4, S5, S6, S7, S8, S9, S10",10,111,57,51.4,1500.0
+227,Carbonara,Middle,ArkAngel Ownage,S2,2,10,6,60.0,1500.0
+228,Lembot,Gold Lane,STI e-Olympians,"S2, S3, S4, S5",5,40,13,32.5,1500.0
+229,Renzio,EXP Lane,Omega Esports,"S4, S5, S6, S7, S8, S9, S10, S11",11,109,60,55.0,1500.0
+230,Cktd,Roamer,Geek Fam PH,"S2, S3, S4, S5",5,40,14,35.0,1500.0
+231,Eskii,S,Sunsparks,S4,4,11,10,90.9,1500.0
+232,Fits Kyun,S,ArkAngel,"S2, S3",3,21,13,61.9,1500.0
+233,Dokmen,Roamer,STI e-Olympians,"S4, S5",5,20,4,20.0,1500.0
+234,Escanor,EXP Lane,ULVL,"S4, S5",5,21,6,28.6,1500.0
+235,Killuash,EXP Lane,Team Liquid PH,"S2, S3, S4, S5, S6, S7, S9",9,61,34,55.7,1500.0
+236,Ryo,,ONIC PH,"S2, S3, S4, S6, S7, S8",8,77,42,54.5,1500.0
+237,Jay,Roamer,ONIC PH,"S2, S3, S4, S6, S7, S8",8,77,42,54.5,1500.0
+238,Kingpin,Middle,Geek Fam PH,S4,4,11,4,36.4,1500.0
+239,Lard,Roamer,STI e-Olympians,"S2, S3, S5",5,30,10,33.3,1500.0
+240,ShaiderQT,EXP Lane,BSB,"S2, S5, S6",6,31,7,22.6,1500.0
+241,Teng,EXP Lane,AP.Bren,S4,4,11,5,45.5,1500.0
+242,Chimaie,Jungler,HappyFeet,S2,2,9,3,33.3,1500.0
+243,Secret,EXP Lane,BnK Blufire,"S2, S5, S6",6,30,5,16.7,1500.0
+244,Lusty,Roamer,AP.Bren,"S2, S3, S4, S6, S7, S8, S9",9,99,54,54.5,1500.0
+245,Spideeey,Jungler,Omega Esports,S12,12,15,7,46.7,1499.9
+246,GoyongDR,Middle,Nexplay EVOS,S11,11,14,4,28.6,1499.9
+247,BoyetDR,Jungler,Nexplay EVOS,S11,11,14,4,28.6,1499.9
+248,DingDR,EXP Lane,Nexplay EVOS,S11,11,14,4,28.6,1499.9
+249,413,,TNC Pro Team,S11,11,14,3,21.4,1499.9
+250,Saxa,Jungler,TNC Pro Team,"S9, S10, S11",11,45,18,40.0,1499.9
+251,BruskoDR,Roamer,Nexplay EVOS,S11,11,14,4,28.6,1499.9
+252,Stronger,,Omega Esports,S12,12,15,7,46.7,1499.9
+253,Ninjakilla,Gold Lane,TNC Pro Team,S11,11,14,3,21.4,1499.9
+254,Souuul,Gold Lane,RSG PH,S12,12,17,8,47.1,1499.8
+255,Ajayy,EXP Lane,TNC Pro Team,S12,12,14,3,21.4,1499.6
+256,Bao,EXP Lane,TNC Pro Team,S12,12,14,3,21.4,1499.6
+257,Sumpak,Gold Lane,Minana EVOS,"S12, S13",13,29,12,41.4,1499.4
+258,Kramm,EXP Lane,ONIC PH,"S9, S10, S11, S12, S13",13,75,31,41.3,1499.3
+259,Hesu,EXP Lane,TNC Pro Team,"S11, S12",12,28,6,21.4,1499.2
+260,Innocent,Gold Lane,TNC Pro Team,"S11, S12",12,28,6,21.4,1499.2
+261,Vane,EXP Lane,Minana EVOS,S13,13,15,6,40.0,1499.1
+262,Bornok,Middle,Blacklist Intl.,"S2, S3, S5, S7, S8, S9, S10, S11, S13, S14",14,149,70,47.0,1498.3
+263,YellyHaze,Middle,Minana EVOS,"S1, S2, S3, S4, S8, S9, S10, S12, S13",13,122,64,52.5,1497.9
+264,Benthings,Roamer,Aurora,"S8, S9, S10, S11, S12, S14",14,92,33,35.9,1497.6
+265,Kimpoy,Roamer,Blacklist Intl.,"S12, S13, S14",14,54,26,48.1,1497.4
+266,Kram God,Roamer,Omega Esports,S13,13,14,3,21.4,1497.4
+267,West,Gold Lane,Omega Esports,S13,13,14,3,21.4,1497.0
+268,Rayl,Middle,Omega Esports,S13,13,14,3,21.4,1496.6
+269,Nomed,Gold Lane,TNC Pro Team,S13,13,14,2,14.3,1496.1
+270,Matt,Jungler,Omega Esports,"S12, S13",13,29,10,34.5,1495.5
+271,Cyre,,Team Liquid PH,"S4, S5, S6, S14",14,53,32,60.4,1495.4
+272,Cjay,,Team Liquid PH,S14,14,15,8,53.3,1495.4
+273,Bigetron Alpha,EXP Lane,Blacklist Intl.,S14,14,17,6,35.3,1494.1
+274,Dlarskie,EXP Lane,Blacklist Intl.,"S4, S5, S6, S7, S8, S14",14,89,53,59.6,1494.1
+275,H2wo,Jungler,Omega Esports,"S6, S7, S8, S9, S10, S11, S13",13,104,39,37.5,1493.8
+276,Yasuwo,Gold Lane,TNC Pro Team,"S9, S10, S12, S13",13,59,17,28.8,1493.6
+277,Minguin,Middle,Omega Esports,S17,17,14,6,42.9,1493.3
+278,Pheww,Middle,Team Falcons PH,"S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16",16,235,138,58.7,1492.0
+279,MarkTzy,Jungler,Blacklist Intl.,S14,14,17,6,35.3,1491.6
+280,Super Kurt,,Blacklist Intl.,"S13, S14",14,32,12,37.5,1491.1
+281,Yawi,Roamer,TNC Pro Team,"S6, S7, S8, S9, S10, S11, S12, S15",15,126,70,55.6,1490.5
+282,Nathzz,EXP Lane,RSG PH,"S8, S9, S10, S11, S12, S13, S14",14,116,62,53.4,1490.0
+283,Nibor,EXP Lane,RSG PH,"S13, S14",14,31,13,41.9,1488.4
+284,SN4P,,Omega Esports,"S13, S14, S16",16,43,17,39.5,1488.3
+285,Caloy,Roamer,Twisted Minds PH,"S16, S17",17,29,12,41.4,1486.4
+286,Lansu,EXP Lane,Twisted Minds PH,"S12, S16, S17",17,43,18,41.9,1484.3
+287,Nosia,Gold Lane,Twisted Minds PH,"S16, S17",17,29,12,41.4,1484.1
+288,BAI LUCI,EXP Lane,RSG PH,S14,14,14,3,21.4,1484.1
+289,Nets,Gold Lane,Omega Esports,"S9, S10, S11, S12, S13, S16, S17",17,105,49,46.7,1482.8
+290,Sionnn,Middle,Twisted Minds PH,"S16, S17",17,29,12,41.4,1481.8
+291,Peuder,Flex,Omega Esports,"S16, S17",17,28,11,39.3,1478.0
+292,Outplayed,Gold Lane,Twisted Minds PH,"S9, S10, S13, S14, S15",15,86,42,48.8,1475.8
+293,Irrad,Jungler,RSG PH,"S10, S11, S12, S14",14,67,31,46.3,1475.5
+294,Kekedot,Roamer,AP.Bren,"S7, S9, S10, S11, S15",15,74,25,33.8,1475.4
+295,YnoT,,ONIC PH,"S4, S5, S9, S16",16,55,23,41.8,1475.2
+296,Haze,,ONIC PH,"S5, S6, S7, S11, S16",16,71,37,52.1,1474.9
+297,Sindel,Gold Lane,AP.Bren,S15,15,14,3,21.4,1472.0
+298,Der,EXP Lane,AP.Bren,"S8, S9, S10, S11, S15",15,75,29,38.7,1471.5
+299,Koyl,Jungler,TNC Pro Team,"S13, S15",15,30,11,36.7,1471.1
+300,Lamaj,Gold Lane,Twisted Minds PH,S15,15,15,3,20.0,1471.1
+301,Bom,,AP.Bren,S15,15,14,3,21.4,1470.0
+302,SDzyz,Jungler,TNC Pro Team,"S5, S6, S7, S8, S9, S10, S14",14,95,27,28.4,1468.7
+303,HEADS,EXP Lane,TNC Pro Team,"S13, S14",14,28,2,7.1,1467.8
+304,Kzen,Jungler,TNC Pro Team,"S10, S12, S13, S14",14,57,14,24.6,1463.4
+305,Hatred,Middle,TNC Pro Team,"S5, S13, S14",14,40,10,25.0,1463.2
+306,Jowm,Gold Lane,Omega Esports,"S9, S10, S12, S13, S14, S15",15,89,36,40.4,1462.0
+307,Light,Roamer,Aurora,"S7, S8, S9, S10, S11, S12, S13, S14, S16, S17",17,161,88,54.7,1460.4
+308,Raizen,Jungler,Omega Esports,"S8, S9, S10, S11, S12, S13, S16, S17",17,139,59,42.4,1459.4
+309,Goyo,,TNC Pro Team,"S11, S12, S13, S14",14,56,8,14.3,1455.7
+310,Riku,Middle,Omega Esports,"S11, S13, S14, S15",15,57,17,29.8,1449.9
+311,Lord JM,EXP Lane,AP.Bren,"S12, S15, S16",16,43,15,34.9,1447.5
+312,Louis,EXP Lane,Omega Esports,"S11, S13, S15",15,43,11,25.6,1444.4
+313,Sensui,Jungler,Twisted Minds PH,"S9, S10, S11, S12, S13, S15, S16",16,114,51,44.7,1443.6
+314,Andoryuuu,Jungler,Omega Esports,"S12, S13, S14, S15",15,58,21,36.2,1443.2
+315,Jeymz,EXP Lane,Omega Esports,"S7, S8, S10, S15, S16, S17",17,88,30,34.1,1442.3
+316,Escalera,Roamer,Twisted Minds PH,"S9, S10, S11, S12, S13, S14, S15",15,104,34,32.7,1437.1
+317,Yoshinu,Roamer,Omega Esports,"S12, S13, S15, S16",16,72,25,34.7,1431.0
+318,Kouzen,Gold Lane,TNC Pro Team,"S7, S8, S9, S10, S11, S13, S14, S15",15,142,65,45.8,1430.0
+319,Chovyy,Middle,AP.Bren,"S15, S16",16,28,7,25.0,1423.1
+320,Kielvj,EXP Lane,AP.Bren,"S3, S4, S5, S6, S7, S8, S9, S10, S17",17,119,63,52.9,1418.0
+321,Chovskrt,Middle,AP.Bren,S17,17,14,3,21.4,1406.3
+322,MP the King,Jungler,Twisted Minds PH,"S9, S14, S15, S16, S17",17,76,27,35.5,1405.8
+323,XNova,Roamer,AP.Bren,"S16, S17",17,28,7,25.0,1402.6
+324,Bennyqt,Gold Lane,TNC Pro Team,"S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S17",17,204,113,55.4,1400.8
+325,Stowm,Middle,TNC Pro Team,"S9, S10, S11, S17",17,60,23,38.3,1378.9
+326,3MarTzy,EXP Lane,TNC Pro Team,"S7, S8, S9, S10, S15, S16, S17",17,109,47,43.1,1376.7
+327,Ch4knu,Roamer,TNC Pro Team,"S4, S6, S7, S8, S9, S10, S12, S13, S14, S15, S16, S17",17,186,80,43.0,1370.5
+328,Shizou,Gold Lane,AP.Bren,"S15, S16, S17",17,42,10,23.8,1350.7
+329,Aqua,Middle,AP.Bren,"S5, S6, S7, S8, S9, S10, S12, S13, S14, S16, S17",17,162,72,44.4,1347.5
+330,Zaida,Jungler,TNC Pro Team,"S10, S13, S14, S15, S16, S17",17,97,46,47.4,1336.8
+331,LanceCy,Middle,TNC Pro Team,"S7, S10, S12, S13, S14, S15, S16, S17",17,118,34,28.8,1293.6
+332,Jamespangks,Jungler,AP.Bren,"S15, S16, S17",17,42,10,23.8,1286.7

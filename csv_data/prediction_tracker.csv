@@ -1,0 +1,353 @@
+season,is_playoffs,game_number,blue_series_score,red_series_score,is_elimination_game,blue_side_team,red_side_team,predicted_winner,actual_winner,confidence,correct,result_emoji
+15,1,1,0,0,0,ONIC PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.47081595489104505,1,✅
+15,1,2,1,0,0,Team Liquid PH,ONIC PH,Team Liquid PH,ONIC PH,0.6050791994147259,0,❌
+15,1,3,1,1,1,ONIC PH,Team Liquid PH,ONIC PH,ONIC PH,0.6024393332612735,1,✅
+15,1,4,1,2,1,Team Liquid PH,ONIC PH,Team Liquid PH,Team Liquid PH,0.5839093870381408,1,✅
+15,1,5,2,2,1,ONIC PH,Team Liquid PH,ONIC PH,Team Liquid PH,0.5445657059501636,0,❌
+15,1,6,3,2,1,Team Liquid PH,ONIC PH,Team Liquid PH,ONIC PH,0.6219406161267603,0,❌
+15,1,7,3,3,1,ONIC PH,Team Liquid PH,ONIC PH,Team Liquid PH,0.5245474251076613,0,❌
+15,0,1,0,0,0,Omega Esports,ONIC PH,ONIC PH,Omega Esports,0.2871084625623574,0,❌
+15,0,1,0,0,0,Omega Esports,AP.Bren,AP.Bren,Omega Esports,0.4784522057309155,0,❌
+15,1,1,0,0,0,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.7001795249970808,1,✅
+15,1,2,0,1,0,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.4310518991516697,1,✅
+15,1,3,2,0,1,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Falcons PH,0.665746089552402,0,❌
+15,1,4,1,2,1,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.4342607598331121,1,✅
+15,1,5,3,1,1,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Falcons PH,0.5410448265888769,0,❌
+15,1,6,2,3,1,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3837293612809271,1,✅
+15,1,1,0,0,0,Team Falcons PH,TNC Pro Team,TNC Pro Team,TNC Pro Team,0.48323466222902006,1,✅
+15,1,4,1,2,1,TNC Pro Team,Team Falcons PH,Team Falcons PH,TNC Pro Team,0.18049442358171533,0,❌
+15,1,5,2,2,1,Team Falcons PH,TNC Pro Team,Team Falcons PH,Team Falcons PH,0.8055919743901834,1,✅
+15,0,1,0,0,0,ONIC PH,Twisted Minds PH,ONIC PH,ONIC PH,0.7638086278572431,1,✅
+15,0,1,0,0,0,AP.Bren,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.25703967206201933,1,✅
+15,1,1,0,0,0,ONIC PH,Twisted Minds PH,ONIC PH,ONIC PH,0.7555713899390636,1,✅
+15,1,5,2,2,1,ONIC PH,Twisted Minds PH,ONIC PH,ONIC PH,0.7417735632961061,1,✅
+15,0,1,0,0,0,AP.Bren,ONIC PH,ONIC PH,ONIC PH,0.25157296288752895,1,✅
+15,0,1,0,0,0,Aurora,Team Falcons PH,Aurora,Team Falcons PH,0.6826951414340239,0,❌
+15,1,1,0,0,0,Aurora,Team Falcons PH,Aurora,Team Falcons PH,0.5589976033518029,0,❌
+15,1,2,1,0,0,Team Falcons PH,Aurora,Team Falcons PH,Team Falcons PH,0.5370889345160913,1,✅
+15,1,3,0,2,1,Aurora,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.44070772525040164,1,✅
+15,0,1,0,0,0,Team Liquid PH,TNC Pro Team,Team Liquid PH,Team Liquid PH,0.5524297429763404,1,✅
+15,1,1,0,0,0,Aurora,ONIC PH,Aurora,Aurora,0.5594863415345814,1,✅
+15,1,2,0,1,0,ONIC PH,Aurora,ONIC PH,ONIC PH,0.5737573238751271,1,✅
+15,1,3,1,1,1,Aurora,ONIC PH,Aurora,ONIC PH,0.5912727613466991,0,❌
+15,1,4,2,1,1,ONIC PH,Aurora,ONIC PH,Aurora,0.5500370969800435,0,❌
+15,1,5,2,2,1,Aurora,ONIC PH,ONIC PH,ONIC PH,0.48968206989161983,1,✅
+15,1,1,0,0,0,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Falcons PH,0.6839971224849631,0,❌
+15,1,2,1,0,0,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Falcons PH,0.31412974832044976,0,❌
+15,1,3,0,2,1,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.6076459554831376,1,✅
+15,1,4,2,1,1,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.40287518077656675,1,✅
+15,1,5,2,2,1,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.7010862115671319,1,✅
+15,0,1,0,0,0,Team Liquid PH,Aurora,Aurora,Team Liquid PH,0.35546781660692345,0,❌
+15,1,1,0,0,0,ONIC PH,Team Liquid PH,ONIC PH,ONIC PH,0.6552713483511563,1,✅
+15,1,2,0,1,0,Team Liquid PH,ONIC PH,ONIC PH,ONIC PH,0.4376174720672434,1,✅
+15,1,3,2,0,1,ONIC PH,Team Liquid PH,Team Liquid PH,ONIC PH,0.4007382944026658,0,❌
+16,0,1,0,0,0,ONIC PH,Team Liquid PH,ONIC PH,ONIC PH,0.6307863744739105,1,✅
+16,0,2,0,1,0,Team Liquid PH,ONIC PH,ONIC PH,ONIC PH,0.4326086643672305,1,✅
+16,0,1,0,0,0,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Falcons PH,0.3571525826177318,0,❌
+16,0,2,0,1,0,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.734253560313021,1,✅
+16,0,3,1,1,1,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Falcons PH,0.42663275374008847,0,❌
+16,1,1,0,0,0,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.6304093541140329,1,✅
+16,1,2,0,1,0,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.29168064726501985,1,✅
+16,1,3,2,0,1,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Falcons PH,0.7903178507042293,0,❌
+16,1,4,1,2,1,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3877512206586507,1,✅
+16,1,1,0,0,0,Team Liquid PH,Aurora,Aurora,Aurora,0.4073614566949781,1,✅
+16,1,2,1,0,0,Aurora,Team Liquid PH,Aurora,Team Liquid PH,0.5034553110141542,0,❌
+16,1,3,1,1,1,Team Liquid PH,Aurora,Aurora,Aurora,0.39769196123412004,1,✅
+16,1,4,2,1,1,Aurora,Team Liquid PH,Aurora,Aurora,0.5702054502047843,1,✅
+16,0,1,0,0,0,Team Falcons PH,AP.Bren,AP.Bren,Team Falcons PH,0.4908001450807699,0,❌
+16,0,2,0,1,0,AP.Bren,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.22913367190779368,1,✅
+16,0,1,0,0,0,TNC Pro Team,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3338010968499829,1,✅
+16,0,2,1,0,0,Team Liquid PH,TNC Pro Team,Team Liquid PH,Team Liquid PH,0.6012021273099394,1,✅
+16,0,1,0,0,0,Twisted Minds PH,Team Falcons PH,Team Falcons PH,Twisted Minds PH,0.3630913731188028,0,❌
+16,0,2,0,1,0,Team Falcons PH,Twisted Minds PH,Twisted Minds PH,Team Falcons PH,0.432382592953053,0,❌
+16,0,3,1,1,1,Twisted Minds PH,Team Falcons PH,Twisted Minds PH,Team Falcons PH,0.5107106694201664,0,❌
+16,0,1,0,0,0,Team Liquid PH,AP.Bren,Team Liquid PH,Team Liquid PH,0.767873156564224,1,✅
+16,0,2,0,1,0,AP.Bren,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.20036839968699036,1,✅
+16,0,1,0,0,0,Team Liquid PH,ONIC PH,Team Liquid PH,Team Liquid PH,0.5184487161357462,1,✅
+16,0,2,0,1,0,ONIC PH,Team Liquid PH,Team Liquid PH,ONIC PH,0.3988899439189177,0,❌
+16,0,3,1,1,1,Team Liquid PH,ONIC PH,ONIC PH,ONIC PH,0.44922975224713585,1,✅
+16,0,1,0,0,0,Twisted Minds PH,Aurora,Aurora,Aurora,0.21502243919348554,1,✅
+16,0,2,1,0,0,Aurora,Twisted Minds PH,Aurora,Aurora,0.6887599990469456,1,✅
+16,0,1,0,0,0,Aurora,Team Liquid PH,Aurora,Aurora,0.6352481294614104,1,✅
+16,0,2,0,1,0,Team Liquid PH,Aurora,Aurora,Aurora,0.49621241420671386,1,✅
+16,0,1,0,0,0,Omega Esports,AP.Bren,Omega Esports,AP.Bren,0.5153860934104909,0,❌
+16,0,2,1,0,0,AP.Bren,Omega Esports,AP.Bren,Omega Esports,0.5604400292302635,0,❌
+16,0,3,1,1,1,Omega Esports,AP.Bren,AP.Bren,AP.Bren,0.27224416033324544,1,✅
+16,0,1,0,0,0,TNC Pro Team,AP.Bren,AP.Bren,AP.Bren,0.320825472307814,1,✅
+16,0,2,1,0,0,AP.Bren,TNC Pro Team,TNC Pro Team,TNC Pro Team,0.4916641429746167,1,✅
+16,0,3,1,1,1,TNC Pro Team,AP.Bren,AP.Bren,TNC Pro Team,0.3413760441861901,0,❌
+16,0,1,0,0,0,Aurora,AP.Bren,Aurora,AP.Bren,0.6908405867147785,0,❌
+16,0,2,1,0,0,AP.Bren,Aurora,Aurora,Aurora,0.24969841476746688,1,✅
+16,0,3,1,1,1,Aurora,AP.Bren,Aurora,Aurora,0.6819527615286652,1,✅
+16,0,1,0,0,0,TNC Pro Team,Aurora,Aurora,Aurora,0.14475604649037985,1,✅
+16,0,2,1,0,0,Aurora,TNC Pro Team,Aurora,Aurora,0.588546395337505,1,✅
+16,0,1,0,0,0,Twisted Minds PH,AP.Bren,AP.Bren,Twisted Minds PH,0.49685021840429133,0,❌
+16,0,2,0,1,0,AP.Bren,Twisted Minds PH,Twisted Minds PH,Twisted Minds PH,0.316879033141188,1,✅
+16,0,1,0,0,0,Omega Esports,Aurora,Aurora,Aurora,0.21882724851969568,1,✅
+16,0,2,1,0,0,Aurora,Omega Esports,Aurora,Omega Esports,0.6671831728513351,0,❌
+16,0,3,1,1,1,Omega Esports,Aurora,Aurora,Aurora,0.16211158991447816,1,✅
+16,0,1,0,0,0,Team Falcons PH,ONIC PH,ONIC PH,Team Falcons PH,0.33700413312805283,0,❌
+16,0,2,0,1,0,ONIC PH,Team Falcons PH,Team Falcons PH,ONIC PH,0.4565363542706211,0,❌
+16,0,3,1,1,1,Team Falcons PH,ONIC PH,ONIC PH,Team Falcons PH,0.3079622913208597,0,❌
+16,0,1,0,0,0,Omega Esports,Twisted Minds PH,Twisted Minds PH,Twisted Minds PH,0.4444092615466058,1,✅
+16,0,2,1,0,0,Twisted Minds PH,Omega Esports,Twisted Minds PH,Omega Esports,0.7427887881804427,0,❌
+16,0,3,1,1,1,Omega Esports,Twisted Minds PH,Twisted Minds PH,Twisted Minds PH,0.28457413248728497,1,✅
+16,1,1,0,0,0,ONIC PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.46185811950942135,1,✅
+16,1,2,1,0,0,Team Liquid PH,ONIC PH,Team Liquid PH,Team Liquid PH,0.6432285818917007,1,✅
+16,1,3,0,2,1,ONIC PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.47664178592387213,1,✅
+16,0,1,0,0,0,Twisted Minds PH,Team Liquid PH,Team Liquid PH,Twisted Minds PH,0.21180040642139178,0,❌
+16,0,2,0,1,0,Team Liquid PH,Twisted Minds PH,Team Liquid PH,Team Liquid PH,0.6371517321018768,1,✅
+16,0,3,1,1,1,Twisted Minds PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.345693848151209,1,✅
+16,0,1,0,0,0,Twisted Minds PH,ONIC PH,ONIC PH,ONIC PH,0.28438343318383347,1,✅
+16,0,2,1,0,0,ONIC PH,Twisted Minds PH,ONIC PH,ONIC PH,0.7076042110751898,1,✅
+16,0,1,0,0,0,ONIC PH,TNC Pro Team,ONIC PH,ONIC PH,0.7380148327809538,1,✅
+16,0,2,0,1,0,TNC Pro Team,ONIC PH,ONIC PH,TNC Pro Team,0.23903528972322882,0,❌
+16,0,3,1,1,1,ONIC PH,TNC Pro Team,ONIC PH,ONIC PH,0.7207880849263734,1,✅
+16,0,1,0,0,0,AP.Bren,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.4898794375791975,1,✅
+16,0,2,1,0,0,Team Falcons PH,AP.Bren,Team Falcons PH,AP.Bren,0.7392487056570985,0,❌
+16,0,3,1,1,1,AP.Bren,Team Falcons PH,Team Falcons PH,AP.Bren,0.21375267722339383,0,❌
+16,1,1,0,0,0,Aurora,TNC Pro Team,Aurora,Aurora,0.6320721206190144,1,✅
+16,1,2,0,1,0,TNC Pro Team,Aurora,Aurora,TNC Pro Team,0.30036125967520105,0,❌
+16,1,3,1,1,1,Aurora,TNC Pro Team,Aurora,Aurora,0.6851970560480275,1,✅
+16,1,4,1,2,1,TNC Pro Team,Aurora,Aurora,TNC Pro Team,0.32036472871828586,0,❌
+16,1,5,2,2,1,Aurora,TNC Pro Team,Aurora,Aurora,0.6914299336845896,1,✅
+16,0,1,0,0,0,TNC Pro Team,Twisted Minds PH,Twisted Minds PH,Twisted Minds PH,0.35577182067645846,1,✅
+16,0,2,1,0,0,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,TNC Pro Team,0.6397341529338384,0,❌
+16,0,3,1,1,1,TNC Pro Team,Twisted Minds PH,Twisted Minds PH,TNC Pro Team,0.34485064071838956,0,❌
+16,0,1,0,0,0,ONIC PH,Twisted Minds PH,ONIC PH,ONIC PH,0.7568884710987988,1,✅
+16,0,2,0,1,0,Twisted Minds PH,ONIC PH,ONIC PH,Twisted Minds PH,0.27941004897969285,0,❌
+16,0,3,1,1,1,ONIC PH,Twisted Minds PH,ONIC PH,Twisted Minds PH,0.5550883672827773,0,❌
+16,0,1,0,0,0,Team Liquid PH,Aurora,Aurora,Aurora,0.4930090691298552,1,✅
+16,0,2,1,0,0,Aurora,Team Liquid PH,Aurora,Team Liquid PH,0.577718708248327,0,❌
+16,0,3,1,1,1,Team Liquid PH,Aurora,Team Liquid PH,Aurora,0.500066387214089,0,❌
+16,0,1,0,0,0,ONIC PH,Omega Esports,ONIC PH,ONIC PH,0.7598008915351024,1,✅
+16,0,2,0,1,0,Omega Esports,ONIC PH,ONIC PH,ONIC PH,0.1483870567133699,1,✅
+16,0,1,0,0,0,Team Falcons PH,Twisted Minds PH,Team Falcons PH,Twisted Minds PH,0.6531582185318123,0,❌
+16,0,2,1,0,0,Twisted Minds PH,Team Falcons PH,Twisted Minds PH,Twisted Minds PH,0.5365002442368813,1,✅
+16,0,1,0,0,0,AP.Bren,TNC Pro Team,AP.Bren,TNC Pro Team,0.5506590963836504,0,❌
+16,0,2,1,0,0,TNC Pro Team,AP.Bren,AP.Bren,TNC Pro Team,0.38225801780962354,0,❌
+16,0,1,0,0,0,ONIC PH,Aurora,ONIC PH,ONIC PH,0.5478434773727777,1,✅
+16,0,2,0,1,0,Aurora,ONIC PH,ONIC PH,Aurora,0.3549379919982176,0,❌
+16,0,3,1,1,1,ONIC PH,Aurora,ONIC PH,Aurora,0.5843945360120433,0,❌
+16,0,1,0,0,0,Aurora,TNC Pro Team,Aurora,Aurora,0.6971108086826582,1,✅
+16,0,2,0,1,0,TNC Pro Team,Aurora,Aurora,TNC Pro Team,0.31784558575356964,0,❌
+16,0,3,1,1,1,Aurora,TNC Pro Team,Aurora,Aurora,0.7211700976703447,1,✅
+16,0,1,0,0,0,ONIC PH,AP.Bren,ONIC PH,AP.Bren,0.7538381634278336,0,❌
+16,0,2,1,0,0,AP.Bren,ONIC PH,ONIC PH,AP.Bren,0.28703842231640614,0,❌
+16,0,1,0,0,0,TNC Pro Team,Omega Esports,Omega Esports,Omega Esports,0.20638597407493012,1,✅
+16,0,2,1,0,0,Omega Esports,TNC Pro Team,TNC Pro Team,TNC Pro Team,0.4645221636727233,1,✅
+16,0,3,1,1,1,TNC Pro Team,Omega Esports,TNC Pro Team,Omega Esports,0.5518414349737859,0,❌
+16,0,1,0,0,0,Aurora,Team Falcons PH,Aurora,Team Falcons PH,0.5940083136698325,0,❌
+16,0,2,1,0,0,Team Falcons PH,Aurora,Team Falcons PH,Team Falcons PH,0.5556071416510207,1,✅
+16,0,1,0,0,0,Omega Esports,Team Falcons PH,Team Falcons PH,Omega Esports,0.36978793945045424,0,❌
+16,0,2,0,1,0,Team Falcons PH,Omega Esports,Team Falcons PH,Omega Esports,0.7132192712629437,0,❌
+16,1,1,0,0,0,Aurora,Team Liquid PH,Aurora,Team Liquid PH,0.5911462502129167,0,❌
+16,1,2,1,0,0,Team Liquid PH,Aurora,Aurora,Team Liquid PH,0.4290792798069128,0,❌
+16,1,3,0,2,1,Aurora,Team Liquid PH,Aurora,Team Liquid PH,0.5391715880685882,0,❌
+16,1,4,3,0,1,Team Liquid PH,Aurora,Aurora,Team Liquid PH,0.4476415530402001,0,❌
+16,0,1,0,0,0,AP.Bren,Twisted Minds PH,AP.Bren,Twisted Minds PH,0.5917780738735791,0,❌
+16,0,2,1,0,0,Twisted Minds PH,AP.Bren,AP.Bren,AP.Bren,0.46740006772320997,1,✅
+16,0,3,1,1,1,AP.Bren,Twisted Minds PH,Twisted Minds PH,Twisted Minds PH,0.44704813625584566,1,✅
+16,1,1,0,0,0,Twisted Minds PH,TNC Pro Team,TNC Pro Team,TNC Pro Team,0.47148162761198087,1,✅
+16,1,2,1,0,0,TNC Pro Team,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,0.6059672299020844,0,❌
+16,1,3,1,1,1,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,TNC Pro Team,0.5841819699013081,0,❌
+16,1,4,2,1,1,TNC Pro Team,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,0.5680274413849141,0,❌
+16,1,5,2,2,1,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,TNC Pro Team,0.5556147947260012,0,❌
+16,0,1,0,0,0,Omega Esports,TNC Pro Team,Omega Esports,Omega Esports,0.5307818873585766,1,✅
+16,0,2,0,1,0,TNC Pro Team,Omega Esports,Omega Esports,TNC Pro Team,0.3078150176619131,0,❌
+16,0,3,1,1,1,Omega Esports,TNC Pro Team,Omega Esports,Omega Esports,0.5771786878759609,1,✅
+16,0,1,0,0,0,ONIC PH,Team Falcons PH,ONIC PH,ONIC PH,0.7079035306865937,1,✅
+16,0,2,0,1,0,Team Falcons PH,ONIC PH,ONIC PH,ONIC PH,0.290354940670569,1,✅
+16,0,1,0,0,0,Team Falcons PH,Omega Esports,Omega Esports,Omega Esports,0.3989228650900502,1,✅
+16,0,2,1,0,0,Omega Esports,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.3147454394567594,1,✅
+16,0,3,1,1,1,Team Falcons PH,Omega Esports,Team Falcons PH,Omega Esports,0.5216825839837282,0,❌
+16,0,1,0,0,0,TNC Pro Team,Team Falcons PH,Team Falcons PH,TNC Pro Team,0.22041024091482117,0,❌
+16,0,2,0,1,0,Team Falcons PH,TNC Pro Team,Team Falcons PH,TNC Pro Team,0.5605104611859693,0,❌
+16,0,1,0,0,0,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,TNC Pro Team,0.5279263112329332,0,❌
+16,0,2,1,0,0,TNC Pro Team,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,0.5575564214495028,0,❌
+16,0,3,1,1,1,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,Twisted Minds PH,0.5289990755493624,1,✅
+16,1,1,0,0,0,Team Liquid PH,TNC Pro Team,Team Liquid PH,Team Liquid PH,0.6669442322837994,1,✅
+16,1,2,0,1,0,TNC Pro Team,Team Liquid PH,Team Liquid PH,TNC Pro Team,0.3854959240885318,0,❌
+16,1,3,1,1,1,Team Liquid PH,TNC Pro Team,Team Liquid PH,Team Liquid PH,0.6732474642146428,1,✅
+16,1,4,1,2,1,TNC Pro Team,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3489342196664302,1,✅
+16,1,5,3,1,1,Team Liquid PH,TNC Pro Team,Team Liquid PH,Team Liquid PH,0.726620915937135,1,✅
+16,1,1,0,0,0,ONIC PH,TNC Pro Team,ONIC PH,ONIC PH,0.6776564850942508,1,✅
+16,1,2,0,1,0,TNC Pro Team,ONIC PH,ONIC PH,TNC Pro Team,0.3470366977740047,0,❌
+16,1,3,1,1,1,ONIC PH,TNC Pro Team,ONIC PH,TNC Pro Team,0.7268948157260225,0,❌
+16,1,4,2,1,1,TNC Pro Team,ONIC PH,ONIC PH,ONIC PH,0.28985719777282376,1,✅
+16,1,5,2,2,1,ONIC PH,TNC Pro Team,ONIC PH,TNC Pro Team,0.7654726244357904,0,❌
+16,0,1,0,0,0,Omega Esports,ONIC PH,ONIC PH,ONIC PH,0.3533879315653992,1,✅
+16,0,2,1,0,0,ONIC PH,Omega Esports,ONIC PH,ONIC PH,0.6759654240443468,1,✅
+16,0,1,0,0,0,Aurora,Omega Esports,Aurora,Aurora,0.7146341282438223,1,✅
+16,0,2,0,1,0,Omega Esports,Aurora,Aurora,Aurora,0.21976646308352135,1,✅
+16,0,1,0,0,0,Team Liquid PH,TNC Pro Team,Team Liquid PH,Team Liquid PH,0.6887533132753642,1,✅
+16,0,2,0,1,0,TNC Pro Team,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.2976475104899613,1,✅
+16,0,1,0,0,0,AP.Bren,Omega Esports,Omega Esports,AP.Bren,0.3612910391521347,0,❌
+16,0,2,0,1,0,Omega Esports,AP.Bren,AP.Bren,Omega Esports,0.22020978589117865,0,❌
+16,0,3,1,1,1,AP.Bren,Omega Esports,AP.Bren,AP.Bren,0.517701420689312,1,✅
+16,0,1,0,0,0,TNC Pro Team,ONIC PH,ONIC PH,TNC Pro Team,0.22339449635950323,0,❌
+16,0,2,0,1,0,ONIC PH,TNC Pro Team,ONIC PH,ONIC PH,0.7478242227745234,1,✅
+16,0,3,1,1,1,TNC Pro Team,ONIC PH,ONIC PH,ONIC PH,0.4079061170242357,1,✅
+16,0,1,0,0,0,Team Liquid PH,Omega Esports,Team Liquid PH,Team Liquid PH,0.6512664392448434,1,✅
+16,0,2,0,1,0,Omega Esports,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.1773009355556067,1,✅
+16,0,1,0,0,0,Aurora,ONIC PH,ONIC PH,Aurora,0.48213719542402206,0,❌
+16,0,2,0,1,0,ONIC PH,Aurora,Aurora,ONIC PH,0.4787427720899376,0,❌
+16,0,3,1,1,1,Aurora,ONIC PH,Aurora,Aurora,0.507479584800163,1,✅
+16,0,1,0,0,0,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.5599981464849687,1,✅
+16,0,2,0,1,0,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Falcons PH,0.23297780942091895,0,❌
+16,0,3,1,1,1,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.7221327589720644,1,✅
+16,0,1,0,0,0,AP.Bren,Aurora,Aurora,Aurora,0.18930824068367966,1,✅
+16,0,2,1,0,0,Aurora,AP.Bren,Aurora,Aurora,0.7466432881696359,1,✅
+16,0,1,0,0,0,AP.Bren,ONIC PH,ONIC PH,ONIC PH,0.32743688197692605,1,✅
+16,0,2,1,0,0,ONIC PH,AP.Bren,ONIC PH,ONIC PH,0.7552055105382784,1,✅
+16,0,1,0,0,0,Aurora,Twisted Minds PH,Aurora,Aurora,0.7077090296797882,1,✅
+16,0,2,0,1,0,Twisted Minds PH,Aurora,Aurora,Twisted Minds PH,0.28975270958833493,0,❌
+16,0,3,1,1,1,Aurora,Twisted Minds PH,Twisted Minds PH,Aurora,0.45115075207461414,0,❌
+16,0,1,0,0,0,Team Falcons PH,Aurora,Aurora,Team Falcons PH,0.18404497433100545,0,❌
+16,0,2,0,1,0,Aurora,Team Falcons PH,Aurora,Aurora,0.5808478137643055,1,✅
+16,0,3,1,1,1,Team Falcons PH,Aurora,Aurora,Aurora,0.3056935177101332,1,✅
+16,0,1,0,0,0,Omega Esports,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3978583341537276,1,✅
+16,0,2,1,0,0,Team Liquid PH,Omega Esports,Team Liquid PH,Team Liquid PH,0.6665381075948767,1,✅
+16,0,1,0,0,0,AP.Bren,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3783598753856123,1,✅
+16,0,2,1,0,0,Team Liquid PH,AP.Bren,Team Liquid PH,Team Liquid PH,0.6437481695700691,1,✅
+16,0,1,0,0,0,Twisted Minds PH,Omega Esports,Omega Esports,Omega Esports,0.24339013845797006,1,✅
+16,0,2,1,0,0,Omega Esports,Twisted Minds PH,Twisted Minds PH,Omega Esports,0.4508787119433271,0,❌
+16,0,1,0,0,0,Team Falcons PH,TNC Pro Team,Team Falcons PH,Team Falcons PH,0.5551582007195456,1,✅
+16,0,2,0,1,0,TNC Pro Team,Team Falcons PH,Team Falcons PH,TNC Pro Team,0.2731180519408187,0,❌
+16,0,3,1,1,1,Team Falcons PH,TNC Pro Team,Team Falcons PH,TNC Pro Team,0.7475919811764161,0,❌
+16,0,1,0,0,0,Team Liquid PH,Twisted Minds PH,Team Liquid PH,Team Liquid PH,0.6806513637091961,1,✅
+16,0,2,0,1,0,Twisted Minds PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.37293645640744605,1,✅
+17,0,1,0,0,0,Team Falcons PH,ONIC PH,ONIC PH,Team Falcons PH,0.4878932601275108,0,❌
+17,0,2,0,1,0,ONIC PH,Team Falcons PH,Team Falcons PH,ONIC PH,0.37366398373513016,0,❌
+17,0,3,1,1,1,Team Falcons PH,ONIC PH,Team Falcons PH,Team Falcons PH,0.686905093937367,1,✅
+17,0,1,0,0,0,Twisted Minds PH,ONIC PH,ONIC PH,ONIC PH,0.29487745903264745,1,✅
+17,0,2,1,0,0,ONIC PH,Twisted Minds PH,ONIC PH,Twisted Minds PH,0.6717507362984673,0,❌
+17,0,3,1,1,1,Twisted Minds PH,ONIC PH,ONIC PH,ONIC PH,0.4351268524352596,1,✅
+17,0,1,0,0,0,Twisted Minds PH,AP.Bren,Twisted Minds PH,Twisted Minds PH,0.5237392618220263,1,✅
+17,0,2,0,1,0,AP.Bren,Twisted Minds PH,Twisted Minds PH,Twisted Minds PH,0.49260067272350305,1,✅
+17,0,1,0,0,0,Twisted Minds PH,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.2909677913849151,1,✅
+17,0,2,1,0,0,Team Falcons PH,Twisted Minds PH,Team Falcons PH,Team Falcons PH,0.6910840721678865,1,✅
+17,0,1,0,0,0,Team Liquid PH,AP.Bren,Team Liquid PH,Team Liquid PH,0.7484670797179066,1,✅
+17,0,2,0,1,0,AP.Bren,Team Liquid PH,Team Liquid PH,AP.Bren,0.28892024740490047,0,❌
+17,0,3,1,1,1,Team Liquid PH,AP.Bren,Team Liquid PH,Team Liquid PH,0.6564496702307188,1,✅
+17,0,1,0,0,0,Omega Esports,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3011619318859223,1,✅
+17,0,2,1,0,0,Team Liquid PH,Omega Esports,Team Liquid PH,Team Liquid PH,0.5949929250704294,1,✅
+17,0,1,0,0,0,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.6392686390526294,1,✅
+17,0,2,0,1,0,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Falcons PH,0.3643495298852884,0,❌
+17,0,3,1,1,1,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Falcons PH,0.6327182532782021,0,❌
+17,0,1,0,0,0,Team Falcons PH,Aurora,Aurora,Team Falcons PH,0.49718890444757063,0,❌
+17,0,2,0,1,0,Aurora,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.3456491767507621,1,✅
+17,0,1,0,0,0,Twisted Minds PH,Aurora,Aurora,Aurora,0.2697530791803402,1,✅
+17,0,2,1,0,0,Aurora,Twisted Minds PH,Aurora,Aurora,0.5566597175384547,1,✅
+17,0,1,0,0,0,ONIC PH,Twisted Minds PH,ONIC PH,ONIC PH,0.6857398414190282,1,✅
+17,0,2,0,1,0,Twisted Minds PH,ONIC PH,ONIC PH,ONIC PH,0.371011429855989,1,✅
+17,0,1,0,0,0,AP.Bren,TNC Pro Team,AP.Bren,AP.Bren,0.5374242608179542,1,✅
+17,0,2,0,1,0,TNC Pro Team,AP.Bren,AP.Bren,TNC Pro Team,0.2126267015707556,0,❌
+17,0,3,1,1,1,AP.Bren,TNC Pro Team,AP.Bren,AP.Bren,0.5996903486625925,1,✅
+17,0,1,0,0,0,Aurora,Team Falcons PH,Aurora,Aurora,0.7184260675873698,1,✅
+17,0,2,0,1,0,Team Falcons PH,Aurora,Aurora,Team Falcons PH,0.22923962210467463,0,❌
+17,0,3,1,1,1,Aurora,Team Falcons PH,Aurora,Team Falcons PH,0.6965910661922798,0,❌
+17,0,1,0,0,0,Team Falcons PH,Twisted Minds PH,Twisted Minds PH,Team Falcons PH,0.4752365969527941,0,❌
+17,0,2,0,1,0,Twisted Minds PH,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.2931184097425221,1,✅
+17,0,1,0,0,0,Aurora,TNC Pro Team,Aurora,Aurora,0.8133317628306488,1,✅
+17,0,2,0,1,0,TNC Pro Team,Aurora,Aurora,Aurora,0.26114297752150106,1,✅
+17,0,1,0,0,0,TNC Pro Team,Aurora,Aurora,TNC Pro Team,0.17783885445776013,0,❌
+17,0,2,0,1,0,Aurora,TNC Pro Team,Aurora,TNC Pro Team,0.7000399381780356,0,❌
+17,0,1,0,0,0,TNC Pro Team,AP.Bren,AP.Bren,AP.Bren,0.4667373034817754,1,✅
+17,0,2,1,0,0,AP.Bren,TNC Pro Team,AP.Bren,TNC Pro Team,0.5955571820071701,0,❌
+17,0,3,1,1,1,TNC Pro Team,AP.Bren,AP.Bren,AP.Bren,0.4544546393855428,1,✅
+17,0,1,0,0,0,AP.Bren,Twisted Minds PH,AP.Bren,Twisted Minds PH,0.6088552409990268,0,❌
+17,0,2,1,0,0,Twisted Minds PH,AP.Bren,AP.Bren,Twisted Minds PH,0.2731996070950617,0,❌
+17,0,1,0,0,0,TNC Pro Team,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.39951874274569726,1,✅
+17,0,2,1,0,0,Team Falcons PH,TNC Pro Team,Team Falcons PH,Team Falcons PH,0.6207546744408686,1,✅
+17,0,1,0,0,0,Team Liquid PH,Twisted Minds PH,Team Liquid PH,Team Liquid PH,0.7219547192724778,1,✅
+17,0,2,0,1,0,Twisted Minds PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.17955013287802069,1,✅
+17,0,1,0,0,0,AP.Bren,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.30007817719086693,1,✅
+17,0,2,1,0,0,Team Falcons PH,AP.Bren,Team Falcons PH,Team Falcons PH,0.6888476280345127,1,✅
+17,0,1,0,0,0,Team Liquid PH,Aurora,Aurora,Team Liquid PH,0.4140716273578698,0,❌
+17,0,2,0,1,0,Aurora,Team Liquid PH,Team Liquid PH,Aurora,0.37910814579899554,0,❌
+17,0,3,1,1,1,Team Liquid PH,Aurora,Aurora,Team Liquid PH,0.4387116717539452,0,❌
+17,0,1,0,0,0,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Falcons PH,0.3592248435287935,0,❌
+17,0,2,0,1,0,Team Liquid PH,Team Falcons PH,Team Liquid PH,Team Liquid PH,0.712002136541528,1,✅
+17,0,3,1,1,1,Team Falcons PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.4571970271979775,1,✅
+17,0,1,0,0,0,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,TNC Pro Team,0.5303718237623108,0,❌
+17,0,2,1,0,0,TNC Pro Team,Twisted Minds PH,TNC Pro Team,Twisted Minds PH,0.6082590623278549,0,❌
+17,0,3,1,1,1,Twisted Minds PH,TNC Pro Team,TNC Pro Team,Twisted Minds PH,0.4387784762118456,0,❌
+17,0,1,0,0,0,AP.Bren,Team Liquid PH,Team Liquid PH,AP.Bren,0.3431350848470622,0,❌
+17,0,2,0,1,0,Team Liquid PH,AP.Bren,Team Liquid PH,Team Liquid PH,0.531879880356843,1,✅
+17,0,3,1,1,1,AP.Bren,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3182526158430993,1,✅
+17,0,1,0,0,0,Team Falcons PH,AP.Bren,Team Falcons PH,Team Falcons PH,0.5403367545744248,1,✅
+17,0,2,0,1,0,AP.Bren,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.353391031444906,1,✅
+17,0,1,0,0,0,Team Liquid PH,Omega Esports,Team Liquid PH,Team Liquid PH,0.7204712126488091,1,✅
+17,0,2,0,1,0,Omega Esports,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.19587013352071644,1,✅
+17,0,1,0,0,0,Omega Esports,AP.Bren,Omega Esports,Omega Esports,0.5034817775739643,1,✅
+17,0,2,0,1,0,AP.Bren,Omega Esports,Omega Esports,AP.Bren,0.4344225696281563,0,❌
+17,0,3,1,1,1,Omega Esports,AP.Bren,AP.Bren,Omega Esports,0.33212844265430425,0,❌
+17,0,1,0,0,0,Team Liquid PH,TNC Pro Team,Team Liquid PH,Team Liquid PH,0.6573162946022543,1,✅
+17,0,2,0,1,0,TNC Pro Team,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.2966787608855434,1,✅
+17,0,1,0,0,0,ONIC PH,Team Falcons PH,ONIC PH,ONIC PH,0.7054189829774121,1,✅
+17,0,2,0,1,0,Team Falcons PH,ONIC PH,ONIC PH,Team Falcons PH,0.30760920396027,0,❌
+17,0,3,1,1,1,ONIC PH,Team Falcons PH,ONIC PH,Team Falcons PH,0.5951375329223051,0,❌
+17,0,1,0,0,0,Omega Esports,Twisted Minds PH,Twisted Minds PH,Omega Esports,0.40973732384532874,0,❌
+17,0,2,0,1,0,Twisted Minds PH,Omega Esports,Omega Esports,Omega Esports,0.2649442536061656,1,✅
+17,0,1,0,0,0,Aurora,AP.Bren,Aurora,AP.Bren,0.7724501211292462,0,❌
+17,0,2,1,0,0,AP.Bren,Aurora,Aurora,Aurora,0.37215035615252634,1,✅
+17,0,3,1,1,1,Aurora,AP.Bren,Aurora,Aurora,0.6541743031683499,1,✅
+17,0,1,0,0,0,Aurora,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.45875664188511306,1,✅
+17,0,2,1,0,0,Team Liquid PH,Aurora,Aurora,Team Liquid PH,0.3773464114614238,0,❌
+17,0,1,0,0,0,AP.Bren,Omega Esports,Omega Esports,AP.Bren,0.41499948977862194,0,❌
+17,0,2,0,1,0,Omega Esports,AP.Bren,AP.Bren,AP.Bren,0.2727500943196198,1,✅
+17,0,1,0,0,0,Omega Esports,TNC Pro Team,Omega Esports,Omega Esports,0.5182684142050914,1,✅
+17,0,2,0,1,0,TNC Pro Team,Omega Esports,TNC Pro Team,Omega Esports,0.6105874969574151,0,❌
+17,0,1,0,0,0,Team Liquid PH,ONIC PH,Team Liquid PH,Team Liquid PH,0.6164923624610444,1,✅
+17,0,2,0,1,0,ONIC PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.3936410848456268,1,✅
+17,0,1,0,0,0,Twisted Minds PH,Omega Esports,Omega Esports,Twisted Minds PH,0.3247436711528831,0,❌
+17,0,2,0,1,0,Omega Esports,Twisted Minds PH,Twisted Minds PH,Omega Esports,0.43569039404622073,0,❌
+17,0,3,1,1,1,Twisted Minds PH,Omega Esports,Omega Esports,Twisted Minds PH,0.49183037029413,0,❌
+17,0,1,0,0,0,Team Falcons PH,Omega Esports,Team Falcons PH,Omega Esports,0.5253102539363775,0,❌
+17,0,2,1,0,0,Omega Esports,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.431703357741646,1,✅
+17,0,3,1,1,1,Team Falcons PH,Omega Esports,Team Falcons PH,Omega Esports,0.7358197502052414,0,❌
+17,0,1,0,0,0,TNC Pro Team,ONIC PH,ONIC PH,ONIC PH,0.29780541841025515,1,✅
+17,0,2,1,0,0,ONIC PH,TNC Pro Team,ONIC PH,ONIC PH,0.69751854565664,1,✅
+17,0,1,0,0,0,Omega Esports,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.49362321172984114,1,✅
+17,0,2,1,0,0,Team Falcons PH,Omega Esports,Team Falcons PH,Team Falcons PH,0.615200475981671,1,✅
+17,0,1,0,0,0,ONIC PH,Omega Esports,ONIC PH,ONIC PH,0.6208201559358137,1,✅
+17,0,2,0,1,0,Omega Esports,ONIC PH,ONIC PH,Omega Esports,0.33882837812393757,0,❌
+17,0,3,1,1,1,ONIC PH,Omega Esports,ONIC PH,ONIC PH,0.5811324439440432,1,✅
+17,0,1,0,0,0,Aurora,Omega Esports,Aurora,Aurora,0.7580055006586517,1,✅
+17,0,2,0,1,0,Omega Esports,Aurora,Aurora,Omega Esports,0.1460773874925734,0,❌
+17,0,3,1,1,1,Aurora,Omega Esports,Aurora,Omega Esports,0.7228432031607349,0,❌
+17,0,1,0,0,0,Team Falcons PH,TNC Pro Team,Team Falcons PH,Team Falcons PH,0.6436279928755523,1,✅
+17,0,2,0,1,0,TNC Pro Team,Team Falcons PH,Team Falcons PH,Team Falcons PH,0.21813361663964048,1,✅
+17,0,1,0,0,0,TNC Pro Team,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.2139847462258392,1,✅
+17,0,2,1,0,0,Team Liquid PH,TNC Pro Team,Team Liquid PH,Team Liquid PH,0.5002354272701978,1,✅
+17,0,1,0,0,0,Aurora,ONIC PH,Aurora,Aurora,0.6318106063662245,1,✅
+17,0,2,0,1,0,ONIC PH,Aurora,Aurora,ONIC PH,0.44139376411504183,0,❌
+17,0,3,1,1,1,Aurora,ONIC PH,Aurora,ONIC PH,0.5038702957331295,0,❌
+17,0,1,0,0,0,Omega Esports,Aurora,Aurora,Omega Esports,0.21255370345015367,0,❌
+17,0,2,0,1,0,Aurora,Omega Esports,Aurora,Aurora,0.5123620190240544,1,✅
+17,0,3,1,1,1,Omega Esports,Aurora,Aurora,Aurora,0.42143629427474366,1,✅
+17,0,1,0,0,0,Aurora,Twisted Minds PH,Aurora,Aurora,0.6563605647751299,1,✅
+17,0,2,0,1,0,Twisted Minds PH,Aurora,Aurora,Twisted Minds PH,0.2289551068476687,0,❌
+17,0,3,1,1,1,Aurora,Twisted Minds PH,Aurora,Twisted Minds PH,0.7187141219611303,0,❌
+17,0,1,0,0,0,ONIC PH,AP.Bren,ONIC PH,ONIC PH,0.7100044157208446,1,✅
+17,0,2,0,1,0,AP.Bren,ONIC PH,ONIC PH,ONIC PH,0.3322528444734097,1,✅
+17,0,1,0,0,0,Omega Esports,ONIC PH,ONIC PH,ONIC PH,0.4642723294110443,1,✅
+17,0,2,1,0,0,ONIC PH,Omega Esports,ONIC PH,ONIC PH,0.5983923651584017,1,✅
+17,0,1,0,0,0,AP.Bren,Aurora,Aurora,Aurora,0.243691926316805,1,✅
+17,0,2,1,0,0,Aurora,AP.Bren,Aurora,Aurora,0.7999788602436334,1,✅
+17,0,1,0,0,0,AP.Bren,ONIC PH,ONIC PH,ONIC PH,0.36168377483390834,1,✅
+17,0,2,1,0,0,ONIC PH,AP.Bren,ONIC PH,ONIC PH,0.5577625072509366,1,✅
+17,0,1,0,0,0,Twisted Minds PH,Team Liquid PH,Team Liquid PH,Team Liquid PH,0.23328130221650287,1,✅
+17,0,2,1,0,0,Team Liquid PH,Twisted Minds PH,Team Liquid PH,Team Liquid PH,0.7673283294068867,1,✅
+17,0,1,0,0,0,ONIC PH,Team Liquid PH,ONIC PH,Team Liquid PH,0.5095997365044036,0,❌
+17,0,2,1,0,0,Team Liquid PH,ONIC PH,Team Liquid PH,Team Liquid PH,0.5978211240106877,1,✅
+17,0,1,0,0,0,TNC Pro Team,Omega Esports,Omega Esports,Omega Esports,0.35919568246636296,1,✅
+17,0,2,1,0,0,Omega Esports,TNC Pro Team,Omega Esports,Omega Esports,0.6806296952878577,1,✅
+17,0,1,0,0,0,ONIC PH,TNC Pro Team,ONIC PH,TNC Pro Team,0.7671009227232121,0,❌
+17,0,2,1,0,0,TNC Pro Team,ONIC PH,ONIC PH,TNC Pro Team,0.20165272230920886,0,❌
+17,0,1,0,0,0,TNC Pro Team,Twisted Minds PH,Twisted Minds PH,Twisted Minds PH,0.37153219726364756,1,✅
+17,0,2,1,0,0,Twisted Minds PH,TNC Pro Team,TNC Pro Team,TNC Pro Team,0.4954761182201585,1,✅
+17,0,3,1,1,1,TNC Pro Team,Twisted Minds PH,Twisted Minds PH,Twisted Minds PH,0.4777628827533671,1,✅
+17,0,1,0,0,0,ONIC PH,Aurora,Aurora,ONIC PH,0.3440268215943462,0,❌
+17,0,2,0,1,0,Aurora,ONIC PH,Aurora,ONIC PH,0.6146748745380445,0,❌

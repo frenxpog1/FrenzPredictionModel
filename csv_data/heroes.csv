@@ -1,0 +1,1740 @@
+season,stage,hero_name,picks,bans,wins,win_rate,pb_rate,tier
+1,Playoffs,Jawhead,15,1,7,46.7%,16,B-Tier
+1,Playoffs,Kagura,15,0,9,60.0%,15,S-Tier
+1,Playoffs,Akai,13,2,8,61.5%,15,S-Tier
+1,Playoffs,Martis,13,2,8,61.5%,15,S-Tier
+1,Playoffs,Alpha,11,0,5,45.5%,11,B-Tier
+1,Playoffs,Lolita,11,0,6,54.5%,11,A-Tier
+1,Playoffs,Harley,10,0,5,50.0%,10,A-Tier
+1,Playoffs,Grock,8,8,3,37.5%,16,C-Tier
+1,Playoffs,Chou,7,8,6,85.7%,15,S-Tier
+1,Playoffs,Gusion,7,9,3,42.9%,16,C-Tier
+1,Playoffs,Helcurt,7,9,4,57.1%,16,S-Tier
+1,Playoffs,Saber,7,0,4,57.1%,7,S-Tier
+1,Playoffs,Angela,6,0,1,16.7%,6,C-Tier
+1,Playoffs,Fanny,4,12,2,50.0%,16,A-Tier
+1,Playoffs,Cyclops,3,0,0,0.0%,3,C-Tier
+1,Playoffs,Hylos,3,0,1,33.3%,3,C-Tier
+1,Playoffs,Johnson,3,0,0,0.0%,3,C-Tier
+1,Playoffs,Lancelot,3,13,2,66.7%,16,S-Tier
+1,Playoffs,Vexana,3,0,0,0.0%,3,C-Tier
+1,Playoffs,Argus,2,0,0,0.0%,2,C-Tier
+1,Playoffs,Karina,2,0,1,50.0%,2,A-Tier
+1,Playoffs,Rafaela,2,0,2,100.0%,2,S-Tier
+1,Playoffs,Karrie,1,0,1,100.0%,1,Data Limited
+1,Playoffs,Lapu-Lapu,1,0,0,0.0%,1,Data Limited
+1,Playoffs,Pharsa,1,0,1,100.0%,1,Data Limited
+1,Playoffs,Ruby,1,0,0,0.0%,1,Data Limited
+1,Playoffs,Tigreal,1,0,1,100.0%,1,Data Limited
+3,Playoffs,Khufra,21,5,8,38.1%,26,C-Tier
+3,Playoffs,Akai,18,6,10,55.6%,24,S-Tier
+3,Playoffs,Chou,18,10,8,44.4%,28,C-Tier
+3,Playoffs,Harith,18,10,11,61.1%,28,S-Tier
+3,Playoffs,Leomord,17,5,11,64.7%,22,S-Tier
+3,Playoffs,Thamuz,17,5,9,52.9%,22,A-Tier
+3,Playoffs,Lunox,16,7,7,43.8%,23,C-Tier
+3,Playoffs,Minotaur,14,8,9,64.3%,22,S-Tier
+3,Playoffs,Esmeralda,13,3,6,46.2%,16,B-Tier
+3,Playoffs,Grock,13,15,6,46.2%,28,B-Tier
+3,Playoffs,Claude,11,14,5,45.5%,25,B-Tier
+3,Playoffs,Guinevere,9,1,3,33.3%,10,C-Tier
+3,Playoffs,Franco,8,3,5,62.5%,11,S-Tier
+3,Playoffs,Hayabusa,8,3,2,25.0%,11,C-Tier
+3,Playoffs,Kadita,7,2,3,42.9%,9,C-Tier
+3,Playoffs,Karrie,7,5,3,42.9%,12,C-Tier
+3,Playoffs,Alice,6,3,3,50.0%,9,A-Tier
+3,Playoffs,Kaja,6,22,4,66.7%,28,S-Tier
+3,Playoffs,Kimmy,6,21,5,83.3%,27,S-Tier
+3,Playoffs,Aldous,5,4,3,60.0%,9,S-Tier
+3,Playoffs,Belerick,5,0,3,60.0%,5,S-Tier
+3,Playoffs,Helcurt,5,0,1,20.0%,5,C-Tier
+3,Playoffs,Selena,5,7,3,60.0%,12,S-Tier
+3,Playoffs,Diggie,4,4,1,25.0%,8,C-Tier
+3,Playoffs,Gusion,4,0,1,25.0%,4,C-Tier
+3,Playoffs,Lolita,4,0,3,75.0%,4,S-Tier
+3,Playoffs,Gord,3,0,2,66.7%,3,S-Tier
+3,Playoffs,Jawhead,3,0,2,66.7%,3,S-Tier
+3,Playoffs,Hanabi,2,0,1,50.0%,2,A-Tier
+3,Playoffs,Rafaela,2,0,1,50.0%,2,A-Tier
+3,Playoffs,Hanzo,1,0,1,100.0%,1,Data Limited
+3,Playoffs,Harley,1,0,0,0.0%,1,Data Limited
+3,Playoffs,Lapu-Lapu,1,0,0,0.0%,1,Data Limited
+3,Playoffs,Martis,1,0,0,0.0%,1,Data Limited
+3,Playoffs,Minsitthar,1,0,0,0.0%,1,Data Limited
+4,Regular Season,Thamuz,83,3,43,51.8%,86,A-Tier
+4,Regular Season,Terizla,74,1,35,47.3%,75,B-Tier
+4,Regular Season,Esmeralda,73,5,37,50.7%,78,A-Tier
+4,Regular Season,Grock,62,5,24,38.7%,67,C-Tier
+4,Regular Season,Chou,61,9,32,52.5%,70,A-Tier
+4,Regular Season,Gusion,54,2,30,55.6%,56,S-Tier
+4,Regular Season,Karrie,54,2,22,40.7%,56,C-Tier
+4,Regular Season,Khufra,47,0,28,59.6%,47,S-Tier
+4,Regular Season,X.Borg,44,0,25,56.8%,44,S-Tier
+4,Regular Season,Akai,43,5,29,67.4%,48,S-Tier
+4,Regular Season,Granger,42,2,21,50.0%,44,A-Tier
+4,Regular Season,Lylia,42,11,23,54.8%,53,A-Tier
+4,Regular Season,Kaja,39,13,18,46.2%,52,B-Tier
+4,Regular Season,Rafaela,39,1,20,51.3%,40,A-Tier
+4,Regular Season,Lunox,37,2,19,51.4%,39,A-Tier
+4,Regular Season,Kimmy,29,17,16,55.2%,46,S-Tier
+4,Regular Season,Estes,28,4,18,64.3%,32,S-Tier
+4,Regular Season,Selena,28,6,10,35.7%,34,C-Tier
+4,Regular Season,Minotaur,26,2,15,57.7%,28,S-Tier
+4,Regular Season,Harith,25,17,16,64.0%,42,S-Tier
+4,Regular Season,Lolita,21,0,11,52.4%,21,A-Tier
+4,Regular Season,Leomord,20,3,7,35.0%,23,C-Tier
+4,Regular Season,Diggie,19,0,8,42.1%,19,C-Tier
+4,Regular Season,Hayabusa,17,0,8,47.1%,17,B-Tier
+4,Regular Season,Franco,15,6,4,26.7%,21,C-Tier
+4,Regular Season,Ling,13,0,5,38.5%,13,C-Tier
+4,Regular Season,Kagura,12,0,7,58.3%,12,S-Tier
+4,Regular Season,Claude,11,3,4,36.4%,14,C-Tier
+4,Regular Season,Guinevere,11,1,3,27.3%,12,C-Tier
+4,Regular Season,Badang,9,0,6,66.7%,9,S-Tier
+4,Regular Season,Gatotkaca,6,0,4,66.7%,6,S-Tier
+4,Regular Season,Chang'e,5,0,1,20.0%,5,C-Tier
+4,Regular Season,Helcurt,5,0,4,80.0%,5,S-Tier
+4,Regular Season,Gord,4,0,0,0.0%,4,C-Tier
+4,Regular Season,Kadita,4,0,1,25.0%,4,C-Tier
+4,Regular Season,Bane,3,0,0,0.0%,3,C-Tier
+4,Regular Season,Lapu-Lapu,3,0,2,66.7%,3,S-Tier
+4,Regular Season,Martis,3,0,1,33.3%,3,C-Tier
+4,Regular Season,Bruno,2,0,2,100.0%,2,S-Tier
+4,Regular Season,Dyrroth,2,0,0,0.0%,2,C-Tier
+4,Regular Season,Minsitthar,2,0,0,0.0%,2,C-Tier
+4,Regular Season,Tigreal,2,0,1,50.0%,2,A-Tier
+4,Regular Season,Uranus,2,0,1,50.0%,2,A-Tier
+4,Regular Season,Angela,1,0,0,0.0%,1,Data Limited
+4,Regular Season,Atlas,1,0,0,0.0%,1,Data Limited
+4,Regular Season,Aurora,1,0,0,0.0%,1,Data Limited
+4,Regular Season,Belerick,1,0,0,0.0%,1,Data Limited
+4,Regular Season,Harley,1,0,1,100.0%,1,Data Limited
+4,Regular Season,Hylos,1,0,1,100.0%,1,Data Limited
+4,Regular Season,Jawhead,1,0,1,100.0%,1,Data Limited
+4,Regular Season,Moskov,1,0,0,0.0%,1,Data Limited
+4,Regular Season,Odette,1,0,1,100.0%,1,Data Limited
+4,Playoffs,Grock,17,0,11,64.7%,17,S-Tier
+4,Playoffs,Terizla,17,0,10,58.8%,17,S-Tier
+4,Playoffs,Akai,16,0,7,43.8%,16,C-Tier
+4,Playoffs,Claude,16,0,9,56.2%,16,S-Tier
+4,Playoffs,Chou,15,0,8,53.3%,15,A-Tier
+4,Playoffs,Thamuz,13,0,4,30.8%,13,C-Tier
+4,Playoffs,Khufra,12,0,8,66.7%,12,S-Tier
+4,Playoffs,Gusion,11,0,5,45.5%,11,B-Tier
+4,Playoffs,Esmeralda,9,0,5,55.6%,9,S-Tier
+4,Playoffs,Granger,9,0,5,55.6%,9,S-Tier
+4,Playoffs,Harith,8,0,3,37.5%,8,C-Tier
+4,Playoffs,Kagura,8,0,4,50.0%,8,A-Tier
+4,Playoffs,Karrie,8,0,4,50.0%,8,A-Tier
+4,Playoffs,Kimmy,7,0,2,28.6%,7,C-Tier
+4,Playoffs,Lunox,7,0,3,42.9%,7,C-Tier
+4,Playoffs,Kaja,6,0,3,50.0%,6,A-Tier
+4,Playoffs,Leomord,6,0,2,33.3%,6,C-Tier
+4,Playoffs,Lolita,5,0,2,40.0%,5,C-Tier
+4,Playoffs,Rafaela,5,0,2,40.0%,5,C-Tier
+4,Playoffs,X.Borg,5,0,3,60.0%,5,S-Tier
+4,Playoffs,Valir,4,0,3,75.0%,4,S-Tier
+4,Playoffs,Bruno,3,0,2,66.7%,3,S-Tier
+4,Playoffs,Diggie,3,0,1,33.3%,3,C-Tier
+4,Playoffs,Estes,3,0,2,66.7%,3,S-Tier
+4,Playoffs,Jawhead,3,0,1,33.3%,3,C-Tier
+4,Playoffs,Chang'e,2,0,0,0.0%,2,C-Tier
+4,Playoffs,Hylos,2,0,0,0.0%,2,C-Tier
+4,Playoffs,Masha,2,0,1,50.0%,2,A-Tier
+4,Playoffs,Alpha,1,0,1,100.0%,1,Data Limited
+4,Playoffs,Franco,1,0,1,100.0%,1,Data Limited
+4,Playoffs,Gord,1,0,1,100.0%,1,Data Limited
+4,Playoffs,Guinevere,1,0,1,100.0%,1,Data Limited
+4,Playoffs,Ling,1,0,0,0.0%,1,Data Limited
+4,Playoffs,Martis,1,0,1,100.0%,1,Data Limited
+4,Playoffs,Minotaur,1,0,0,0.0%,1,Data Limited
+4,Playoffs,Selena,1,0,0,0.0%,1,Data Limited
+5,Regular Season,Chou,63,10,28,44.4%,73,C-Tier
+5,Regular Season,Jawhead,61,19,27,44.3%,80,C-Tier
+5,Regular Season,Thamuz,55,13,32,58.2%,68,S-Tier
+5,Regular Season,Uranus,54,30,27,50.0%,84,A-Tier
+5,Regular Season,Karrie,41,15,18,43.9%,56,C-Tier
+5,Regular Season,Khufra,40,31,23,57.5%,71,S-Tier
+5,Regular Season,Grock,37,52,27,73.0%,89,S-Tier
+5,Regular Season,Pharsa,37,29,20,54.1%,66,A-Tier
+5,Regular Season,Claude,36,23,22,61.1%,59,S-Tier
+5,Regular Season,Esmeralda,34,10,18,52.9%,44,A-Tier
+5,Regular Season,Selena,34,49,16,47.1%,83,B-Tier
+5,Regular Season,Ling,30,50,16,53.3%,80,A-Tier
+5,Regular Season,Bruno,29,7,11,37.9%,36,C-Tier
+5,Regular Season,Kimmy,29,8,19,65.5%,37,S-Tier
+5,Regular Season,Granger,28,6,13,46.4%,34,B-Tier
+5,Regular Season,X.Borg,27,9,16,59.3%,36,S-Tier
+5,Regular Season,Diggie,25,27,13,52.0%,52,A-Tier
+5,Regular Season,Kaja,25,24,11,44.0%,49,C-Tier
+5,Regular Season,Valir,22,21,8,36.4%,43,C-Tier
+5,Regular Season,Natalia,21,32,10,47.6%,53,B-Tier
+5,Regular Season,Cecilion,20,18,10,50.0%,38,A-Tier
+5,Regular Season,Lolita,20,1,13,65.0%,21,S-Tier
+5,Regular Season,Rafaela,19,8,9,47.4%,27,B-Tier
+5,Regular Season,Hylos,18,24,7,38.9%,42,C-Tier
+5,Regular Season,Atlas,17,15,11,64.7%,32,S-Tier
+5,Regular Season,Nana,17,4,8,47.1%,21,B-Tier
+5,Regular Season,Baxia,15,3,3,20.0%,18,C-Tier
+5,Regular Season,Carmilla,15,2,6,40.0%,17,C-Tier
+5,Regular Season,Popol and Kupa,14,17,6,42.9%,31,C-Tier
+5,Regular Season,Harith,13,12,8,61.5%,25,S-Tier
+5,Regular Season,Angela,11,7,7,63.6%,18,S-Tier
+5,Regular Season,Estes,11,2,7,63.6%,13,S-Tier
+5,Regular Season,Helcurt,11,2,3,27.3%,13,C-Tier
+5,Regular Season,Zhask,11,9,6,54.5%,20,A-Tier
+5,Regular Season,Hayabusa,9,0,4,44.4%,9,C-Tier
+5,Regular Season,Leomord,8,0,2,25.0%,8,C-Tier
+5,Regular Season,Kagura,6,1,2,33.3%,7,C-Tier
+5,Regular Season,Lylia,5,4,0,0.0%,9,C-Tier
+5,Regular Season,Wanwan,5,3,2,40.0%,8,C-Tier
+5,Regular Season,Akai,4,2,3,75.0%,6,S-Tier
+5,Regular Season,Chang'e,3,0,2,66.7%,3,S-Tier
+5,Regular Season,Lunox,3,0,0,0.0%,3,C-Tier
+5,Regular Season,Terizla,3,0,1,33.3%,3,C-Tier
+5,Regular Season,Freya,2,0,1,50.0%,2,A-Tier
+5,Regular Season,Gusion,2,0,2,100.0%,2,S-Tier
+5,Regular Season,Harley,2,0,0,0.0%,2,C-Tier
+5,Regular Season,Minsitthar,2,0,0,0.0%,2,C-Tier
+5,Regular Season,Aurora,1,0,1,100.0%,1,Data Limited
+5,Regular Season,Cyclops,1,0,0,0.0%,1,Data Limited
+5,Regular Season,Faramis,1,0,0,0.0%,1,Data Limited
+5,Regular Season,Hilda,1,0,1,100.0%,1,Data Limited
+5,Regular Season,Kadita,1,0,0,0.0%,1,Data Limited
+5,Regular Season,Lancelot,1,0,0,0.0%,1,Data Limited
+5,Playoffs,Jawhead,21,3,11,52.4%,24,A-Tier
+5,Playoffs,X.Borg,19,3,9,47.4%,22,B-Tier
+5,Playoffs,Esmeralda,16,5,8,50.0%,21,A-Tier
+5,Playoffs,Karrie,16,1,9,56.2%,17,S-Tier
+5,Playoffs,Thamuz,16,9,13,81.2%,25,S-Tier
+5,Playoffs,Kaja,14,6,6,42.9%,20,C-Tier
+5,Playoffs,Khufra,14,6,7,50.0%,20,A-Tier
+5,Playoffs,Grock,13,3,7,53.8%,16,A-Tier
+5,Playoffs,Hylos,12,2,6,50.0%,14,A-Tier
+5,Playoffs,Uranus,12,8,3,25.0%,20,C-Tier
+5,Playoffs,Kimmy,11,3,6,54.5%,14,A-Tier
+5,Playoffs,Valir,10,8,4,40.0%,18,C-Tier
+5,Playoffs,Chou,8,2,5,62.5%,10,S-Tier
+5,Playoffs,Lancelot,8,1,2,25.0%,9,C-Tier
+5,Playoffs,Ling,8,16,7,87.5%,24,S-Tier
+5,Playoffs,Popol and Kupa,8,14,4,50.0%,22,A-Tier
+5,Playoffs,Selena,8,18,5,62.5%,26,S-Tier
+5,Playoffs,Atlas,7,4,4,57.1%,11,S-Tier
+5,Playoffs,Pharsa,6,3,2,33.3%,9,C-Tier
+5,Playoffs,Angela,5,5,3,60.0%,10,S-Tier
+5,Playoffs,Natalia,5,8,3,60.0%,13,S-Tier
+5,Playoffs,Cecilion,4,4,2,50.0%,8,A-Tier
+5,Playoffs,Hanzo,4,4,2,50.0%,8,A-Tier
+5,Playoffs,Masha,4,0,2,50.0%,4,A-Tier
+5,Playoffs,Granger,3,0,0,0.0%,3,C-Tier
+5,Playoffs,Bruno,2,0,0,0.0%,2,C-Tier
+5,Playoffs,Carmilla,2,0,1,50.0%,2,A-Tier
+5,Playoffs,Claude,2,25,1,50.0%,27,A-Tier
+5,Playoffs,Estes,2,0,0,0.0%,2,C-Tier
+5,Playoffs,Lolita,2,0,2,100.0%,2,S-Tier
+5,Playoffs,Aurora,1,0,0,0.0%,1,Data Limited
+5,Playoffs,Baxia,1,0,0,0.0%,1,Data Limited
+5,Playoffs,Gusion,1,0,0,0.0%,1,Data Limited
+5,Playoffs,Harith,1,0,0,0.0%,1,Data Limited
+5,Playoffs,Helcurt,1,0,0,0.0%,1,Data Limited
+5,Playoffs,Kagura,1,0,1,100.0%,1,Data Limited
+5,Playoffs,Terizla,1,1,0,0.0%,2,Data Limited
+5,Playoffs,Wanwan,1,0,0,0.0%,1,Data Limited
+6,Regular Season,Chou,100,40,49,49.0%,140,B-Tier
+6,Regular Season,Thamuz,79,62,49,62.0%,141,S-Tier
+6,Regular Season,Khaleed,74,67,35,47.3%,141,B-Tier
+6,Regular Season,Pharsa,66,66,33,50.0%,132,A-Tier
+6,Regular Season,Yi Sun-shin,65,48,39,60.0%,113,S-Tier
+6,Regular Season,Ling,61,47,28,45.9%,108,B-Tier
+6,Regular Season,Yu Zhong,58,75,31,53.4%,133,A-Tier
+6,Regular Season,Khufra,53,68,26,49.1%,121,B-Tier
+6,Regular Season,Lancelot,50,39,31,62.0%,89,S-Tier
+6,Regular Season,Roger,49,43,23,46.9%,92,B-Tier
+6,Regular Season,Hilda,43,80,18,41.9%,123,C-Tier
+6,Regular Season,Chang'e,41,40,20,48.8%,81,B-Tier
+6,Regular Season,Esmeralda,41,51,21,51.2%,92,A-Tier
+6,Regular Season,Uranus,40,109,27,67.5%,149,S-Tier
+6,Regular Season,Baxia,39,22,18,46.2%,61,B-Tier
+6,Regular Season,Balmond,37,10,12,32.4%,47,C-Tier
+6,Regular Season,X.Borg,36,26,13,36.1%,62,C-Tier
+6,Regular Season,Alice,35,23,18,51.4%,58,A-Tier
+6,Regular Season,Selena,35,102,23,65.7%,137,S-Tier
+6,Regular Season,Valir,34,70,16,47.1%,104,B-Tier
+6,Regular Season,Ruby,30,18,17,56.7%,48,S-Tier
+6,Regular Season,Jawhead,29,39,18,62.1%,68,S-Tier
+6,Regular Season,Kagura,29,6,15,51.7%,35,A-Tier
+6,Regular Season,Atlas,25,39,12,48.0%,64,B-Tier
+6,Regular Season,Popol and Kupa,25,25,14,56.0%,50,S-Tier
+6,Regular Season,Natalia,24,31,8,33.3%,55,C-Tier
+6,Regular Season,Akai,23,5,9,39.1%,28,C-Tier
+6,Regular Season,Gatotkaca,23,9,12,52.2%,32,A-Tier
+6,Regular Season,Claude,20,14,8,40.0%,34,C-Tier
+6,Regular Season,Rafaela,17,6,10,58.8%,23,S-Tier
+6,Regular Season,Cyclops,16,3,7,43.8%,19,C-Tier
+6,Regular Season,Hayabusa,16,5,6,37.5%,21,C-Tier
+6,Regular Season,Hylos,16,11,5,31.2%,27,C-Tier
+6,Regular Season,Luo Yi,16,8,12,75.0%,24,S-Tier
+6,Regular Season,Harith,15,17,6,40.0%,32,C-Tier
+6,Regular Season,Helcurt,15,13,5,33.3%,28,C-Tier
+6,Regular Season,Diggie,14,45,5,35.7%,59,C-Tier
+6,Regular Season,Angela,12,5,6,50.0%,17,A-Tier
+6,Regular Season,Lunox,12,3,6,50.0%,15,A-Tier
+6,Regular Season,Cecilion,9,0,4,44.4%,9,C-Tier
+6,Regular Season,Carmilla,8,2,3,37.5%,10,C-Tier
+6,Regular Season,Wanwan,8,1,5,62.5%,9,S-Tier
+6,Regular Season,Grock,6,0,1,16.7%,6,C-Tier
+6,Regular Season,Masha,6,5,2,33.3%,11,C-Tier
+6,Regular Season,Barats,5,15,1,20.0%,20,C-Tier
+6,Regular Season,Freya,5,1,3,60.0%,6,S-Tier
+6,Regular Season,Karrie,5,1,3,60.0%,6,S-Tier
+6,Regular Season,Lolita,5,4,4,80.0%,9,S-Tier
+6,Regular Season,Terizla,5,0,1,20.0%,5,C-Tier
+6,Regular Season,Tigreal,4,0,4,100.0%,4,S-Tier
+6,Regular Season,Gusion,3,0,2,66.7%,3,S-Tier
+6,Regular Season,Leomord,3,0,3,100.0%,3,S-Tier
+6,Regular Season,Vale,3,0,0,0.0%,3,C-Tier
+6,Regular Season,Zhask,3,0,0,0.0%,3,C-Tier
+6,Regular Season,Estes,2,0,0,0.0%,2,C-Tier
+6,Regular Season,Eudora,2,0,2,100.0%,2,S-Tier
+6,Regular Season,Kimmy,2,0,1,50.0%,2,A-Tier
+6,Regular Season,Lylia,2,2,1,50.0%,4,A-Tier
+6,Regular Season,Bruno,1,0,1,100.0%,1,Data Limited
+6,Regular Season,Dyrroth,1,0,1,100.0%,1,Data Limited
+6,Regular Season,Fanny,1,1,0,0.0%,2,Data Limited
+6,Regular Season,Faramis,1,0,1,100.0%,1,Data Limited
+6,Regular Season,Franco,1,0,0,0.0%,1,Data Limited
+6,Regular Season,Guinevere,1,0,0,0.0%,1,Data Limited
+6,Regular Season,Karina,1,0,0,0.0%,1,Data Limited
+6,Regular Season,Miya,1,0,0,0.0%,1,Data Limited
+6,Regular Season,Nana,1,0,0,0.0%,1,Data Limited
+6,Regular Season,Saber,1,0,1,100.0%,1,Data Limited
+6,Regular Season,Silvanna,1,0,0,0.0%,1,Data Limited
+6,Playoffs,Pharsa,21,7,12,57.1%,28,S-Tier
+6,Playoffs,Thamuz,21,10,9,42.9%,31,C-Tier
+6,Playoffs,Ling,20,12,12,60.0%,32,S-Tier
+6,Playoffs,Yu Zhong,19,9,6,31.6%,28,C-Tier
+6,Playoffs,Jawhead,18,11,7,38.9%,29,C-Tier
+6,Playoffs,Baxia,17,7,10,58.8%,24,S-Tier
+6,Playoffs,Roger,16,14,6,37.5%,30,C-Tier
+6,Playoffs,Selena,14,19,7,50.0%,33,A-Tier
+6,Playoffs,Yi Sun-shin,14,3,6,42.9%,17,C-Tier
+6,Playoffs,Khaleed,12,6,7,58.3%,18,S-Tier
+6,Playoffs,Khufra,12,19,6,50.0%,31,A-Tier
+6,Playoffs,Esmeralda,11,23,3,27.3%,34,C-Tier
+6,Playoffs,Barats,10,23,8,80.0%,33,S-Tier
+6,Playoffs,Uranus,10,24,8,80.0%,34,S-Tier
+6,Playoffs,Alice,9,19,5,55.6%,28,S-Tier
+6,Playoffs,Akai,8,5,4,50.0%,13,A-Tier
+6,Playoffs,Claude,8,3,4,50.0%,11,A-Tier
+6,Playoffs,Valir,8,17,6,75.0%,25,S-Tier
+6,Playoffs,Harith,7,8,4,57.1%,15,S-Tier
+6,Playoffs,Chou,6,16,2,33.3%,22,C-Tier
+6,Playoffs,Hilda,6,14,4,66.7%,20,S-Tier
+6,Playoffs,Lancelot,6,10,3,50.0%,16,A-Tier
+6,Playoffs,Chang'e,5,2,3,60.0%,7,S-Tier
+6,Playoffs,Eudora,5,1,3,60.0%,6,S-Tier
+6,Playoffs,Natalia,5,19,1,20.0%,24,C-Tier
+6,Playoffs,Wanwan,5,6,3,60.0%,11,S-Tier
+6,Playoffs,Angela,4,3,2,50.0%,7,A-Tier
+6,Playoffs,Helcurt,4,14,2,50.0%,18,A-Tier
+6,Playoffs,Leomord,4,1,2,50.0%,5,A-Tier
+6,Playoffs,Lunox,4,1,1,25.0%,5,C-Tier
+6,Playoffs,Ruby,4,4,2,50.0%,8,A-Tier
+6,Playoffs,X.Borg,4,0,2,50.0%,4,A-Tier
+6,Playoffs,Kadita,3,1,3,100.0%,4,S-Tier
+6,Playoffs,Kagura,3,0,1,33.3%,3,C-Tier
+6,Playoffs,Atlas,2,1,0,0.0%,3,C-Tier
+6,Playoffs,Hylos,2,0,2,100.0%,2,S-Tier
+6,Playoffs,Luo Yi,2,3,1,50.0%,5,A-Tier
+6,Playoffs,Popol and Kupa,2,0,2,100.0%,2,S-Tier
+6,Playoffs,Rafaela,2,0,0,0.0%,2,C-Tier
+6,Playoffs,Tigreal,2,0,0,0.0%,2,C-Tier
+6,Playoffs,Carmilla,1,0,0,0.0%,1,Data Limited
+6,Playoffs,Diggie,1,2,1,100.0%,3,Data Limited
+6,Playoffs,Freya,1,1,0,0.0%,2,Data Limited
+6,Playoffs,Gusion,1,0,0,0.0%,1,Data Limited
+6,Playoffs,Karrie,1,0,0,0.0%,1,Data Limited
+7,Regular Season,Benedetta,83,75,52,62.7%,158,S-Tier
+7,Regular Season,Granger,75,17,40,53.3%,92,A-Tier
+7,Regular Season,Alice,70,32,36,51.4%,102,A-Tier
+7,Regular Season,Chou,62,39,28,45.2%,101,B-Tier
+7,Regular Season,Lunox,62,34,31,50.0%,96,A-Tier
+7,Regular Season,Paquito,61,76,23,37.7%,137,C-Tier
+7,Regular Season,Harith,56,38,35,62.5%,94,S-Tier
+7,Regular Season,Ling,51,40,27,52.9%,91,A-Tier
+7,Regular Season,Kagura,49,22,27,55.1%,71,S-Tier
+7,Regular Season,Uranus,48,55,25,52.1%,103,A-Tier
+7,Regular Season,Claude,46,42,17,37.0%,88,C-Tier
+7,Regular Season,Pharsa,46,45,22,47.8%,91,B-Tier
+7,Regular Season,Mathilda,44,108,22,50.0%,152,A-Tier
+7,Regular Season,Popol and Kupa,44,64,27,61.4%,108,S-Tier
+7,Regular Season,Baxia,43,23,20,46.5%,66,B-Tier
+7,Regular Season,Chang'e,42,26,17,40.5%,68,C-Tier
+7,Regular Season,Lapu-Lapu,42,16,14,33.3%,58,C-Tier
+7,Regular Season,Esmeralda,38,20,14,36.8%,58,C-Tier
+7,Regular Season,Barats,36,27,27,75.0%,63,S-Tier
+7,Regular Season,Yve,36,86,22,61.1%,122,S-Tier
+7,Regular Season,Yi Sun-shin,35,21,20,57.1%,56,S-Tier
+7,Regular Season,Lancelot,34,37,18,52.9%,71,A-Tier
+7,Regular Season,Selena,33,105,18,54.5%,138,A-Tier
+7,Regular Season,Angela,30,39,11,36.7%,69,C-Tier
+7,Regular Season,Jawhead,30,123,18,60.0%,153,S-Tier
+7,Regular Season,Rafaela,30,36,14,46.7%,66,B-Tier
+7,Regular Season,Khufra,28,17,18,64.3%,45,S-Tier
+7,Regular Season,Silvanna,23,9,11,47.8%,32,B-Tier
+7,Regular Season,Estes,22,27,13,59.1%,49,S-Tier
+7,Regular Season,Roger,22,7,5,22.7%,29,C-Tier
+7,Regular Season,Grock,21,9,9,42.9%,30,C-Tier
+7,Regular Season,Hayabusa,20,19,9,45.0%,39,B-Tier
+7,Regular Season,Harley,18,7,8,44.4%,25,C-Tier
+7,Regular Season,Diggie,16,108,8,50.0%,124,A-Tier
+7,Regular Season,Bruno,14,11,6,42.9%,25,C-Tier
+7,Regular Season,Thamuz,13,6,8,61.5%,19,S-Tier
+7,Regular Season,Akai,12,4,7,58.3%,16,S-Tier
+7,Regular Season,Khaleed,11,4,6,54.5%,15,A-Tier
+7,Regular Season,Natalia,11,31,5,45.5%,42,B-Tier
+7,Regular Season,Luo Yi,9,19,4,44.4%,28,C-Tier
+7,Regular Season,Bane,8,3,4,50.0%,11,A-Tier
+7,Regular Season,Franco,8,2,4,50.0%,10,A-Tier
+7,Regular Season,Gloo,8,0,4,50.0%,8,A-Tier
+7,Regular Season,Wanwan,8,12,4,50.0%,20,A-Tier
+7,Regular Season,Atlas,7,6,5,71.4%,13,S-Tier
+7,Regular Season,Valir,7,6,5,71.4%,13,S-Tier
+7,Regular Season,Yu Zhong,7,3,2,28.6%,10,C-Tier
+7,Regular Season,Eudora,6,8,3,50.0%,14,A-Tier
+7,Regular Season,Kadita,6,1,1,16.7%,7,C-Tier
+7,Regular Season,Ruby,5,0,1,20.0%,5,C-Tier
+7,Regular Season,Tigreal,5,2,1,20.0%,7,C-Tier
+7,Regular Season,Zhask,5,1,1,20.0%,6,C-Tier
+7,Regular Season,Hilda,4,3,1,25.0%,7,C-Tier
+7,Regular Season,Hylos,4,2,0,0.0%,6,C-Tier
+7,Regular Season,Kaja,4,4,2,50.0%,8,A-Tier
+7,Regular Season,Karrie,4,2,1,25.0%,6,C-Tier
+7,Regular Season,Aldous,3,0,3,100.0%,3,S-Tier
+7,Regular Season,Alpha,3,0,2,66.7%,3,S-Tier
+7,Regular Season,Balmond,3,0,1,33.3%,3,C-Tier
+7,Regular Season,Brody,3,9,2,66.7%,12,S-Tier
+7,Regular Season,Carmilla,3,0,1,33.3%,3,C-Tier
+7,Regular Season,Beatrix,2,0,1,50.0%,2,A-Tier
+7,Regular Season,Belerick,2,0,1,50.0%,2,A-Tier
+7,Regular Season,Cecilion,2,0,1,50.0%,2,A-Tier
+7,Regular Season,Martis,2,0,0,0.0%,2,C-Tier
+7,Regular Season,Fanny,1,0,0,0.0%,1,Data Limited
+7,Regular Season,Leomord,1,0,1,100.0%,1,Data Limited
+7,Regular Season,Lylia,1,0,0,0.0%,1,Data Limited
+7,Regular Season,Vale,1,0,0,0.0%,1,Data Limited
+7,Regular Season,X.Borg,1,0,1,100.0%,1,Data Limited
+7,Playoffs,Benedetta,27,17,15,55.6%,44,S-Tier
+7,Playoffs,Kagura,23,8,10,43.5%,31,C-Tier
+7,Playoffs,Claude,22,10,12,54.5%,32,A-Tier
+7,Playoffs,Harith,22,14,11,50.0%,36,A-Tier
+7,Playoffs,Lunox,22,19,13,59.1%,41,S-Tier
+7,Playoffs,Gloo,20,6,12,60.0%,26,S-Tier
+7,Playoffs,Ling,20,24,9,45.0%,44,B-Tier
+7,Playoffs,Chang'e,19,10,6,31.6%,29,C-Tier
+7,Playoffs,Paquito,19,7,8,42.1%,26,C-Tier
+7,Playoffs,Uranus,18,13,11,61.1%,31,S-Tier
+7,Playoffs,Mathilda,17,28,11,64.7%,45,S-Tier
+7,Playoffs,Rafaela,17,2,10,58.8%,19,S-Tier
+7,Playoffs,Khufra,16,12,13,81.2%,28,S-Tier
+7,Playoffs,Barats,13,13,5,38.5%,26,C-Tier
+7,Playoffs,Chou,13,12,3,23.1%,25,C-Tier
+7,Playoffs,Granger,13,4,4,30.8%,17,C-Tier
+7,Playoffs,Popol and Kupa,13,30,4,30.8%,43,C-Tier
+7,Playoffs,Yi Sun-shin,11,1,3,27.3%,12,C-Tier
+7,Playoffs,Alice,10,8,5,50.0%,18,A-Tier
+7,Playoffs,Jawhead,9,36,6,66.7%,45,S-Tier
+7,Playoffs,Yve,9,38,5,55.6%,47,S-Tier
+7,Playoffs,Hayabusa,8,6,6,75.0%,14,S-Tier
+7,Playoffs,Pharsa,8,15,3,37.5%,23,C-Tier
+7,Playoffs,Esmeralda,7,5,3,42.9%,12,C-Tier
+7,Playoffs,Lancelot,7,12,4,57.1%,19,S-Tier
+7,Playoffs,Lapu-Lapu,7,4,2,28.6%,11,C-Tier
+7,Playoffs,Diggie,6,19,3,50.0%,25,A-Tier
+7,Playoffs,Estes,6,10,2,33.3%,16,C-Tier
+7,Playoffs,Grock,5,3,1,20.0%,8,C-Tier
+7,Playoffs,Brody,4,6,3,75.0%,10,S-Tier
+7,Playoffs,Phoveus,4,1,2,50.0%,5,A-Tier
+7,Playoffs,Selena,4,43,2,50.0%,47,A-Tier
+7,Playoffs,Angela,3,7,0,0.0%,10,C-Tier
+7,Playoffs,Bane,3,3,3,100.0%,6,S-Tier
+7,Playoffs,Baxia,3,1,1,33.3%,4,C-Tier
+7,Playoffs,Eudora,3,3,2,66.7%,6,S-Tier
+7,Playoffs,Faramis,3,1,3,100.0%,4,S-Tier
+7,Playoffs,Kadita,3,2,2,66.7%,5,S-Tier
+7,Playoffs,Silvanna,3,0,1,33.3%,3,C-Tier
+7,Playoffs,Thamuz,3,0,1,33.3%,3,C-Tier
+7,Playoffs,Aldous,2,5,2,100.0%,7,S-Tier
+7,Playoffs,Beatrix,2,0,1,50.0%,2,A-Tier
+7,Playoffs,Franco,2,0,1,50.0%,2,A-Tier
+7,Playoffs,Gusion,2,0,1,50.0%,2,A-Tier
+7,Playoffs,Khaleed,2,1,1,50.0%,3,A-Tier
+7,Playoffs,Luo Yi,2,3,1,50.0%,5,A-Tier
+7,Playoffs,Roger,2,0,2,100.0%,2,S-Tier
+7,Playoffs,Akai,1,1,0,0.0%,2,Data Limited
+7,Playoffs,Atlas,1,1,0,0.0%,2,Data Limited
+7,Playoffs,Balmond,1,0,0,0.0%,1,Data Limited
+7,Playoffs,Belerick,1,0,0,0.0%,1,Data Limited
+7,Playoffs,Cecilion,1,0,1,100.0%,1,Data Limited
+7,Playoffs,Harley,1,0,1,100.0%,1,Data Limited
+7,Playoffs,Hilda,1,0,0,0.0%,1,Data Limited
+7,Playoffs,Hylos,1,0,0,0.0%,1,Data Limited
+7,Playoffs,Kaja,1,0,1,100.0%,1,Data Limited
+7,Playoffs,Natalia,1,4,1,100.0%,5,Data Limited
+7,Playoffs,Ruby,1,0,0,0.0%,1,Data Limited
+7,Playoffs,Vale,1,0,1,100.0%,1,Data Limited
+7,Playoffs,Valir,1,0,1,100.0%,1,Data Limited
+7,Playoffs,Wanwan,0,2,0,0.0%,2,Data Limited
+8,Regular Season,Alice,61,48,30,49.2%,109,B-Tier
+8,Regular Season,Paquito,60,71,32,53.3%,131,A-Tier
+8,Regular Season,Chou,48,21,27,56.2%,69,S-Tier
+8,Regular Season,Pharsa,47,35,24,51.1%,82,A-Tier
+8,Regular Season,Benedetta,46,24,17,37.0%,70,C-Tier
+8,Regular Season,Hayabusa,46,34,23,50.0%,80,A-Tier
+8,Regular Season,Natan,46,34,24,52.2%,80,A-Tier
+8,Regular Season,Khufra,42,26,22,52.4%,68,A-Tier
+8,Regular Season,Esmeralda,40,40,21,52.5%,80,A-Tier
+8,Regular Season,Popol and Kupa,40,35,24,60.0%,75,S-Tier
+8,Regular Season,Thamuz,40,18,25,62.5%,58,S-Tier
+8,Regular Season,Ling,39,90,28,71.8%,129,S-Tier
+8,Regular Season,Lunox,39,31,20,51.3%,70,A-Tier
+8,Regular Season,Jawhead,31,91,10,32.3%,122,C-Tier
+8,Regular Season,Kagura,31,16,12,38.7%,47,C-Tier
+8,Regular Season,Mathilda,31,99,13,41.9%,130,C-Tier
+8,Regular Season,Yve,30,21,16,53.3%,51,A-Tier
+8,Regular Season,Beatrix,29,16,14,48.3%,45,B-Tier
+8,Regular Season,Grock,29,19,13,44.8%,48,C-Tier
+8,Regular Season,Lancelot,29,35,12,41.4%,64,C-Tier
+8,Regular Season,X.Borg,29,45,14,48.3%,74,B-Tier
+8,Regular Season,Rafaela,28,20,19,67.9%,48,S-Tier
+8,Regular Season,Ruby,28,13,7,25.0%,41,C-Tier
+8,Regular Season,Barats,27,27,16,59.3%,54,S-Tier
+8,Regular Season,Selena,23,80,11,47.8%,103,B-Tier
+8,Regular Season,Yi Sun-shin,23,13,14,60.9%,36,S-Tier
+8,Regular Season,Kaja,21,18,8,38.1%,39,C-Tier
+8,Regular Season,Lapu-Lapu,20,9,11,55.0%,29,S-Tier
+8,Regular Season,Lylia,19,10,9,47.4%,29,B-Tier
+8,Regular Season,Phoveus,19,80,10,52.6%,99,A-Tier
+8,Regular Season,Baxia,18,4,6,33.3%,22,C-Tier
+8,Regular Season,Roger,18,6,6,33.3%,24,C-Tier
+8,Regular Season,Uranus,18,11,6,33.3%,29,C-Tier
+8,Regular Season,Claude,15,10,7,46.7%,25,B-Tier
+8,Regular Season,Harith,14,10,6,42.9%,24,C-Tier
+8,Regular Season,Angela,13,10,6,46.2%,23,B-Tier
+8,Regular Season,Harley,13,15,7,53.8%,28,A-Tier
+8,Regular Season,Aldous,12,26,8,66.7%,38,S-Tier
+8,Regular Season,Kimmy,12,8,7,58.3%,20,S-Tier
+8,Regular Season,Estes,11,22,8,72.7%,33,S-Tier
+8,Regular Season,Gloo,9,2,2,22.2%,11,C-Tier
+8,Regular Season,Saber,9,7,6,66.7%,16,S-Tier
+8,Regular Season,Yu Zhong,9,8,7,77.8%,17,S-Tier
+8,Regular Season,Granger,7,2,4,57.1%,9,S-Tier
+8,Regular Season,Martis,7,4,5,71.4%,11,S-Tier
+8,Regular Season,Diggie,6,4,4,66.7%,10,S-Tier
+8,Regular Season,Akai,5,4,3,60.0%,9,S-Tier
+8,Regular Season,Bruno,5,5,5,100.0%,10,S-Tier
+8,Regular Season,Eudora,5,11,2,40.0%,16,C-Tier
+8,Regular Season,Karina,5,2,1,20.0%,7,C-Tier
+8,Regular Season,Nana,5,4,1,20.0%,9,C-Tier
+8,Regular Season,Sun,5,0,2,40.0%,5,C-Tier
+8,Regular Season,Aulus,4,1,2,50.0%,5,A-Tier
+8,Regular Season,Balmond,4,1,1,25.0%,5,C-Tier
+8,Regular Season,Chang'e,4,1,2,50.0%,5,A-Tier
+8,Regular Season,Valir,4,0,2,50.0%,4,A-Tier
+8,Regular Season,Alucard,3,0,0,0.0%,3,C-Tier
+8,Regular Season,Bane,3,1,2,66.7%,4,S-Tier
+8,Regular Season,Brody,3,4,1,33.3%,7,C-Tier
+8,Regular Season,Kadita,3,1,1,33.3%,4,C-Tier
+8,Regular Season,Karrie,3,1,1,33.3%,4,C-Tier
+8,Regular Season,Argus,2,0,1,50.0%,2,A-Tier
+8,Regular Season,Atlas,2,1,1,50.0%,3,A-Tier
+8,Regular Season,Fanny,2,1,0,0.0%,3,C-Tier
+8,Regular Season,Franco,2,0,2,100.0%,2,S-Tier
+8,Regular Season,Hylos,2,0,2,100.0%,2,S-Tier
+8,Regular Season,Khaleed,2,1,2,100.0%,3,S-Tier
+8,Regular Season,Natalia,2,3,0,0.0%,5,C-Tier
+8,Regular Season,Silvanna,2,0,0,0.0%,2,C-Tier
+8,Regular Season,Aurora,1,0,1,100.0%,1,Data Limited
+8,Regular Season,Carmilla,1,0,0,0.0%,1,Data Limited
+8,Regular Season,Cecilion,1,0,0,0.0%,1,Data Limited
+8,Regular Season,Hanzo,1,0,0,0.0%,1,Data Limited
+8,Regular Season,Johnson,1,1,0,0.0%,2,Data Limited
+8,Regular Season,Luo Yi,1,1,1,100.0%,2,Data Limited
+8,Regular Season,Minotaur,1,0,0,0.0%,1,Data Limited
+8,Regular Season,Odette,1,0,1,100.0%,1,Data Limited
+8,Regular Season,Tigreal,1,1,1,100.0%,2,Data Limited
+8,Regular Season,Vale,1,0,1,100.0%,1,Data Limited
+8,Regular Season,Zilong,1,0,0,0.0%,1,Data Limited
+8,Regular Season,Gord,0,1,0,0.0%,1,Data Limited
+8,Regular Season,Gusion,0,1,0,0.0%,1,Data Limited
+8,Playoffs,Paquito,18,11,8,44.4%,29,C-Tier
+8,Playoffs,Natan,15,7,9,60.0%,22,S-Tier
+8,Playoffs,Lancelot,14,6,6,42.9%,20,C-Tier
+8,Playoffs,Yve,14,11,6,42.9%,25,C-Tier
+8,Playoffs,Mathilda,13,13,8,61.5%,26,S-Tier
+8,Playoffs,Chou,12,5,7,58.3%,17,S-Tier
+8,Playoffs,Rafaela,12,5,9,75.0%,17,S-Tier
+8,Playoffs,Barats,10,7,8,80.0%,17,S-Tier
+8,Playoffs,Claude,10,9,3,30.0%,19,C-Tier
+8,Playoffs,Alice,9,9,5,55.6%,18,S-Tier
+8,Playoffs,Ruby,9,4,3,33.3%,13,C-Tier
+8,Playoffs,Aldous,8,11,6,75.0%,19,S-Tier
+8,Playoffs,Esmeralda,8,3,2,25.0%,11,C-Tier
+8,Playoffs,Lunox,8,6,4,50.0%,14,A-Tier
+8,Playoffs,Pharsa,8,5,4,50.0%,13,A-Tier
+8,Playoffs,Thamuz,8,7,5,62.5%,15,S-Tier
+8,Playoffs,Yi Sun-shin,8,5,5,62.5%,13,S-Tier
+8,Playoffs,Yu Zhong,8,3,2,25.0%,11,C-Tier
+8,Playoffs,Grock,6,5,2,33.3%,11,C-Tier
+8,Playoffs,Jawhead,6,17,3,50.0%,23,A-Tier
+8,Playoffs,Karina,5,7,1,20.0%,12,C-Tier
+8,Playoffs,Khufra,5,7,2,40.0%,12,C-Tier
+8,Playoffs,Kimmy,5,6,2,40.0%,11,C-Tier
+8,Playoffs,Lapu-Lapu,5,1,4,80.0%,6,S-Tier
+8,Playoffs,Selena,5,19,2,40.0%,24,C-Tier
+8,Playoffs,Balmond,4,1,0,0.0%,5,C-Tier
+8,Playoffs,Gloo,4,1,2,50.0%,5,A-Tier
+8,Playoffs,Harith,4,1,3,75.0%,5,S-Tier
+8,Playoffs,Akai,3,1,1,33.3%,4,C-Tier
+8,Playoffs,Angela,3,2,0,0.0%,5,C-Tier
+8,Playoffs,Bane,3,2,3,100.0%,5,S-Tier
+8,Playoffs,Benedetta,3,0,0,0.0%,3,C-Tier
+8,Playoffs,Brody,3,1,1,33.3%,4,C-Tier
+8,Playoffs,Hayabusa,3,26,2,66.7%,29,S-Tier
+8,Playoffs,Ling,3,24,2,66.7%,27,S-Tier
+8,Playoffs,Luo Yi,3,2,2,66.7%,5,S-Tier
+8,Playoffs,Uranus,3,1,2,66.7%,4,S-Tier
+8,Playoffs,Estes,2,15,2,100.0%,17,S-Tier
+8,Playoffs,Kagura,2,0,1,50.0%,2,A-Tier
+8,Playoffs,Kaja,2,1,1,50.0%,3,A-Tier
+8,Playoffs,Lylia,2,2,1,50.0%,4,A-Tier
+8,Playoffs,Phoveus,2,11,1,50.0%,13,A-Tier
+8,Playoffs,Popol and Kupa,2,0,1,50.0%,2,A-Tier
+8,Playoffs,X.Borg,2,2,1,50.0%,4,A-Tier
+8,Playoffs,Aulus,1,1,1,100.0%,2,Data Limited
+8,Playoffs,Baxia,1,0,0,0.0%,1,Data Limited
+8,Playoffs,Eudora,1,0,1,100.0%,1,Data Limited
+8,Playoffs,Faramis,1,1,1,100.0%,2,Data Limited
+8,Playoffs,Granger,1,0,0,0.0%,1,Data Limited
+8,Playoffs,Kadita,1,0,0,0.0%,1,Data Limited
+8,Playoffs,Roger,1,2,0,0.0%,3,Data Limited
+8,Playoffs,Wanwan,1,0,0,0.0%,1,Data Limited
+8,Playoffs,Bruno,0,1,0,0.0%,1,Data Limited
+8,Playoffs,Diggie,0,2,0,0.0%,2,Data Limited
+9,Regular Season,Esmeralda,76,25,40,52.6%,101,A-Tier
+9,Regular Season,Beatrix,69,33,42,60.9%,102,S-Tier
+9,Regular Season,Lancelot,59,43,33,55.9%,102,S-Tier
+9,Regular Season,Chou,56,60,35,62.5%,116,S-Tier
+9,Regular Season,Yve,56,64,27,48.2%,120,B-Tier
+9,Regular Season,Ling,51,39,25,49.0%,90,B-Tier
+9,Regular Season,Kagura,49,19,24,49.0%,68,B-Tier
+9,Regular Season,Paquito,45,33,19,42.2%,78,C-Tier
+9,Regular Season,Uranus,41,30,19,46.3%,71,B-Tier
+9,Regular Season,Karina,39,54,24,61.5%,93,S-Tier
+9,Regular Season,Clint,37,12,18,48.6%,49,B-Tier
+9,Regular Season,Brody,35,9,14,40.0%,44,C-Tier
+9,Regular Season,Dyrroth,34,19,18,52.9%,53,A-Tier
+9,Regular Season,Lylia,33,35,11,33.3%,68,C-Tier
+9,Regular Season,Yu Zhong,32,25,12,37.5%,57,C-Tier
+9,Regular Season,Ruby,30,15,14,46.7%,45,B-Tier
+9,Regular Season,Mathilda,28,19,11,39.3%,47,C-Tier
+9,Regular Season,Franco,27,56,16,59.3%,83,S-Tier
+9,Regular Season,Pharsa,26,7,13,50.0%,33,A-Tier
+9,Regular Season,Jawhead,24,13,10,41.7%,37,C-Tier
+9,Regular Season,Gloo,22,27,13,59.1%,49,S-Tier
+9,Regular Season,Grock,22,29,10,45.5%,51,B-Tier
+9,Regular Season,Phoveus,21,55,11,52.4%,76,A-Tier
+9,Regular Season,Cecilion,20,18,11,55.0%,38,S-Tier
+9,Regular Season,Popol and Kupa,20,23,12,60.0%,43,S-Tier
+9,Regular Season,Selena,20,95,10,50.0%,115,A-Tier
+9,Regular Season,Aulus,19,13,8,42.1%,32,C-Tier
+9,Regular Season,Lolita,19,2,12,63.2%,21,S-Tier
+9,Regular Season,Baxia,18,13,9,50.0%,31,A-Tier
+9,Regular Season,Edith,18,13,9,50.0%,31,A-Tier
+9,Regular Season,Hayabusa,16,15,9,56.2%,31,S-Tier
+9,Regular Season,Rafaela,16,11,7,43.8%,27,C-Tier
+9,Regular Season,Wanwan,16,43,7,43.8%,59,C-Tier
+9,Regular Season,Khufra,15,15,8,53.3%,30,A-Tier
+9,Regular Season,Kimmy,15,9,9,60.0%,24,S-Tier
+9,Regular Season,Masha,14,32,6,42.9%,46,C-Tier
+9,Regular Season,Hilda,13,15,5,38.5%,28,C-Tier
+9,Regular Season,Thamuz,13,8,7,53.8%,21,A-Tier
+9,Regular Season,Valentina,13,120,8,61.5%,133,S-Tier
+9,Regular Season,Benedetta,11,4,6,54.5%,15,A-Tier
+9,Regular Season,Lunox,11,7,7,63.6%,18,S-Tier
+9,Regular Season,Karrie,9,3,3,33.3%,12,C-Tier
+9,Regular Season,Angela,8,13,2,25.0%,21,C-Tier
+9,Regular Season,Fanny,8,64,3,37.5%,72,C-Tier
+9,Regular Season,Hylos,8,1,5,62.5%,9,S-Tier
+9,Regular Season,Natalia,8,15,4,50.0%,23,A-Tier
+9,Regular Season,Claude,7,10,5,71.4%,17,S-Tier
+9,Regular Season,Diggie,7,12,2,28.6%,19,C-Tier
+9,Regular Season,Eudora,6,4,6,100.0%,10,S-Tier
+9,Regular Season,Helcurt,6,1,2,33.3%,7,C-Tier
+9,Regular Season,Roger,6,0,4,66.7%,6,S-Tier
+9,Regular Season,Barats,5,4,2,40.0%,9,C-Tier
+9,Regular Season,Kadita,5,4,3,60.0%,9,S-Tier
+9,Regular Season,Vale,5,3,1,20.0%,8,C-Tier
+9,Regular Season,Valir,5,2,2,40.0%,7,C-Tier
+9,Regular Season,Xavier,5,2,4,80.0%,7,S-Tier
+9,Regular Season,Aldous,4,0,1,25.0%,4,C-Tier
+9,Regular Season,Alice,4,0,0,0.0%,4,C-Tier
+9,Regular Season,Harith,4,0,2,50.0%,4,A-Tier
+9,Regular Season,Johnson,3,10,2,66.7%,13,S-Tier
+9,Regular Season,Khaleed,3,1,2,66.7%,4,S-Tier
+9,Regular Season,Yi Sun-shin,3,3,2,66.7%,6,S-Tier
+9,Regular Season,Akai,2,1,1,50.0%,3,A-Tier
+9,Regular Season,Atlas,2,0,0,0.0%,2,C-Tier
+9,Regular Season,Balmond,2,0,0,0.0%,2,C-Tier
+9,Regular Season,Belerick,2,0,0,0.0%,2,C-Tier
+9,Regular Season,Estes,2,1,0,0.0%,3,C-Tier
+9,Regular Season,Melissa,2,0,1,50.0%,2,A-Tier
+9,Regular Season,Moskov,2,1,0,0.0%,3,C-Tier
+9,Regular Season,Odette,2,0,0,0.0%,2,C-Tier
+9,Regular Season,Aamon,1,1,1,100.0%,2,Data Limited
+9,Regular Season,Bane,1,0,0,0.0%,1,Data Limited
+9,Regular Season,Chang'e,1,0,0,0.0%,1,Data Limited
+9,Regular Season,Hanzo,1,0,0,0.0%,1,Data Limited
+9,Regular Season,Miya,1,0,0,0.0%,1,Data Limited
+9,Regular Season,Silvanna,1,0,1,100.0%,1,Data Limited
+9,Regular Season,Kaja,0,1,0,0.0%,1,Data Limited
+9,Regular Season,Yin,0,6,0,0.0%,6,Data Limited
+9,Playoffs,Karina,21,6,12,57.1%,27,S-Tier
+9,Playoffs,Franco,18,9,12,66.7%,27,S-Tier
+9,Playoffs,Esmeralda,17,5,12,70.6%,22,S-Tier
+9,Playoffs,Yve,17,11,9,52.9%,28,A-Tier
+9,Playoffs,Dyrroth,16,4,6,37.5%,20,C-Tier
+9,Playoffs,Brody,15,4,5,33.3%,19,C-Tier
+9,Playoffs,Beatrix,13,13,10,76.9%,26,S-Tier
+9,Playoffs,Grock,11,13,3,27.3%,24,C-Tier
+9,Playoffs,Lylia,10,9,7,70.0%,19,S-Tier
+9,Playoffs,Xavier,10,7,4,40.0%,17,C-Tier
+9,Playoffs,Barats,9,5,5,55.6%,14,S-Tier
+9,Playoffs,Baxia,9,14,5,55.6%,23,S-Tier
+9,Playoffs,Chou,8,3,4,50.0%,11,A-Tier
+9,Playoffs,Clint,8,1,4,50.0%,9,A-Tier
+9,Playoffs,Masha,8,9,4,50.0%,17,A-Tier
+9,Playoffs,Wanwan,7,22,7,100.0%,29,S-Tier
+9,Playoffs,Atlas,6,9,4,66.7%,15,S-Tier
+9,Playoffs,Cecilion,6,0,4,66.7%,6,S-Tier
+9,Playoffs,Claude,6,8,2,33.3%,14,C-Tier
+9,Playoffs,Khufra,6,4,3,50.0%,10,A-Tier
+9,Playoffs,Lancelot,6,2,1,16.7%,8,C-Tier
+9,Playoffs,Kagura,5,5,2,40.0%,10,C-Tier
+9,Playoffs,Angela,4,8,1,25.0%,12,C-Tier
+9,Playoffs,Ling,4,25,2,50.0%,29,A-Tier
+9,Playoffs,Balmond,3,2,1,33.3%,5,C-Tier
+9,Playoffs,Lolita,3,2,1,33.3%,5,C-Tier
+9,Playoffs,Mathilda,3,0,1,33.3%,3,C-Tier
+9,Playoffs,Natalia,3,7,1,33.3%,10,C-Tier
+9,Playoffs,Pharsa,3,1,2,66.7%,4,S-Tier
+9,Playoffs,Popol and Kupa,3,5,0,0.0%,8,C-Tier
+9,Playoffs,Uranus,3,1,1,33.3%,4,C-Tier
+9,Playoffs,Akai,2,5,2,100.0%,7,S-Tier
+9,Playoffs,Estes,2,0,0,0.0%,2,C-Tier
+9,Playoffs,Lunox,2,0,1,50.0%,2,A-Tier
+9,Playoffs,Paquito,2,2,1,50.0%,4,A-Tier
+9,Playoffs,Phoveus,2,6,0,0.0%,8,C-Tier
+9,Playoffs,Thamuz,2,3,1,50.0%,5,A-Tier
+9,Playoffs,Alice,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Eudora,1,1,1,100.0%,2,Data Limited
+9,Playoffs,Fanny,1,14,1,100.0%,15,Data Limited
+9,Playoffs,Gloo,1,1,1,100.0%,2,Data Limited
+9,Playoffs,Harith,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Hayabusa,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Helcurt,1,3,0,0.0%,4,Data Limited
+9,Playoffs,Hilda,1,7,1,100.0%,8,Data Limited
+9,Playoffs,Kadita,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Kaja,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Karrie,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Kimmy,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Natan,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Rafaela,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Ruby,1,0,0,0.0%,1,Data Limited
+9,Playoffs,Selena,1,4,0,0.0%,5,Data Limited
+9,Playoffs,Yu Zhong,1,1,1,100.0%,2,Data Limited
+9,Playoffs,Valentina,0,29,0,0.0%,29,Data Limited
+10,Regular Season,Paquito,79,32,36,45.6%,111,B-Tier
+10,Regular Season,Esmeralda,77,38,29,37.7%,115,C-Tier
+10,Regular Season,Claude,71,31,38,53.5%,102,A-Tier
+10,Regular Season,Beatrix,64,39,36,56.2%,103,S-Tier
+10,Regular Season,Julian,55,58,29,52.7%,113,A-Tier
+10,Regular Season,Chou,52,23,24,46.2%,75,B-Tier
+10,Regular Season,Yve,50,21,21,42.0%,71,C-Tier
+10,Regular Season,Dyrroth,47,34,29,61.7%,81,S-Tier
+10,Regular Season,Valentina,46,92,24,52.2%,138,A-Tier
+10,Regular Season,Grock,43,21,22,51.2%,64,A-Tier
+10,Regular Season,Akai,40,90,18,45.0%,130,B-Tier
+10,Regular Season,Balmond,39,29,18,46.2%,68,B-Tier
+10,Regular Season,Faramis,35,101,22,62.9%,136,S-Tier
+10,Regular Season,Wanwan,35,99,22,62.9%,134,S-Tier
+10,Regular Season,Lolita,31,9,15,48.4%,40,B-Tier
+10,Regular Season,Karina,26,14,16,61.5%,40,S-Tier
+10,Regular Season,Thamuz,26,5,17,65.4%,31,S-Tier
+10,Regular Season,Masha,25,47,14,56.0%,72,S-Tier
+10,Regular Season,Uranus,25,21,14,56.0%,46,S-Tier
+10,Regular Season,Atlas,24,33,15,62.5%,57,S-Tier
+10,Regular Season,Irithel,23,13,7,30.4%,36,C-Tier
+10,Regular Season,Karrie,22,6,11,50.0%,28,A-Tier
+10,Regular Season,Franco,21,34,10,47.6%,55,B-Tier
+10,Regular Season,Mathilda,21,25,8,38.1%,46,C-Tier
+10,Regular Season,Ruby,21,6,13,61.9%,27,S-Tier
+10,Regular Season,Benedetta,20,6,13,65.0%,26,S-Tier
+10,Regular Season,Lylia,19,17,7,36.8%,36,C-Tier
+10,Regular Season,Diggie,18,62,10,55.6%,80,S-Tier
+10,Regular Season,Melissa,18,8,11,61.1%,26,S-Tier
+10,Regular Season,Selena,18,40,10,55.6%,58,S-Tier
+10,Regular Season,Xavier,18,10,12,66.7%,28,S-Tier
+10,Regular Season,Clint,17,5,6,35.3%,22,C-Tier
+10,Regular Season,Fredrinn,16,3,8,50.0%,19,A-Tier
+10,Regular Season,Kagura,16,3,8,50.0%,19,A-Tier
+10,Regular Season,Phoveus,16,24,8,50.0%,40,A-Tier
+10,Regular Season,Fanny,15,100,6,40.0%,115,C-Tier
+10,Regular Season,Khufra,15,3,6,40.0%,18,C-Tier
+10,Regular Season,Kadita,14,10,9,64.3%,24,S-Tier
+10,Regular Season,Baxia,13,5,8,61.5%,18,S-Tier
+10,Regular Season,Cecilion,13,5,3,23.1%,18,C-Tier
+10,Regular Season,Ling,13,51,4,30.8%,64,C-Tier
+10,Regular Season,Pharsa,13,4,8,61.5%,17,S-Tier
+10,Regular Season,Barats,12,5,9,75.0%,17,S-Tier
+10,Regular Season,Lancelot,10,2,5,50.0%,12,A-Tier
+10,Regular Season,Natalia,10,38,6,60.0%,48,S-Tier
+10,Regular Season,Bruno,9,3,3,33.3%,12,C-Tier
+10,Regular Season,Hayabusa,9,8,3,33.3%,17,C-Tier
+10,Regular Season,Lunox,9,2,3,33.3%,11,C-Tier
+10,Regular Season,Rafaela,8,2,3,37.5%,10,C-Tier
+10,Regular Season,Estes,6,9,5,83.3%,15,S-Tier
+10,Regular Season,Brody,5,6,0,0.0%,11,C-Tier
+10,Regular Season,Aamon,3,0,0,0.0%,3,C-Tier
+10,Regular Season,Edith,3,1,1,33.3%,4,C-Tier
+10,Regular Season,Lapu-Lapu,3,1,1,33.3%,4,C-Tier
+10,Regular Season,Popol and Kupa,3,14,1,33.3%,17,C-Tier
+10,Regular Season,Yu Zhong,3,2,3,100.0%,5,S-Tier
+10,Regular Season,Alice,2,0,0,0.0%,2,C-Tier
+10,Regular Season,Gloo,2,1,0,0.0%,3,C-Tier
+10,Regular Season,Hilda,2,2,1,50.0%,4,A-Tier
+10,Regular Season,Hylos,2,1,0,0.0%,3,C-Tier
+10,Regular Season,Saber,2,0,0,0.0%,2,C-Tier
+10,Regular Season,Angela,1,2,0,0.0%,3,Data Limited
+10,Regular Season,Bane,1,1,1,100.0%,2,Data Limited
+10,Regular Season,Jawhead,1,0,0,0.0%,1,Data Limited
+10,Regular Season,Minotaur,1,0,0,0.0%,1,Data Limited
+10,Regular Season,Moskov,1,0,0,0.0%,1,Data Limited
+10,Regular Season,Nana,1,0,0,0.0%,1,Data Limited
+10,Regular Season,X.Borg,1,0,0,0.0%,1,Data Limited
+10,Regular Season,Belerick,0,1,0,0.0%,1,Data Limited
+10,Regular Season,Johnson,0,2,0,0.0%,2,Data Limited
+10,Playoffs,Claude,26,8,17,65.4%,34,S-Tier
+10,Playoffs,Esmeralda,20,12,10,50.0%,32,A-Tier
+10,Playoffs,Pharsa,19,7,11,57.9%,26,S-Tier
+10,Playoffs,Karina,17,3,9,52.9%,20,A-Tier
+10,Playoffs,Faramis,16,11,9,56.2%,27,S-Tier
+10,Playoffs,Lylia,16,2,7,43.8%,18,C-Tier
+10,Playoffs,Melissa,16,3,6,37.5%,19,C-Tier
+10,Playoffs,Paquito,13,15,5,38.5%,28,C-Tier
+10,Playoffs,Akai,11,13,7,63.6%,24,S-Tier
+10,Playoffs,Benedetta,11,5,6,54.5%,16,A-Tier
+10,Playoffs,Chou,11,11,8,72.7%,22,S-Tier
+10,Playoffs,Grock,11,18,5,45.5%,29,B-Tier
+10,Playoffs,Mathilda,11,1,4,36.4%,12,C-Tier
+10,Playoffs,Beatrix,10,10,4,40.0%,20,C-Tier
+10,Playoffs,Fredrinn,10,6,6,60.0%,16,S-Tier
+10,Playoffs,Uranus,10,3,4,40.0%,13,C-Tier
+10,Playoffs,Valentina,10,25,5,50.0%,35,A-Tier
+10,Playoffs,Irithel,9,9,4,44.4%,18,C-Tier
+10,Playoffs,Barats,8,8,3,37.5%,16,C-Tier
+10,Playoffs,Lolita,7,2,4,57.1%,9,S-Tier
+10,Playoffs,Atlas,6,26,5,83.3%,32,S-Tier
+10,Playoffs,Yve,6,11,2,33.3%,17,C-Tier
+10,Playoffs,Balmond,5,6,1,20.0%,11,C-Tier
+10,Playoffs,Dyrroth,5,14,2,40.0%,19,C-Tier
+10,Playoffs,Gusion,5,0,4,80.0%,5,S-Tier
+10,Playoffs,Julian,5,13,4,80.0%,18,S-Tier
+10,Playoffs,Ruby,5,3,1,20.0%,8,C-Tier
+10,Playoffs,Diggie,4,13,3,75.0%,17,S-Tier
+10,Playoffs,Bruno,3,0,1,33.3%,3,C-Tier
+10,Playoffs,Jawhead,3,0,2,66.7%,3,S-Tier
+10,Playoffs,Kadita,3,3,1,33.3%,6,C-Tier
+10,Playoffs,Khufra,3,1,1,33.3%,4,C-Tier
+10,Playoffs,Lancelot,3,1,2,66.7%,4,S-Tier
+10,Playoffs,Phoveus,3,6,1,33.3%,9,C-Tier
+10,Playoffs,Brody,2,2,2,100.0%,4,S-Tier
+10,Playoffs,Estes,2,4,1,50.0%,6,A-Tier
+10,Playoffs,Fanny,2,18,1,50.0%,20,A-Tier
+10,Playoffs,Guinevere,2,0,2,100.0%,2,S-Tier
+10,Playoffs,Karrie,2,6,1,50.0%,8,A-Tier
+10,Playoffs,Masha,2,2,0,0.0%,4,C-Tier
+10,Playoffs,Minotaur,2,1,0,0.0%,3,C-Tier
+10,Playoffs,Rafaela,2,0,0,0.0%,2,C-Tier
+10,Playoffs,Valir,2,1,1,50.0%,3,A-Tier
+10,Playoffs,Yu Zhong,2,3,1,50.0%,5,A-Tier
+10,Playoffs,Aamon,1,1,0,0.0%,2,Data Limited
+10,Playoffs,Baxia,1,0,0,0.0%,1,Data Limited
+10,Playoffs,Cecilion,1,0,0,0.0%,1,Data Limited
+10,Playoffs,Clint,1,0,0,0.0%,1,Data Limited
+10,Playoffs,Hayabusa,1,0,0,0.0%,1,Data Limited
+10,Playoffs,Kagura,1,1,0,0.0%,2,Data Limited
+10,Playoffs,Lesley,1,0,0,0.0%,1,Data Limited
+10,Playoffs,Thamuz,1,0,1,100.0%,1,Data Limited
+10,Playoffs,Xavier,1,0,1,100.0%,1,Data Limited
+10,Playoffs,Ling,0,1,0,0.0%,1,Data Limited
+10,Playoffs,Selena,0,6,0,0.0%,6,Data Limited
+10,Playoffs,Wanwan,0,35,0,0.0%,35,Data Limited
+11,Regular Season,Valentina,96,23,49,51.0%,119,A-Tier
+11,Regular Season,Fredrinn,92,29,52,56.5%,121,S-Tier
+11,Regular Season,Pharsa,76,21,36,47.4%,97,B-Tier
+11,Regular Season,Arlott,60,19,35,58.3%,79,S-Tier
+11,Regular Season,Beatrix,54,21,23,42.6%,75,C-Tier
+11,Regular Season,Claude,51,23,24,47.1%,74,B-Tier
+11,Regular Season,Lapu-Lapu,47,14,20,42.6%,61,C-Tier
+11,Regular Season,Karrie,41,26,25,61.0%,67,S-Tier
+11,Regular Season,Gloo,40,65,26,65.0%,105,S-Tier
+11,Regular Season,Lolita,40,13,20,50.0%,53,A-Tier
+11,Regular Season,Melissa,39,39,20,51.3%,78,A-Tier
+11,Regular Season,Chou,37,25,17,45.9%,62,B-Tier
+11,Regular Season,Kaja,37,83,21,56.8%,120,S-Tier
+11,Regular Season,Yu Zhong,36,38,20,55.6%,74,S-Tier
+11,Regular Season,Brody,33,23,17,51.5%,56,A-Tier
+11,Regular Season,Faramis,31,56,17,54.8%,87,A-Tier
+11,Regular Season,Grock,31,8,14,45.2%,39,B-Tier
+11,Regular Season,Yve,31,32,14,45.2%,63,B-Tier
+11,Regular Season,Ruby,29,15,14,48.3%,44,B-Tier
+11,Regular Season,Lancelot,28,24,18,64.3%,52,S-Tier
+11,Regular Season,Benedetta,27,9,4,14.8%,36,C-Tier
+11,Regular Season,Khufra,26,20,14,53.8%,46,A-Tier
+11,Regular Season,Franco,24,40,8,33.3%,64,C-Tier
+11,Regular Season,Martis,24,11,8,33.3%,35,C-Tier
+11,Regular Season,Joy,23,105,9,39.1%,128,C-Tier
+11,Regular Season,Akai,22,33,11,50.0%,55,A-Tier
+11,Regular Season,Kadita,19,56,9,47.4%,75,B-Tier
+11,Regular Season,Hayabusa,18,22,10,55.6%,40,S-Tier
+11,Regular Season,Diggie,17,69,10,58.8%,86,S-Tier
+11,Regular Season,Harith,15,12,8,53.3%,27,A-Tier
+11,Regular Season,Moskov,14,1,6,42.9%,15,C-Tier
+11,Regular Season,Karina,13,4,5,38.5%,17,C-Tier
+11,Regular Season,Paquito,10,3,6,60.0%,13,S-Tier
+11,Regular Season,Estes,9,21,6,66.7%,30,S-Tier
+11,Regular Season,Kagura,9,0,5,55.6%,9,S-Tier
+11,Regular Season,Baxia,8,1,4,50.0%,9,A-Tier
+11,Regular Season,Terizla,8,5,6,75.0%,13,S-Tier
+11,Regular Season,Fanny,7,80,4,57.1%,87,S-Tier
+11,Regular Season,Alice,6,3,2,33.3%,9,C-Tier
+11,Regular Season,Atlas,6,18,5,83.3%,24,S-Tier
+11,Regular Season,Barats,6,6,2,33.3%,12,C-Tier
+11,Regular Season,Edith,6,4,2,33.3%,10,C-Tier
+11,Regular Season,Hilda,6,8,0,0.0%,14,C-Tier
+11,Regular Season,Julian,6,2,4,66.7%,8,S-Tier
+11,Regular Season,Lesley,6,2,3,50.0%,8,A-Tier
+11,Regular Season,Wanwan,6,127,4,66.7%,133,S-Tier
+11,Regular Season,Dyrroth,5,0,1,20.0%,5,C-Tier
+11,Regular Season,Helcurt,5,4,4,80.0%,9,S-Tier
+11,Regular Season,Ling,5,12,3,60.0%,17,S-Tier
+11,Regular Season,Thamuz,5,0,2,40.0%,5,C-Tier
+11,Regular Season,Xavier,5,1,1,20.0%,6,C-Tier
+11,Regular Season,Natan,4,1,2,50.0%,5,A-Tier
+11,Regular Season,Hanzo,3,8,1,33.3%,11,C-Tier
+11,Regular Season,Lylia,3,2,1,33.3%,5,C-Tier
+11,Regular Season,Natalia,3,28,1,33.3%,31,C-Tier
+11,Regular Season,Floryn,2,1,2,100.0%,3,S-Tier
+11,Regular Season,Lunox,2,2,1,50.0%,4,A-Tier
+11,Regular Season,Masha,2,1,1,50.0%,3,A-Tier
+11,Regular Season,Mathilda,2,4,0,0.0%,6,C-Tier
+11,Regular Season,Minsitthar,2,2,1,50.0%,4,A-Tier
+11,Regular Season,Selena,2,2,1,50.0%,4,A-Tier
+11,Regular Season,Valir,2,0,2,100.0%,2,S-Tier
+11,Regular Season,Esmeralda,1,1,0,0.0%,2,Data Limited
+11,Regular Season,Granger,1,0,0,0.0%,1,Data Limited
+11,Regular Season,Guinevere,1,0,1,100.0%,1,Data Limited
+11,Regular Season,Gusion,1,0,1,100.0%,1,Data Limited
+11,Regular Season,Jawhead,1,0,1,100.0%,1,Data Limited
+11,Regular Season,Phoveus,1,0,1,100.0%,1,Data Limited
+11,Regular Season,Rafaela,1,1,0,0.0%,2,Data Limited
+11,Regular Season,Zilong,1,0,0,0.0%,1,Data Limited
+11,Regular Season,Khaleed,0,1,0,0.0%,1,Data Limited
+11,Playoffs,Fredrinn,20,11,12,60.0%,31,S-Tier
+11,Playoffs,Karrie,20,6,8,40.0%,26,C-Tier
+11,Playoffs,Yve,20,7,12,60.0%,27,S-Tier
+11,Playoffs,Arlott,17,7,8,47.1%,24,B-Tier
+11,Playoffs,Valentina,17,6,7,41.2%,23,C-Tier
+11,Playoffs,Beatrix,16,5,10,62.5%,21,S-Tier
+11,Playoffs,Gloo,16,10,8,50.0%,26,A-Tier
+11,Playoffs,Joy,14,18,7,50.0%,32,A-Tier
+11,Playoffs,Khufra,13,9,5,38.5%,22,C-Tier
+11,Playoffs,Lancelot,13,13,8,61.5%,26,S-Tier
+11,Playoffs,Faramis,12,14,5,41.7%,26,C-Tier
+11,Playoffs,Franco,12,15,8,66.7%,27,S-Tier
+11,Playoffs,Akai,11,12,5,45.5%,23,B-Tier
+11,Playoffs,Pharsa,11,2,6,54.5%,13,A-Tier
+11,Playoffs,Claude,8,13,3,37.5%,21,C-Tier
+11,Playoffs,Lapu-Lapu,8,2,5,62.5%,10,S-Tier
+11,Playoffs,Kadita,7,9,4,57.1%,16,S-Tier
+11,Playoffs,Baxia,6,1,2,33.3%,7,C-Tier
+11,Playoffs,Grock,6,6,1,16.7%,12,C-Tier
+11,Playoffs,Lolita,5,7,3,60.0%,12,S-Tier
+11,Playoffs,Martis,5,1,3,60.0%,6,S-Tier
+11,Playoffs,Brody,4,3,2,50.0%,7,A-Tier
+11,Playoffs,Floryn,4,2,2,50.0%,6,A-Tier
+11,Playoffs,Harith,4,3,4,100.0%,7,S-Tier
+11,Playoffs,Kaja,4,28,3,75.0%,32,S-Tier
+11,Playoffs,Melissa,4,6,2,50.0%,10,A-Tier
+11,Playoffs,Terizla,4,1,1,25.0%,5,C-Tier
+11,Playoffs,Chou,3,0,1,33.3%,3,C-Tier
+11,Playoffs,Estes,3,12,3,100.0%,15,S-Tier
+11,Playoffs,Hayabusa,3,5,2,66.7%,8,S-Tier
+11,Playoffs,Minsitthar,3,9,2,66.7%,12,S-Tier
+11,Playoffs,Yu Zhong,3,12,2,66.7%,15,S-Tier
+11,Playoffs,Angela,2,0,0,0.0%,2,C-Tier
+11,Playoffs,Esmeralda,2,0,1,50.0%,2,A-Tier
+11,Playoffs,Fanny,2,24,0,0.0%,26,C-Tier
+11,Playoffs,Mathilda,2,0,1,50.0%,2,A-Tier
+11,Playoffs,Moskov,2,1,1,50.0%,3,A-Tier
+11,Playoffs,Wanwan,2,30,1,50.0%,32,A-Tier
+11,Playoffs,Atlas,1,3,0,0.0%,4,Data Limited
+11,Playoffs,Benedetta,1,2,0,0.0%,3,Data Limited
+11,Playoffs,Guinevere,1,0,1,100.0%,1,Data Limited
+11,Playoffs,Helcurt,1,0,0,0.0%,1,Data Limited
+11,Playoffs,Julian,1,0,0,0.0%,1,Data Limited
+11,Playoffs,Kagura,1,0,0,0.0%,1,Data Limited
+11,Playoffs,Karina,1,0,0,0.0%,1,Data Limited
+11,Playoffs,Lunox,1,0,0,0.0%,1,Data Limited
+11,Playoffs,Natan,1,0,0,0.0%,1,Data Limited
+11,Playoffs,Paquito,1,0,0,0.0%,1,Data Limited
+11,Playoffs,Rafaela,1,0,0,0.0%,1,Data Limited
+11,Playoffs,Valir,1,0,1,100.0%,1,Data Limited
+11,Playoffs,Barats,0,1,0,0.0%,1,Data Limited
+11,Playoffs,Hilda,0,1,0,0.0%,1,Data Limited
+11,Playoffs,Lesley,0,1,0,0.0%,1,Data Limited
+11,Playoffs,Ling,0,1,0,0.0%,1,Data Limited
+11,Playoffs,Ruby,0,1,0,0.0%,1,Data Limited
+12,Regular Season,Valentina,92,20,42,45.7%,112,B-Tier
+12,Regular Season,Terizla,75,30,37,49.3%,105,B-Tier
+12,Regular Season,Fredrinn,68,56,43,63.2%,124,S-Tier
+12,Regular Season,Novaria,58,35,33,56.9%,93,S-Tier
+12,Regular Season,Baxia,53,51,31,58.5%,104,S-Tier
+12,Regular Season,Edith,53,59,28,52.8%,112,A-Tier
+12,Regular Season,Martis,49,13,20,40.8%,62,C-Tier
+12,Regular Season,Irithel,46,19,19,41.3%,65,C-Tier
+12,Regular Season,Bruno,42,45,27,64.3%,87,S-Tier
+12,Regular Season,Paquito,42,50,26,61.9%,92,S-Tier
+12,Regular Season,Minotaur,40,28,24,60.0%,68,S-Tier
+12,Regular Season,Claude,39,36,17,43.6%,75,C-Tier
+12,Regular Season,Chou,33,12,16,48.5%,45,B-Tier
+12,Regular Season,Khufra,33,13,9,27.3%,46,C-Tier
+12,Regular Season,Brody,32,23,14,43.8%,55,C-Tier
+12,Regular Season,Akai,30,16,12,40.0%,46,C-Tier
+12,Regular Season,Beatrix,29,16,18,62.1%,45,S-Tier
+12,Regular Season,Karrie,29,11,16,55.2%,40,S-Tier
+12,Regular Season,Rafaela,27,13,9,33.3%,40,C-Tier
+12,Regular Season,Yu Zhong,27,29,12,44.4%,56,C-Tier
+12,Regular Season,Faramis,26,11,15,57.7%,37,S-Tier
+12,Regular Season,Ixia,24,30,11,45.8%,54,B-Tier
+12,Regular Season,Grock,23,14,10,43.5%,37,C-Tier
+12,Regular Season,Angela,20,76,8,40.0%,96,C-Tier
+12,Regular Season,Gord,20,13,13,65.0%,33,S-Tier
+12,Regular Season,Kaja,20,63,11,55.0%,83,S-Tier
+12,Regular Season,X.Borg,20,22,10,50.0%,42,A-Tier
+12,Regular Season,Joy,19,81,12,63.2%,100,S-Tier
+12,Regular Season,Kadita,19,51,10,52.6%,70,A-Tier
+12,Regular Season,Lancelot,19,69,7,36.8%,88,C-Tier
+12,Regular Season,Mathilda,19,69,14,73.7%,88,S-Tier
+12,Regular Season,Lylia,18,19,9,50.0%,37,A-Tier
+12,Regular Season,Fanny,13,46,3,23.1%,59,C-Tier
+12,Regular Season,Franco,11,26,7,63.6%,37,S-Tier
+12,Regular Season,Arlott,10,5,5,50.0%,15,A-Tier
+12,Regular Season,Lapu-Lapu,10,0,4,40.0%,10,C-Tier
+12,Regular Season,Pharsa,10,7,3,30.0%,17,C-Tier
+12,Regular Season,Benedetta,9,5,4,44.4%,14,C-Tier
+12,Regular Season,Floryn,9,3,4,44.4%,12,C-Tier
+12,Regular Season,Uranus,9,9,4,44.4%,18,C-Tier
+12,Regular Season,Wanwan,8,6,4,50.0%,14,A-Tier
+12,Regular Season,Yve,7,34,5,71.4%,41,S-Tier
+12,Regular Season,Clint,6,0,3,50.0%,6,A-Tier
+12,Regular Season,Gloo,6,5,4,66.7%,11,S-Tier
+12,Regular Season,Harith,6,5,1,16.7%,11,C-Tier
+12,Regular Season,Khaleed,5,3,3,60.0%,8,S-Tier
+12,Regular Season,Guinevere,4,3,1,25.0%,7,C-Tier
+12,Regular Season,Ruby,4,0,1,25.0%,4,C-Tier
+12,Regular Season,Thamuz,4,0,0,0.0%,4,C-Tier
+12,Regular Season,Diggie,3,31,3,100.0%,34,S-Tier
+12,Regular Season,Dyrroth,3,1,2,66.7%,4,S-Tier
+12,Regular Season,Hilda,3,1,2,66.7%,4,S-Tier
+12,Regular Season,Lolita,3,0,1,33.3%,3,C-Tier
+12,Regular Season,Hayabusa,2,3,0,0.0%,5,C-Tier
+12,Regular Season,Aldous,1,0,0,0.0%,1,Data Limited
+12,Regular Season,Atlas,1,0,0,0.0%,1,Data Limited
+12,Regular Season,Bane,1,0,1,100.0%,1,Data Limited
+12,Regular Season,Estes,1,2,0,0.0%,3,Data Limited
+12,Regular Season,Helcurt,1,2,0,0.0%,3,Data Limited
+12,Regular Season,Julian,1,0,0,0.0%,1,Data Limited
+12,Regular Season,Leomord,1,0,0,0.0%,1,Data Limited
+12,Regular Season,Lesley,1,2,1,100.0%,3,Data Limited
+12,Regular Season,Ling,1,6,0,0.0%,7,Data Limited
+12,Regular Season,Popol and Kupa,1,0,0,0.0%,1,Data Limited
+12,Regular Season,Xavier,1,0,1,100.0%,1,Data Limited
+12,Regular Season,Barats,0,1,0,0.0%,1,Data Limited
+12,Regular Season,Valir,0,1,0,0.0%,1,Data Limited
+12,Playoffs,Faramis,21,7,11,52.4%,28,A-Tier
+12,Playoffs,Mathilda,21,10,13,61.9%,31,S-Tier
+12,Playoffs,Terizla,21,7,9,42.9%,28,C-Tier
+12,Playoffs,Valentina,20,9,6,30.0%,29,C-Tier
+12,Playoffs,Fredrinn,17,13,12,70.6%,30,S-Tier
+12,Playoffs,Irithel,16,3,12,75.0%,19,S-Tier
+12,Playoffs,Bruno,15,9,9,60.0%,24,S-Tier
+12,Playoffs,Edith,14,15,10,71.4%,29,S-Tier
+12,Playoffs,Akai,12,14,3,25.0%,26,C-Tier
+12,Playoffs,Brody,11,5,3,27.3%,16,C-Tier
+12,Playoffs,Arlott,9,2,6,66.7%,11,S-Tier
+12,Playoffs,Baxia,8,25,3,37.5%,33,C-Tier
+12,Playoffs,Martis,8,3,6,75.0%,11,S-Tier
+12,Playoffs,Wanwan,8,2,2,25.0%,10,C-Tier
+12,Playoffs,Kaja,7,11,4,57.1%,18,S-Tier
+12,Playoffs,Lylia,7,3,5,71.4%,10,S-Tier
+12,Playoffs,Angela,6,15,2,33.3%,21,C-Tier
+12,Playoffs,Beatrix,6,0,4,66.7%,6,S-Tier
+12,Playoffs,Chou,6,2,2,33.3%,8,C-Tier
+12,Playoffs,Nolan,6,27,2,33.3%,33,C-Tier
+12,Playoffs,Novaria,6,12,3,50.0%,18,A-Tier
+12,Playoffs,Pharsa,6,3,5,83.3%,9,S-Tier
+12,Playoffs,Benedetta,5,8,3,60.0%,13,S-Tier
+12,Playoffs,Dyrroth,5,2,3,60.0%,7,S-Tier
+12,Playoffs,Paquito,5,3,2,40.0%,8,C-Tier
+12,Playoffs,Yu Zhong,5,8,2,40.0%,13,C-Tier
+12,Playoffs,Fanny,4,10,3,75.0%,14,S-Tier
+12,Playoffs,Joy,4,22,3,75.0%,26,S-Tier
+12,Playoffs,Rafaela,4,3,1,25.0%,7,C-Tier
+12,Playoffs,Claude,3,0,0,0.0%,3,C-Tier
+12,Playoffs,Grock,3,5,0,0.0%,8,C-Tier
+12,Playoffs,Hilda,3,4,2,66.7%,7,S-Tier
+12,Playoffs,Ixia,3,14,2,66.7%,17,S-Tier
+12,Playoffs,Minotaur,3,2,1,33.3%,5,C-Tier
+12,Playoffs,Popol and Kupa,3,2,1,33.3%,5,C-Tier
+12,Playoffs,Uranus,3,5,1,33.3%,8,C-Tier
+12,Playoffs,X.Borg,3,1,1,33.3%,4,C-Tier
+12,Playoffs,Clint,2,1,1,50.0%,3,A-Tier
+12,Playoffs,Diggie,2,13,1,50.0%,15,A-Tier
+12,Playoffs,Guinevere,2,0,0,0.0%,2,C-Tier
+12,Playoffs,Karina,2,0,0,0.0%,2,C-Tier
+12,Playoffs,Karrie,2,3,0,0.0%,5,C-Tier
+12,Playoffs,Lapu-Lapu,2,0,0,0.0%,2,C-Tier
+12,Playoffs,Phoveus,2,0,2,100.0%,2,S-Tier
+12,Playoffs,Ruby,2,0,2,100.0%,2,S-Tier
+12,Playoffs,Barats,1,2,0,0.0%,3,Data Limited
+12,Playoffs,Franco,1,4,0,0.0%,5,Data Limited
+12,Playoffs,Gloo,1,0,0,0.0%,1,Data Limited
+12,Playoffs,Kadita,1,12,1,100.0%,13,Data Limited
+12,Playoffs,Khufra,1,1,1,100.0%,2,Data Limited
+12,Playoffs,Lancelot,1,7,0,0.0%,8,Data Limited
+12,Playoffs,Lolita,1,0,0,0.0%,1,Data Limited
+12,Playoffs,Esmeralda,0,1,0,0.0%,1,Data Limited
+13,Regular Season,Fredrinn,79,30,49,62.0%,109,S-Tier
+13,Regular Season,Barats,65,34,28,43.1%,99,C-Tier
+13,Regular Season,Arlott,63,53,33,52.4%,116,A-Tier
+13,Regular Season,Karrie,57,14,34,59.6%,71,S-Tier
+13,Regular Season,Vexana,57,27,35,61.4%,84,S-Tier
+13,Regular Season,Baxia,49,37,27,55.1%,86,S-Tier
+13,Regular Season,Roger,48,9,20,41.7%,57,C-Tier
+13,Regular Season,Valentina,48,17,16,33.3%,65,C-Tier
+13,Regular Season,Claude,39,25,20,51.3%,64,A-Tier
+13,Regular Season,Ruby,39,22,15,38.5%,61,C-Tier
+13,Regular Season,Cici,38,43,20,52.6%,81,A-Tier
+13,Regular Season,Novaria,37,32,20,54.1%,69,A-Tier
+13,Regular Season,Harith,36,45,20,55.6%,81,S-Tier
+13,Regular Season,Minotaur,36,67,23,63.9%,103,S-Tier
+13,Regular Season,Natan,36,25,19,52.8%,61,A-Tier
+13,Regular Season,Faramis,34,63,26,76.5%,97,S-Tier
+13,Regular Season,Benedetta,29,24,18,62.1%,53,S-Tier
+13,Regular Season,Paquito,29,21,12,41.4%,50,C-Tier
+13,Regular Season,X.Borg,28,39,14,50.0%,67,A-Tier
+13,Regular Season,Grock,24,34,9,37.5%,58,C-Tier
+13,Regular Season,Mathilda,24,103,12,50.0%,127,A-Tier
+13,Regular Season,Edith,23,4,14,60.9%,27,S-Tier
+13,Regular Season,Terizla,22,14,10,45.5%,36,B-Tier
+13,Regular Season,Yu Zhong,20,14,13,65.0%,34,S-Tier
+13,Regular Season,Nolan,18,76,10,55.6%,94,S-Tier
+13,Regular Season,Angela,17,76,6,35.3%,93,C-Tier
+13,Regular Season,Luo Yi,16,57,9,56.2%,73,S-Tier
+13,Regular Season,Akai,15,6,4,26.7%,21,C-Tier
+13,Regular Season,Bruno,15,5,6,40.0%,20,C-Tier
+13,Regular Season,Kaja,15,28,10,66.7%,43,S-Tier
+13,Regular Season,Martis,13,1,5,38.5%,14,C-Tier
+13,Regular Season,Rafaela,13,15,6,46.2%,28,B-Tier
+13,Regular Season,Floryn,12,7,6,50.0%,19,A-Tier
+13,Regular Season,Lylia,12,17,5,41.7%,29,C-Tier
+13,Regular Season,Nana,12,3,4,33.3%,15,C-Tier
+13,Regular Season,Brody,10,5,5,50.0%,15,A-Tier
+13,Regular Season,Chip,10,33,3,30.0%,43,C-Tier
+13,Regular Season,Guinevere,10,3,5,50.0%,13,A-Tier
+13,Regular Season,Chou,9,1,4,44.4%,10,C-Tier
+13,Regular Season,Lapu-Lapu,9,0,1,11.1%,9,C-Tier
+13,Regular Season,Masha,8,25,5,62.5%,33,S-Tier
+13,Regular Season,Gord,7,6,4,57.1%,13,S-Tier
+13,Regular Season,Thamuz,7,1,2,28.6%,8,C-Tier
+13,Regular Season,Franco,6,3,4,66.7%,9,S-Tier
+13,Regular Season,Gloo,6,6,4,66.7%,12,S-Tier
+13,Regular Season,Joy,6,41,1,16.7%,47,C-Tier
+13,Regular Season,Tigreal,6,12,3,50.0%,18,A-Tier
+13,Regular Season,Clint,5,0,1,20.0%,5,C-Tier
+13,Regular Season,Ling,5,3,2,40.0%,8,C-Tier
+13,Regular Season,Lunox,5,0,1,20.0%,5,C-Tier
+13,Regular Season,Odette,5,3,2,40.0%,8,C-Tier
+13,Regular Season,Aurora,4,0,0,0.0%,4,C-Tier
+13,Regular Season,Beatrix,3,0,1,33.3%,3,C-Tier
+13,Regular Season,Diggie,3,13,2,66.7%,16,S-Tier
+13,Regular Season,Fanny,3,17,1,33.3%,20,C-Tier
+13,Regular Season,Ixia,3,2,1,33.3%,5,C-Tier
+13,Regular Season,Phoveus,3,3,0,0.0%,6,C-Tier
+13,Regular Season,Carmilla,2,2,0,0.0%,4,C-Tier
+13,Regular Season,Dyrroth,2,2,1,50.0%,4,A-Tier
+13,Regular Season,Esmeralda,2,1,1,50.0%,3,A-Tier
+13,Regular Season,Gusion,2,1,1,50.0%,3,A-Tier
+13,Regular Season,Kadita,2,3,1,50.0%,5,A-Tier
+13,Regular Season,Pharsa,2,0,1,50.0%,2,A-Tier
+13,Regular Season,Selena,2,0,1,50.0%,2,A-Tier
+13,Regular Season,Uranus,2,0,2,100.0%,2,S-Tier
+13,Regular Season,Estes,1,0,0,0.0%,1,Data Limited
+13,Regular Season,Freya,1,0,1,100.0%,1,Data Limited
+13,Regular Season,Hilda,1,1,0,0.0%,2,Data Limited
+13,Regular Season,Hylos,1,0,0,0.0%,1,Data Limited
+13,Regular Season,Julian,1,0,0,0.0%,1,Data Limited
+13,Regular Season,Khaleed,1,0,1,100.0%,1,Data Limited
+13,Regular Season,Khufra,1,0,0,0.0%,1,Data Limited
+13,Regular Season,Lancelot,1,1,0,0.0%,2,Data Limited
+13,Regular Season,Layla,1,0,0,0.0%,1,Data Limited
+13,Regular Season,Minsitthar,1,0,0,0.0%,1,Data Limited
+13,Regular Season,Moskov,1,0,0,0.0%,1,Data Limited
+13,Regular Season,Xavier,1,1,0,0.0%,2,Data Limited
+13,Regular Season,Yve,1,1,0,0.0%,2,Data Limited
+13,Regular Season,Hanzo,0,1,0,0.0%,1,Data Limited
+13,Regular Season,Irithel,0,1,0,0.0%,1,Data Limited
+13,Regular Season,Lolita,0,1,0,0.0%,1,Data Limited
+13,Playoffs,Novaria,19,5,11,57.9%,24,S-Tier
+13,Playoffs,Moskov,18,5,8,44.4%,23,C-Tier
+13,Playoffs,Barats,16,2,4,25.0%,18,C-Tier
+13,Playoffs,Yu Zhong,16,9,6,37.5%,25,C-Tier
+13,Playoffs,Baxia,15,4,8,53.3%,19,A-Tier
+13,Playoffs,Claude,15,9,8,53.3%,24,A-Tier
+13,Playoffs,Fredrinn,14,18,10,71.4%,32,S-Tier
+13,Playoffs,Minotaur,14,13,8,57.1%,27,S-Tier
+13,Playoffs,Roger,13,5,7,53.8%,18,A-Tier
+13,Playoffs,Valentina,13,5,9,69.2%,18,S-Tier
+13,Playoffs,Vexana,13,7,5,38.5%,20,C-Tier
+13,Playoffs,Edith,11,13,6,54.5%,24,A-Tier
+13,Playoffs,Arlott,10,10,3,30.0%,20,C-Tier
+13,Playoffs,Paquito,10,6,8,80.0%,16,S-Tier
+13,Playoffs,Benedetta,9,8,4,44.4%,17,C-Tier
+13,Playoffs,Carmilla,9,2,4,44.4%,11,C-Tier
+13,Playoffs,X.Borg,8,3,4,50.0%,11,A-Tier
+13,Playoffs,Akai,7,0,4,57.1%,7,S-Tier
+13,Playoffs,Faramis,7,18,2,28.6%,25,C-Tier
+13,Playoffs,Karrie,7,7,5,71.4%,14,S-Tier
+13,Playoffs,Terizla,7,6,3,42.9%,13,C-Tier
+13,Playoffs,Chip,6,13,4,66.7%,19,S-Tier
+13,Playoffs,Mathilda,5,27,2,40.0%,32,C-Tier
+13,Playoffs,Natan,5,4,0,0.0%,9,C-Tier
+13,Playoffs,Cici,4,9,3,75.0%,13,S-Tier
+13,Playoffs,Floryn,4,2,3,75.0%,6,S-Tier
+13,Playoffs,Kaja,4,6,2,50.0%,10,A-Tier
+13,Playoffs,Lapu-Lapu,4,3,3,75.0%,7,S-Tier
+13,Playoffs,Luo Yi,4,28,3,75.0%,32,S-Tier
+13,Playoffs,Angela,3,15,2,66.7%,18,S-Tier
+13,Playoffs,Gord,3,0,1,33.3%,3,C-Tier
+13,Playoffs,Grock,3,12,2,66.7%,15,S-Tier
+13,Playoffs,Pharsa,3,0,2,66.7%,3,S-Tier
+13,Playoffs,Guinevere,2,0,0,0.0%,2,C-Tier
+13,Playoffs,Harith,2,30,2,100.0%,32,S-Tier
+13,Playoffs,Helcurt,2,6,0,0.0%,8,C-Tier
+13,Playoffs,Lesley,2,0,1,50.0%,2,A-Tier
+13,Playoffs,Rafaela,2,0,0,0.0%,2,C-Tier
+13,Playoffs,Alpha,1,0,1,100.0%,1,Data Limited
+13,Playoffs,Aurora,1,0,0,0.0%,1,Data Limited
+13,Playoffs,Beatrix,1,0,1,100.0%,1,Data Limited
+13,Playoffs,Brody,1,0,0,0.0%,1,Data Limited
+13,Playoffs,Chou,1,0,0,0.0%,1,Data Limited
+13,Playoffs,Gloo,1,0,0,0.0%,1,Data Limited
+13,Playoffs,Ling,1,1,0,0.0%,2,Data Limited
+13,Playoffs,Lolita,1,0,0,0.0%,1,Data Limited
+13,Playoffs,Nana,1,0,1,100.0%,1,Data Limited
+13,Playoffs,Nolan,1,2,0,0.0%,3,Data Limited
+13,Playoffs,Yve,1,0,0,0.0%,1,Data Limited
+13,Playoffs,Diggie,0,1,0,0.0%,1,Data Limited
+13,Playoffs,Dyrroth,0,1,0,0.0%,1,Data Limited
+13,Playoffs,Franco,0,1,0,0.0%,1,Data Limited
+13,Playoffs,Ixia,0,1,0,0.0%,1,Data Limited
+13,Playoffs,Lylia,0,1,0,0.0%,1,Data Limited
+13,Playoffs,Odette,0,2,0,0.0%,2,Data Limited
+14,Regular Season,Edith,78,48,43,55.1%,126,S-Tier
+14,Regular Season,Moskov,63,44,29,46.0%,107,B-Tier
+14,Regular Season,Hayabusa,52,42,29,55.8%,94,S-Tier
+14,Regular Season,Julian,51,25,19,37.3%,76,C-Tier
+14,Regular Season,Roger,50,36,26,52.0%,86,A-Tier
+14,Regular Season,Valentina,50,22,25,50.0%,72,A-Tier
+14,Regular Season,Nolan,49,33,27,55.1%,82,S-Tier
+14,Regular Season,Ling,48,62,23,47.9%,110,B-Tier
+14,Regular Season,Harith,46,76,26,56.5%,122,S-Tier
+14,Regular Season,Hylos,46,52,21,45.7%,98,B-Tier
+14,Regular Season,Terizla,44,11,15,34.1%,55,C-Tier
+14,Regular Season,Zhask,44,24,24,54.5%,68,A-Tier
+14,Regular Season,Tigreal,42,62,26,61.9%,104,S-Tier
+14,Regular Season,Claude,41,14,20,48.8%,55,B-Tier
+14,Regular Season,Vexana,41,25,20,48.8%,66,B-Tier
+14,Regular Season,Chou,39,22,19,48.7%,61,B-Tier
+14,Regular Season,Arlott,36,23,14,38.9%,59,C-Tier
+14,Regular Season,Phoveus,34,71,23,67.6%,105,S-Tier
+14,Regular Season,Aurora,33,12,11,33.3%,45,C-Tier
+14,Regular Season,Faramis,30,38,16,53.3%,68,A-Tier
+14,Regular Season,Ruby,30,28,14,46.7%,58,B-Tier
+14,Regular Season,Jawhead,28,27,12,42.9%,55,C-Tier
+14,Regular Season,Gatotkaca,26,10,12,46.2%,36,B-Tier
+14,Regular Season,Grock,26,28,11,42.3%,54,C-Tier
+14,Regular Season,Mathilda,26,35,14,53.8%,61,A-Tier
+14,Regular Season,Luo Yi,25,31,16,64.0%,56,S-Tier
+14,Regular Season,Karrie,23,15,13,56.5%,38,S-Tier
+14,Regular Season,Khaleed,21,11,11,52.4%,32,A-Tier
+14,Regular Season,Zhuxin,19,63,8,42.1%,82,C-Tier
+14,Regular Season,Lolita,15,9,7,46.7%,24,B-Tier
+14,Regular Season,Fanny,13,100,8,61.5%,113,S-Tier
+14,Regular Season,Lylia,12,2,9,75.0%,14,S-Tier
+14,Regular Season,Natan,12,12,7,58.3%,24,S-Tier
+14,Regular Season,Bane,11,5,6,54.5%,16,A-Tier
+14,Regular Season,Minotaur,11,12,9,81.8%,23,S-Tier
+14,Regular Season,Beatrix,9,2,4,44.4%,11,C-Tier
+14,Regular Season,X.Borg,9,4,4,44.4%,13,C-Tier
+14,Regular Season,Bruno,8,0,3,37.5%,8,C-Tier
+14,Regular Season,Lunox,8,12,4,50.0%,20,A-Tier
+14,Regular Season,Yve,8,4,2,25.0%,12,C-Tier
+14,Regular Season,Alpha,6,10,3,50.0%,16,A-Tier
+14,Regular Season,Cici,6,2,5,83.3%,8,S-Tier
+14,Regular Season,Kaja,6,9,2,33.3%,15,C-Tier
+14,Regular Season,Khufra,6,7,3,50.0%,13,A-Tier
+14,Regular Season,Alice,5,6,3,60.0%,11,S-Tier
+14,Regular Season,Angela,4,9,2,50.0%,13,A-Tier
+14,Regular Season,Carmilla,4,0,4,100.0%,4,S-Tier
+14,Regular Season,Joy,4,4,1,25.0%,8,C-Tier
+14,Regular Season,Melissa,4,3,2,50.0%,7,A-Tier
+14,Regular Season,Thamuz,4,0,1,25.0%,4,C-Tier
+14,Regular Season,Wanwan,4,3,2,50.0%,7,A-Tier
+14,Regular Season,Belerick,3,2,2,66.7%,5,S-Tier
+14,Regular Season,Clint,3,0,1,33.3%,3,C-Tier
+14,Regular Season,Gloo,3,1,2,66.7%,4,S-Tier
+14,Regular Season,Lancelot,3,1,2,66.7%,4,S-Tier
+14,Regular Season,Akai,2,0,2,100.0%,2,S-Tier
+14,Regular Season,Barats,2,2,1,50.0%,4,A-Tier
+14,Regular Season,Benedetta,2,0,0,0.0%,2,C-Tier
+14,Regular Season,Brody,2,0,0,0.0%,2,C-Tier
+14,Regular Season,Helcurt,2,0,0,0.0%,2,C-Tier
+14,Regular Season,Ixia,2,1,1,50.0%,3,A-Tier
+14,Regular Season,Baxia,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Cecilion,1,0,1,100.0%,1,Data Limited
+14,Regular Season,Diggie,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Franco,1,0,1,100.0%,1,Data Limited
+14,Regular Season,Fredrinn,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Guinevere,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Hanabi,1,1,1,100.0%,2,Data Limited
+14,Regular Season,Hanzo,1,0,1,100.0%,1,Data Limited
+14,Regular Season,Kagura,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Martis,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Masha,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Minsitthar,1,1,0,0.0%,2,Data Limited
+14,Regular Season,Nana,1,0,1,100.0%,1,Data Limited
+14,Regular Season,Paquito,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Rafaela,1,0,1,100.0%,1,Data Limited
+14,Regular Season,Yu Zhong,1,0,0,0.0%,1,Data Limited
+14,Regular Season,Chip,0,135,0,0.0%,135,Data Limited
+14,Regular Season,Novaria,0,1,0,0.0%,1,Data Limited
+14,Playoffs,Suyou,29,6,18,62.1%,35,S-Tier
+14,Playoffs,Edith,23,11,17,73.9%,34,S-Tier
+14,Playoffs,Gatotkaca,22,12,9,40.9%,34,C-Tier
+14,Playoffs,Alpha,18,5,8,44.4%,23,C-Tier
+14,Playoffs,Harith,17,15,11,64.7%,32,S-Tier
+14,Playoffs,Moskov,16,13,7,43.8%,29,C-Tier
+14,Playoffs,Chou,15,7,8,53.3%,22,A-Tier
+14,Playoffs,Yve,12,6,6,50.0%,18,A-Tier
+14,Playoffs,Hylos,11,10,5,45.5%,21,B-Tier
+14,Playoffs,Vexana,11,6,3,27.3%,17,C-Tier
+14,Playoffs,Zhuxin,11,25,6,54.5%,36,A-Tier
+14,Playoffs,Arlott,10,6,3,30.0%,16,C-Tier
+14,Playoffs,Aurora,10,3,6,60.0%,13,S-Tier
+14,Playoffs,Phoveus,10,16,5,50.0%,26,A-Tier
+14,Playoffs,Valentina,9,1,3,33.3%,10,C-Tier
+14,Playoffs,Beatrix,8,3,7,87.5%,11,S-Tier
+14,Playoffs,Tigreal,8,14,3,37.5%,22,C-Tier
+14,Playoffs,Ling,7,8,4,57.1%,15,S-Tier
+14,Playoffs,Luo Yi,7,21,6,85.7%,28,S-Tier
+14,Playoffs,Natan,7,7,2,28.6%,14,C-Tier
+14,Playoffs,Rafaela,7,6,3,42.9%,13,C-Tier
+14,Playoffs,Clint,6,0,3,50.0%,6,A-Tier
+14,Playoffs,Faramis,6,5,3,50.0%,11,A-Tier
+14,Playoffs,Khaleed,6,18,4,66.7%,24,S-Tier
+14,Playoffs,Mathilda,6,29,4,66.7%,35,S-Tier
+14,Playoffs,Nolan,6,1,3,50.0%,7,A-Tier
+14,Playoffs,Terizla,6,1,2,33.3%,7,C-Tier
+14,Playoffs,Fanny,4,19,1,25.0%,23,C-Tier
+14,Playoffs,Lunox,4,4,2,50.0%,8,A-Tier
+14,Playoffs,Alice,3,0,1,33.3%,3,C-Tier
+14,Playoffs,Angela,3,2,1,33.3%,5,C-Tier
+14,Playoffs,Claude,3,1,0,0.0%,4,C-Tier
+14,Playoffs,Gloo,3,1,1,33.3%,4,C-Tier
+14,Playoffs,Hayabusa,3,7,0,0.0%,10,C-Tier
+14,Playoffs,Julian,3,6,1,33.3%,9,C-Tier
+14,Playoffs,Karrie,3,1,1,33.3%,4,C-Tier
+14,Playoffs,Ruby,3,3,0,0.0%,6,C-Tier
+14,Playoffs,Wanwan,3,7,1,33.3%,10,C-Tier
+14,Playoffs,Barats,2,0,1,50.0%,2,A-Tier
+14,Playoffs,Benedetta,2,0,1,50.0%,2,A-Tier
+14,Playoffs,Bruno,2,1,1,50.0%,3,A-Tier
+14,Playoffs,Cici,2,2,1,50.0%,4,A-Tier
+14,Playoffs,Grock,2,3,2,100.0%,5,S-Tier
+14,Playoffs,Carmilla,1,0,0,0.0%,1,Data Limited
+14,Playoffs,Cecilion,1,0,1,100.0%,1,Data Limited
+14,Playoffs,Franco,1,0,1,100.0%,1,Data Limited
+14,Playoffs,Kaja,1,6,1,100.0%,7,Data Limited
+14,Playoffs,Lylia,1,2,1,100.0%,3,Data Limited
+14,Playoffs,Minotaur,1,0,0,0.0%,1,Data Limited
+14,Playoffs,Miya,1,0,0,0.0%,1,Data Limited
+14,Playoffs,Novaria,1,0,0,0.0%,1,Data Limited
+14,Playoffs,X.Borg,1,0,1,100.0%,1,Data Limited
+14,Playoffs,Yu Zhong,1,0,0,0.0%,1,Data Limited
+14,Playoffs,Zhask,1,0,1,100.0%,1,Data Limited
+14,Playoffs,Bane,0,1,0,0.0%,1,Data Limited
+14,Playoffs,Chip,0,36,0,0.0%,36,Data Limited
+14,Playoffs,Ixia,0,1,0,0.0%,1,Data Limited
+14,Playoffs,Jawhead,0,1,0,0.0%,1,Data Limited
+14,Playoffs,Khufra,0,1,0,0.0%,1,Data Limited
+15,Regular Season,Granger,97,20,57,58.8%,117,S-Tier
+15,Regular Season,Suyou,95,18,51,53.7%,113,A-Tier
+15,Regular Season,Harith,77,51,36,46.8%,128,B-Tier
+15,Regular Season,Joy,64,56,29,45.3%,120,B-Tier
+15,Regular Season,Gatotkaca,54,13,23,42.6%,67,C-Tier
+15,Regular Season,Hylos,50,24,24,48.0%,74,B-Tier
+15,Regular Season,Pharsa,50,21,29,58.0%,71,S-Tier
+15,Regular Season,Chou,47,26,23,48.9%,73,B-Tier
+15,Regular Season,Hilda,47,33,24,51.1%,80,A-Tier
+15,Regular Season,Phoveus,44,81,25,56.8%,125,S-Tier
+15,Regular Season,Badang,38,45,19,50.0%,83,A-Tier
+15,Regular Season,Valentina,38,19,15,39.5%,57,C-Tier
+15,Regular Season,Jawhead,37,50,24,64.9%,87,S-Tier
+15,Regular Season,Lukas,33,32,14,42.4%,65,C-Tier
+15,Regular Season,Kalea,32,34,20,62.5%,66,S-Tier
+15,Regular Season,Moskov,32,33,12,37.5%,65,C-Tier
+15,Regular Season,Hayabusa,27,18,16,59.3%,45,S-Tier
+15,Regular Season,Luo Yi,27,94,17,63.0%,121,S-Tier
+15,Regular Season,Zhuxin,27,100,14,51.9%,127,A-Tier
+15,Regular Season,Edith,26,3,9,34.6%,29,C-Tier
+15,Regular Season,Cici,24,26,8,33.3%,50,C-Tier
+15,Regular Season,Gloo,24,36,14,58.3%,60,S-Tier
+15,Regular Season,Irithel,23,8,7,30.4%,31,C-Tier
+15,Regular Season,Cecilion,22,17,13,59.1%,39,S-Tier
+15,Regular Season,Vexana,21,18,8,38.1%,39,C-Tier
+15,Regular Season,Selena,19,27,6,31.6%,46,C-Tier
+15,Regular Season,Yve,17,30,9,52.9%,47,A-Tier
+15,Regular Season,Chip,14,54,7,50.0%,68,A-Tier
+15,Regular Season,Mathilda,14,93,6,42.9%,107,C-Tier
+15,Regular Season,Faramis,13,13,9,69.2%,26,S-Tier
+15,Regular Season,Karrie,13,6,7,53.8%,19,A-Tier
+15,Regular Season,Khaleed,12,9,4,33.3%,21,C-Tier
+15,Regular Season,Fanny,11,123,6,54.5%,134,A-Tier
+15,Regular Season,Bruno,9,3,7,77.8%,12,S-Tier
+15,Regular Season,Nolan,9,2,6,66.7%,11,S-Tier
+15,Regular Season,Tigreal,9,22,6,66.7%,31,S-Tier
+15,Regular Season,Alpha,8,8,6,75.0%,16,S-Tier
+15,Regular Season,Aurora,8,2,2,25.0%,10,C-Tier
+15,Regular Season,Novaria,8,7,5,62.5%,15,S-Tier
+15,Regular Season,Baxia,7,2,3,42.9%,9,C-Tier
+15,Regular Season,Hanzo,7,11,1,14.3%,18,C-Tier
+15,Regular Season,Ling,7,4,3,42.9%,11,C-Tier
+15,Regular Season,Valir,7,1,4,57.1%,8,S-Tier
+15,Regular Season,Arlott,6,2,3,50.0%,8,A-Tier
+15,Regular Season,Fredrinn,6,2,1,16.7%,8,C-Tier
+15,Regular Season,Ruby,6,5,3,50.0%,11,A-Tier
+15,Regular Season,Alice,5,14,2,40.0%,19,C-Tier
+15,Regular Season,Beatrix,5,3,3,60.0%,8,S-Tier
+15,Regular Season,Esmeralda,5,0,4,80.0%,5,S-Tier
+15,Regular Season,Guinevere,5,1,1,20.0%,6,C-Tier
+15,Regular Season,Leomord,5,0,5,100.0%,5,S-Tier
+15,Regular Season,Wanwan,5,5,3,60.0%,10,S-Tier
+15,Regular Season,Angela,4,9,1,25.0%,13,C-Tier
+15,Regular Season,Barats,4,1,1,25.0%,5,C-Tier
+15,Regular Season,Kimmy,4,1,3,75.0%,5,S-Tier
+15,Regular Season,X.Borg,4,0,3,75.0%,4,S-Tier
+15,Regular Season,Claude,3,0,0,0.0%,3,C-Tier
+15,Regular Season,Floryn,3,4,1,33.3%,7,C-Tier
+15,Regular Season,Franco,3,5,2,66.7%,8,S-Tier
+15,Regular Season,Khufra,3,1,2,66.7%,4,S-Tier
+15,Regular Season,Vale,3,0,2,66.7%,3,S-Tier
+15,Regular Season,Akai,2,0,1,50.0%,2,A-Tier
+15,Regular Season,Benedetta,2,0,1,50.0%,2,A-Tier
+15,Regular Season,Clint,2,0,1,50.0%,2,A-Tier
+15,Regular Season,Julian,2,2,1,50.0%,4,A-Tier
+15,Regular Season,Masha,2,1,1,50.0%,3,A-Tier
+15,Regular Season,Zhask,2,0,1,50.0%,2,A-Tier
+15,Regular Season,Carmilla,1,1,0,0.0%,2,Data Limited
+15,Regular Season,Estes,1,0,1,100.0%,1,Data Limited
+15,Regular Season,Helcurt,1,0,0,0.0%,1,Data Limited
+15,Regular Season,Kadita,1,0,0,0.0%,1,Data Limited
+15,Regular Season,Lapu-Lapu,1,0,0,0.0%,1,Data Limited
+15,Regular Season,Lunox,1,0,0,0.0%,1,Data Limited
+15,Regular Season,Nana,1,0,0,0.0%,1,Data Limited
+15,Regular Season,Paquito,1,0,0,0.0%,1,Data Limited
+15,Regular Season,Terizla,1,0,0,0.0%,1,Data Limited
+15,Regular Season,Thamuz,1,0,0,0.0%,1,Data Limited
+15,Regular Season,Yi Sun-shin,1,0,0,0.0%,1,Data Limited
+15,Playoffs,Granger,28,7,17,60.7%,35,S-Tier
+15,Playoffs,Baxia,24,12,12,50.0%,36,A-Tier
+15,Playoffs,Zhuxin,22,14,10,45.5%,36,B-Tier
+15,Playoffs,Harith,21,16,14,66.7%,37,S-Tier
+15,Playoffs,Hayabusa,20,10,10,50.0%,30,A-Tier
+15,Playoffs,Gloo,17,9,10,58.8%,26,S-Tier
+15,Playoffs,Pharsa,17,10,8,47.1%,27,B-Tier
+15,Playoffs,Badang,16,6,8,50.0%,22,A-Tier
+15,Playoffs,Phoveus,13,23,9,69.2%,36,S-Tier
+15,Playoffs,Fredrinn,12,7,8,66.7%,19,S-Tier
+15,Playoffs,Kalea,12,27,7,58.3%,39,S-Tier
+15,Playoffs,Chip,10,23,4,40.0%,33,C-Tier
+15,Playoffs,Gatotkaca,10,2,3,30.0%,12,C-Tier
+15,Playoffs,Joy,10,28,5,50.0%,38,A-Tier
+15,Playoffs,Ling,10,6,4,40.0%,16,C-Tier
+15,Playoffs,Lukas,10,10,5,50.0%,20,A-Tier
+15,Playoffs,Moskov,10,5,5,50.0%,15,A-Tier
+15,Playoffs,Luo Yi,9,24,8,88.9%,33,S-Tier
+15,Playoffs,Hilda,8,7,4,50.0%,15,A-Tier
+15,Playoffs,Chou,7,7,4,57.1%,14,S-Tier
+15,Playoffs,Kimmy,7,11,1,14.3%,18,C-Tier
+15,Playoffs,Selena,7,3,5,71.4%,10,S-Tier
+15,Playoffs,Suyou,6,2,1,16.7%,8,C-Tier
+15,Playoffs,Wanwan,6,12,2,33.3%,18,C-Tier
+15,Playoffs,Hylos,5,1,0,0.0%,6,C-Tier
+15,Playoffs,Lancelot,5,0,3,60.0%,5,S-Tier
+15,Playoffs,Mathilda,5,18,4,80.0%,23,S-Tier
+15,Playoffs,Yve,5,3,3,60.0%,8,S-Tier
+15,Playoffs,Khaleed,4,0,1,25.0%,4,C-Tier
+15,Playoffs,Terizla,4,1,1,25.0%,5,C-Tier
+15,Playoffs,Valentina,4,6,1,25.0%,10,C-Tier
+15,Playoffs,Beatrix,3,2,0,0.0%,5,C-Tier
+15,Playoffs,Cici,3,7,0,0.0%,10,C-Tier
+15,Playoffs,Faramis,3,5,0,0.0%,8,C-Tier
+15,Playoffs,Irithel,3,1,1,33.3%,4,C-Tier
+15,Playoffs,Karrie,3,0,0,0.0%,3,C-Tier
+15,Playoffs,Zhask,3,3,2,66.7%,6,S-Tier
+15,Playoffs,Benedetta,2,0,2,100.0%,2,S-Tier
+15,Playoffs,Clint,2,0,0,0.0%,2,C-Tier
+15,Playoffs,Edith,2,1,2,100.0%,3,S-Tier
+15,Playoffs,Esmeralda,2,1,1,50.0%,3,A-Tier
+15,Playoffs,Fanny,2,37,0,0.0%,39,C-Tier
+15,Playoffs,Franco,2,0,1,50.0%,2,A-Tier
+15,Playoffs,Jawhead,2,5,0,0.0%,7,C-Tier
+15,Playoffs,Khufra,2,0,1,50.0%,2,A-Tier
+15,Playoffs,Masha,2,1,2,100.0%,3,S-Tier
+15,Playoffs,Novaria,2,1,0,0.0%,3,C-Tier
+15,Playoffs,Alpha,1,1,1,100.0%,2,Data Limited
+15,Playoffs,Angela,1,8,1,100.0%,9,Data Limited
+15,Playoffs,Arlott,1,2,1,100.0%,3,Data Limited
+15,Playoffs,Cecilion,1,0,1,100.0%,1,Data Limited
+15,Playoffs,Guinevere,1,0,1,100.0%,1,Data Limited
+15,Playoffs,Lolita,1,0,1,100.0%,1,Data Limited
+15,Playoffs,Tigreal,1,1,0,0.0%,2,Data Limited
+15,Playoffs,Valir,1,0,0,0.0%,1,Data Limited
+15,Playoffs,Vale,0,1,0,0.0%,1,Data Limited
+15,Playoffs,X.Borg,0,3,0,0.0%,3,Data Limited
+16,Regular Season,Yi Sun-shin,71,36,34,47.9%,107,B-Tier
+16,Regular Season,Lapu-Lapu,67,34,34,50.7%,101,A-Tier
+16,Regular Season,Lancelot,66,62,36,54.5%,128,A-Tier
+16,Regular Season,Harith,65,54,36,55.4%,119,S-Tier
+16,Regular Season,Gatotkaca,60,24,29,48.3%,84,B-Tier
+16,Regular Season,Kimmy,57,29,29,50.9%,86,A-Tier
+16,Regular Season,Granger,53,36,23,43.4%,89,C-Tier
+16,Regular Season,Zhuxin,53,82,27,50.9%,135,A-Tier
+16,Regular Season,Pharsa,48,32,31,64.6%,80,S-Tier
+16,Regular Season,Arlott,47,55,25,53.2%,102,A-Tier
+16,Regular Season,Kalea,46,69,23,50.0%,115,A-Tier
+16,Regular Season,Moskov,45,15,23,51.1%,60,A-Tier
+16,Regular Season,Cici,42,57,20,47.6%,99,B-Tier
+16,Regular Season,Grock,38,36,21,55.3%,74,S-Tier
+16,Regular Season,Fredrinn,37,23,17,45.9%,60,B-Tier
+16,Regular Season,Uranus,37,37,16,43.2%,74,C-Tier
+16,Regular Season,Hayabusa,36,12,18,50.0%,48,A-Tier
+16,Regular Season,Kagura,34,8,16,47.1%,42,B-Tier
+16,Regular Season,Hylos,33,27,15,45.5%,60,B-Tier
+16,Regular Season,Phoveus,30,54,18,60.0%,84,S-Tier
+16,Regular Season,Esmeralda,28,25,10,35.7%,53,C-Tier
+16,Regular Season,Baxia,27,104,14,51.9%,131,A-Tier
+16,Regular Season,Karrie,22,6,11,50.0%,28,A-Tier
+16,Regular Season,Joy,21,7,8,38.1%,28,C-Tier
+16,Regular Season,Selena,21,16,11,52.4%,37,A-Tier
+16,Regular Season,Claude,19,9,8,42.1%,28,C-Tier
+16,Regular Season,Valentina,19,11,6,31.6%,30,C-Tier
+16,Regular Season,Gloo,16,9,8,50.0%,25,A-Tier
+16,Regular Season,Khaleed,16,10,3,18.8%,26,C-Tier
+16,Regular Season,Ruby,16,11,4,25.0%,27,C-Tier
+16,Regular Season,Chou,14,10,6,42.9%,24,C-Tier
+16,Regular Season,Akai,13,6,10,76.9%,19,S-Tier
+16,Regular Season,Lunox,13,9,5,38.5%,22,C-Tier
+16,Regular Season,Wanwan,13,124,9,69.2%,137,S-Tier
+16,Regular Season,Alice,12,4,9,75.0%,16,S-Tier
+16,Regular Season,Angela,12,26,3,25.0%,38,C-Tier
+16,Regular Season,Badang,12,8,6,50.0%,20,A-Tier
+16,Regular Season,Fanny,12,80,8,66.7%,92,S-Tier
+16,Regular Season,Franco,10,22,8,80.0%,32,S-Tier
+16,Regular Season,Hilda,10,7,5,50.0%,17,A-Tier
+16,Regular Season,Yve,10,12,5,50.0%,22,A-Tier
+16,Regular Season,Beatrix,9,8,3,33.3%,17,C-Tier
+16,Regular Season,Bruno,9,8,7,77.8%,17,S-Tier
+16,Regular Season,Bane,8,8,5,62.5%,16,S-Tier
+16,Regular Season,Chip,8,45,6,75.0%,53,S-Tier
+16,Regular Season,Luo Yi,8,8,3,37.5%,16,C-Tier
+16,Regular Season,Mathilda,7,15,6,85.7%,22,S-Tier
+16,Regular Season,Kaja,5,2,5,100.0%,7,S-Tier
+16,Regular Season,Terizla,5,1,3,60.0%,6,S-Tier
+16,Regular Season,Benedetta,4,0,0,0.0%,4,C-Tier
+16,Regular Season,Khufra,4,2,2,50.0%,6,A-Tier
+16,Regular Season,Natan,4,0,2,50.0%,4,A-Tier
+16,Regular Season,Novaria,4,5,4,100.0%,9,S-Tier
+16,Regular Season,Obsidia,4,0,2,50.0%,4,A-Tier
+16,Regular Season,Cecilion,3,1,3,100.0%,4,S-Tier
+16,Regular Season,Helcurt,3,1,0,0.0%,4,C-Tier
+16,Regular Season,Jawhead,3,0,1,33.3%,3,C-Tier
+16,Regular Season,Dyrroth,2,0,1,50.0%,2,A-Tier
+16,Regular Season,Guinevere,2,2,0,0.0%,4,C-Tier
+16,Regular Season,Lukas,2,1,0,0.0%,3,C-Tier
+16,Regular Season,Roger,2,0,0,0.0%,2,C-Tier
+16,Regular Season,Vexana,2,1,0,0.0%,3,C-Tier
+16,Regular Season,X.Borg,2,0,0,0.0%,2,C-Tier
+16,Regular Season,Aurora,1,0,0,0.0%,1,Data Limited
+16,Regular Season,Brody,1,0,1,100.0%,1,Data Limited
+16,Regular Season,Carmilla,1,0,0,0.0%,1,Data Limited
+16,Regular Season,Edith,1,0,1,100.0%,1,Data Limited
+16,Regular Season,Irithel,1,0,0,0.0%,1,Data Limited
+16,Regular Season,Lolita,1,0,0,0.0%,1,Data Limited
+16,Regular Season,Nolan,1,0,1,100.0%,1,Data Limited
+16,Regular Season,Suyou,1,0,1,100.0%,1,Data Limited
+16,Regular Season,Zetian,1,1,0,0.0%,2,Data Limited
+16,Regular Season,Faramis,0,3,0,0.0%,3,Data Limited
+16,Playoffs,Gatotkaca,30,3,16,53.3%,33,A-Tier
+16,Playoffs,Yi Sun-shin,22,10,7,31.8%,32,C-Tier
+16,Playoffs,Lancelot,18,17,13,72.2%,35,S-Tier
+16,Playoffs,Lapu-Lapu,17,3,10,58.8%,20,S-Tier
+16,Playoffs,Lunox,17,9,10,58.8%,26,S-Tier
+16,Playoffs,Granger,16,5,7,43.8%,21,C-Tier
+16,Playoffs,Alice,13,9,4,30.8%,22,C-Tier
+16,Playoffs,Kimmy,13,7,6,46.2%,20,B-Tier
+16,Playoffs,Harith,11,21,6,54.5%,32,A-Tier
+16,Playoffs,Hilda,10,13,7,70.0%,23,S-Tier
+16,Playoffs,Arlott,9,12,2,22.2%,21,C-Tier
+16,Playoffs,Cici,9,24,5,55.6%,33,S-Tier
+16,Playoffs,Fredrinn,9,1,6,66.7%,10,S-Tier
+16,Playoffs,Grock,9,18,2,22.2%,27,C-Tier
+16,Playoffs,Hayabusa,9,5,5,55.6%,14,S-Tier
+16,Playoffs,Pharsa,9,12,5,55.6%,21,S-Tier
+16,Playoffs,Hylos,8,4,4,50.0%,12,A-Tier
+16,Playoffs,Zhuxin,8,25,4,50.0%,33,A-Tier
+16,Playoffs,Chou,7,6,2,28.6%,13,C-Tier
+16,Playoffs,Khaleed,7,6,4,57.1%,13,S-Tier
+16,Playoffs,Ruby,7,2,4,57.1%,9,S-Tier
+16,Playoffs,Yu Zhong,7,21,7,100.0%,28,S-Tier
+16,Playoffs,Phoveus,6,11,5,83.3%,17,S-Tier
+16,Playoffs,Uranus,6,7,3,50.0%,13,A-Tier
+16,Playoffs,Valentina,6,5,1,16.7%,11,C-Tier
+16,Playoffs,Selena,5,2,3,60.0%,7,S-Tier
+16,Playoffs,Baxia,4,15,2,50.0%,19,A-Tier
+16,Playoffs,Joy,4,0,1,25.0%,4,C-Tier
+16,Playoffs,Yve,4,7,3,75.0%,11,S-Tier
+16,Playoffs,Bane,3,6,3,100.0%,9,S-Tier
+16,Playoffs,Cecilion,3,2,1,33.3%,5,C-Tier
+16,Playoffs,Claude,3,2,1,33.3%,5,C-Tier
+16,Playoffs,Esmeralda,3,10,1,33.3%,13,C-Tier
+16,Playoffs,Kalea,3,8,1,33.3%,11,C-Tier
+16,Playoffs,Moskov,3,0,1,33.3%,3,C-Tier
+16,Playoffs,Novaria,3,5,1,33.3%,8,C-Tier
+16,Playoffs,X.Borg,3,4,1,33.3%,7,C-Tier
+16,Playoffs,Akai,2,0,0,0.0%,2,C-Tier
+16,Playoffs,Brody,2,0,0,0.0%,2,C-Tier
+16,Playoffs,Fanny,2,13,2,100.0%,15,S-Tier
+16,Playoffs,Mathilda,2,1,0,0.0%,3,C-Tier
+16,Playoffs,Obsidia,2,0,1,50.0%,2,A-Tier
+16,Playoffs,Terizla,2,0,1,50.0%,2,A-Tier
+16,Playoffs,Wanwan,2,8,2,100.0%,10,S-Tier
+16,Playoffs,Badang,1,0,0,0.0%,1,Data Limited
+16,Playoffs,Barats,1,0,0,0.0%,1,Data Limited
+16,Playoffs,Beatrix,1,0,0,0.0%,1,Data Limited
+16,Playoffs,Chip,1,2,1,100.0%,3,Data Limited
+16,Playoffs,Edith,1,0,0,0.0%,1,Data Limited
+16,Playoffs,Franco,1,4,0,0.0%,5,Data Limited
+16,Playoffs,Gloo,1,0,1,100.0%,1,Data Limited
+16,Playoffs,Ixia,1,0,1,100.0%,1,Data Limited
+16,Playoffs,Kagura,1,2,0,0.0%,3,Data Limited
+16,Playoffs,Leomord,1,0,0,0.0%,1,Data Limited
+16,Playoffs,Luo Yi,1,1,1,100.0%,2,Data Limited
+16,Playoffs,Natan,1,0,1,100.0%,1,Data Limited
+16,Playoffs,Benedetta,0,1,0,0.0%,1,Data Limited
+16,Playoffs,Ling,0,1,0,0.0%,1,Data Limited
+17,Regular Season,Claude,93,15,58,62.4%,108,S-Tier
+17,Regular Season,Valentina,70,23,37,52.9%,93,A-Tier
+17,Regular Season,Harley,62,41,35,56.5%,103,S-Tier
+17,Regular Season,Suyou,60,43,30,50.0%,103,A-Tier
+17,Regular Season,Khaleed,55,20,22,40.0%,75,C-Tier
+17,Regular Season,Zhuxin,53,78,25,47.2%,131,B-Tier
+17,Regular Season,Leomord,49,31,20,40.8%,80,C-Tier
+17,Regular Season,Yve,48,35,25,52.1%,83,A-Tier
+17,Regular Season,Phoveus,47,72,21,44.7%,119,C-Tier
+17,Regular Season,Kalea,36,70,22,61.1%,106,S-Tier
+17,Regular Season,Sora,36,41,18,50.0%,77,A-Tier
+17,Regular Season,Harith,35,33,18,51.4%,68,A-Tier
+17,Regular Season,Karrie,35,41,13,37.1%,76,C-Tier
+17,Regular Season,Lapu-Lapu,35,9,17,48.6%,44,B-Tier
+17,Regular Season,Marcel,34,62,16,47.1%,96,B-Tier
+17,Regular Season,Uranus,33,32,16,48.5%,65,B-Tier
+17,Regular Season,Hylos,31,26,15,48.4%,57,B-Tier
+17,Regular Season,Moskov,31,11,11,35.5%,42,C-Tier
+17,Regular Season,Alice,29,17,13,44.8%,46,C-Tier
+17,Regular Season,Hilda,29,37,15,51.7%,66,A-Tier
+17,Regular Season,Pharsa,29,11,13,44.8%,40,C-Tier
+17,Regular Season,Gatotkaca,28,21,16,57.1%,49,S-Tier
+17,Regular Season,Baxia,24,100,16,66.7%,124,S-Tier
+17,Regular Season,Gloo,24,31,11,45.8%,55,B-Tier
+17,Regular Season,Arlott,23,30,12,52.2%,53,A-Tier
+17,Regular Season,Fredrinn,22,15,10,45.5%,37,B-Tier
+17,Regular Season,Guinevere,22,45,13,59.1%,67,S-Tier
+17,Regular Season,Yi Sun-shin,22,13,9,40.9%,35,C-Tier
+17,Regular Season,Chou,18,16,6,33.3%,34,C-Tier
+17,Regular Season,Kimmy,18,13,11,61.1%,31,S-Tier
+17,Regular Season,Terizla,17,12,11,64.7%,29,S-Tier
+17,Regular Season,Freya,16,118,12,75.0%,134,S-Tier
+17,Regular Season,Gord,16,6,10,62.5%,22,S-Tier
+17,Regular Season,Grock,15,11,6,40.0%,26,C-Tier
+17,Regular Season,Granger,14,3,6,42.9%,17,C-Tier
+17,Regular Season,Yu Zhong,11,7,9,81.8%,18,S-Tier
+17,Regular Season,Zetian,10,14,4,40.0%,24,C-Tier
+17,Regular Season,Lylia,9,10,4,44.4%,19,C-Tier
+17,Regular Season,Fanny,8,83,3,37.5%,91,C-Tier
+17,Regular Season,Bruno,7,4,4,57.1%,11,S-Tier
+17,Regular Season,Badang,6,2,4,66.7%,8,S-Tier
+17,Regular Season,Hayabusa,6,4,3,50.0%,10,A-Tier
+17,Regular Season,Obsidia,6,0,1,16.7%,6,C-Tier
+17,Regular Season,Selena,6,3,2,33.3%,9,C-Tier
+17,Regular Season,Clint,5,0,3,60.0%,5,S-Tier
+17,Regular Season,Lancelot,5,1,3,60.0%,6,S-Tier
+17,Regular Season,Valir,5,2,2,40.0%,7,C-Tier
+17,Regular Season,Atlas,4,1,2,50.0%,5,A-Tier
+17,Regular Season,Luo Yi,4,7,2,50.0%,11,A-Tier
+17,Regular Season,Nolan,4,2,3,75.0%,6,S-Tier
+17,Regular Season,Benedetta,3,1,2,66.7%,4,S-Tier
+17,Regular Season,Cici,3,6,1,33.3%,9,C-Tier
+17,Regular Season,Joy,3,0,0,0.0%,3,C-Tier
+17,Regular Season,Kaja,3,5,3,100.0%,8,S-Tier
+17,Regular Season,Chip,2,1,1,50.0%,3,A-Tier
+17,Regular Season,Dyrroth,2,2,1,50.0%,4,A-Tier
+17,Regular Season,Hanabi,2,0,0,0.0%,2,C-Tier
+17,Regular Season,Irithel,2,0,0,0.0%,2,C-Tier
+17,Regular Season,Thamuz,2,0,1,50.0%,2,A-Tier
+17,Regular Season,Aulus,1,0,0,0.0%,1,Data Limited
+17,Regular Season,Balmond,1,0,0,0.0%,1,Data Limited
+17,Regular Season,Beatrix,1,0,1,100.0%,1,Data Limited
+17,Regular Season,Belerick,1,0,1,100.0%,1,Data Limited
+17,Regular Season,Brody,1,0,1,100.0%,1,Data Limited
+17,Regular Season,Esmeralda,1,1,0,0.0%,2,Data Limited
+17,Regular Season,Kagura,1,0,0,0.0%,1,Data Limited
+17,Regular Season,Khufra,1,0,0,0.0%,1,Data Limited
+17,Regular Season,Lesley,1,0,0,0.0%,1,Data Limited
+17,Regular Season,Lunox,1,0,0,0.0%,1,Data Limited
+17,Regular Season,Saber,1,0,0,0.0%,1,Data Limited
+17,Regular Season,Vexana,1,1,0,0.0%,2,Data Limited
+17,Regular Season,Wanwan,1,1,0,0.0%,2,Data Limited

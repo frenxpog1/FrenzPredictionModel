@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLBB Analytics Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">
+                <span class="logo-icon">⚔️</span>
+                <h1>Analytics</h1>
+            </div>
+            <ul>
+                <li><a href="index.html" class="active">Dashboard</a></li>
+                <li><a href="#roster-section">Rosters</a></li>
+                <li><a href="#patch-section">Patches</a></li>
+                <li><a href="heroes.html">Heroes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- ── Page Header ─────────────────────────────────── -->
+        <div class="page-header">
+            <h2>Tournament Pulse</h2>
+            <p class="subtitle" id="subtitle-text">MPL PH · Seasons 1–17 · Analytical Meta-Data</p>
+        </div>
+
+        <!-- ── Premium Filter Section ──────────────────────── -->
+        <section class="filter-section">
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label>Season Select</label>
+                    <div class="filter-row" id="season-filters">
+                        <button class="filter-btn active" data-season="all" onclick="setFilter('season','all',this)">All</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label>Tournament Stage</label>
+                    <div class="filter-row">
+                        <button class="filter-btn active" data-stage="all" onclick="setFilter('stage','all',this)">All</button>
+                        <button class="filter-btn" data-stage="Regular Season" onclick="setFilter('stage','Regular Season',this)">Regular</button>
+                        <button class="filter-btn" data-stage="Playoffs" onclick="setFilter('stage','Playoffs',this)">Playoffs</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label>Match Outcome</label>
+                    <div class="filter-row">
+                        <button class="filter-btn active" data-result="all" onclick="setFilter('result','all',this)">All</button>
+                        <button class="filter-btn" data-result="win" onclick="setFilter('result','win',this)">Wins</button>
+                        <button class="filter-btn" data-result="loss" onclick="setFilter('result','loss',this)">Losses</button>
+                    </div>
+                </div>
+                <div class="search-wrap">
+                    <input type="text" id="team-search" class="search-input" placeholder="Filter by team name..." oninput="applyFilters()">
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Performance Summary ────────────────────────── -->
+        <section class="summary">
+            <div class="card stat-card">
+                <div class="stat-icon">🏆</div>
+                <div>
+                    <h3>Total Matches</h3>
+                    <p class="stat-num" id="stat-matches">–</p>
+                </div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon">🎮</div>
+                <div>
+                    <h3>Games Analyzed</h3>
+                    <p class="stat-num" id="stat-games">–</p>
+                </div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon">🦸</div>
+                <div>
+                    <h3>Unique Heroes</h3>
+                    <p class="stat-num" id="stat-heroes">–</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Match History ──────────────────────────────── -->
+        <section class="recent-matches">
+            <div class="section-header">
+                <h2>Match History</h2>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Season</th>
+                            <th>Stage</th>
+                            <th>Teams</th>
+                            <th>Outcome</th>
+                            <th>Patch</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="match-tbody"></tbody>
+                </table>
+            </div>
+            <div class="pagination-row">
+                <button id="prev-page" onclick="changePage(-1)">← Older</button>
+                <span id="page-info">Page 1</span>
+                <button id="next-page" onclick="changePage(1)">Newer →</button>
+            </div>
+        </section>
+
+        <!-- ── Team Rosters ───────────────────────────────── -->
+        <section id="roster-section" class="roster-section">
+            <div class="section-header">
+                <h2>Active Rosters</h2>
+                <span class="chip-season" id="roster-season-label">Season 17</span>
+            </div>
+            <div class="roster-grid" id="roster-grid"></div>
+        </section>
+
+        <!-- ── Patch Meta Timeline ────────────────────────── -->
+        <section id="patch-section" class="patch-section">
+            <div class="section-header">
+                <h2>Balance Timeline</h2>
+            </div>
+            <div class="patch-grid" id="patch-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 MLBB Analytics · Designed for Professional Meta Tracking</p>
+    </footer>
+
+    <!-- Scripts -->
+    <div id="draft-modal" class="modal-overlay" onclick="closeDraftModal(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeDraftModal()">✕</button>
+            <h3 id="modal-title">Draft Analysis</h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="/static/data.js"></script>
+    <script>
+    let allMatches = [];
+    let filteredMatches = [];
+    let activeFilters = { season: 'all', stage: 'all', result: 'all' };
+    let currentPage = 1;
+    const PAGE_SIZE = 15;
+
+    function esc(str) {
+        if (!str) return '';
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (typeof MLBB_DATA === 'undefined') {
+            console.error("MLBB_DATA not found. Make sure /static/data.js is loaded correctly.");
+            return;
+        }
+        allMatches = MLBB_DATA.matches || [];
+        buildSeasonFilters(MLBB_DATA.seasons || []);
+        applyFilters();
+    });
+
+    function buildSeasonFilters(seasons) {
+        const row = document.getElementById('season-filters');
+        const sorted = [...seasons].sort((a,b) => b - a);
+        sorted.forEach(s => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.textContent = `S${s}`;
+            btn.onclick = () => setFilter('season', s, btn);
+            row.appendChild(btn);
+        });
+    }
+
+    function setFilter(type, value, btn) {
+        activeFilters[type] = value;
+        btn.closest('.filter-row').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPage = 1;
+        applyFilters();
+    }
+
+    function applyFilters() {
+        const teamSearch = (document.getElementById('team-search').value || '').toLowerCase().trim();
+        const { season, stage, result } = activeFilters;
+
+        filteredMatches = allMatches.filter(m => {
+            if (season !== 'all' && m.season != season) return false;
+            if (stage  !== 'all' && m.stage  !== stage)  return false;
+            if (teamSearch && !m.team_a.toLowerCase().includes(teamSearch) && !m.team_b.toLowerCase().includes(teamSearch)) return false;
+            if (result !== 'all') {
+                if (result === 'win'  && !(m.score_a > m.score_b)) return false;
+                if (result === 'loss' && !(m.score_b > m.score_a)) return false;
+            }
+            return true;
+        });
+
+        renderMatches();
+        renderSummary();
+        renderPatches();
+        renderRosters();
+    }
+
+    function renderSummary() {
+        const ms = filteredMatches;
+        const totalGames = ms.reduce((a, m) => a + (m.games ? m.games.length : 0), 0);
+        const heroSet = new Set();
+        ms.forEach(m => (m.games || []).forEach(g => {
+            [...(g.picks?.blue||[]), ...(g.picks?.red||[])].forEach(h => heroSet.add(h));
+        }));
+        document.getElementById('stat-matches').textContent = ms.length;
+        document.getElementById('stat-games').textContent   = totalGames;
+        document.getElementById('stat-heroes').textContent  = heroSet.size;
+    }
+
+    function renderMatches() {
+        const tbody = document.getElementById('match-tbody');
+        const total = filteredMatches.length;
+        const totalPages = Math.ceil(total / PAGE_SIZE) || 1;
+        const slice = filteredMatches.slice((currentPage-1)*PAGE_SIZE, currentPage*PAGE_SIZE);
+
+        document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+        
+        tbody.innerHTML = slice.map(m => {
+            const won = m.score_a > m.score_b;
+            const stageClass = m.stage.toLowerCase().includes('playoff') ? 'stage-playoffs' : 'stage-regular';
+            const resClass = won ? 'win' : 'loss';
+            const group = m.group ? `<br><small class="muted">${m.group}</small>` : '';
+
+            return `<tr>
+                <td><span class="chip-season">S${m.season}</span></td>
+                <td><span class="stage-badge ${stageClass}">${m.stage}${group}</span></td>
+                <td class="team-cell"><strong>${esc(m.team_a)}</strong> vs ${esc(m.team_b)}</td>
+                <td><span class="score">${m.score_a}–${m.score_b}</span> <span class="result ${resClass}">${resClass}</span></td>
+                <td class="muted">${m.patch || '—'}</td>
+                <td><button class="draft-btn" onclick='openDraft(${JSON.stringify(m.match_id)})'>View Draft</button></td>
+            </tr>`;
+        }).join('');
+    }
+
+    function renderPatches() {
+        const container = document.getElementById('patch-grid');
+        const wantedTypes = new Set(['BUFF', 'NERF', 'ADJUST', 'NEW']);
+        const sorted = [...MLBB_DATA.patches].sort((a,b) => new Date(b.date) - new Date(a.date));
+        const patches = sorted.map(p => {
+            const adjs = Object.entries(p.hero_adjustments || {})
+                .map(([hero, type]) => [hero, String(type || '').toUpperCase()])
+                .filter(([hero, type]) => wantedTypes.has(type) && hero && !hero.includes(' - '));
+            return { ...p, adjs };
+        }).filter(p => p.adjs.length > 0).slice(0, 40);
+
+        container.innerHTML = patches.map(p => {
+            const adjHtml = p.adjs.map(([hero, type]) => 
+                `<span class="patch-adj-chip adj-${type.toLowerCase()}"><strong>${esc(type)}</strong>${esc(hero)}</span>`
+            ).join('');
+
+            return `<div class="card patch-card">
+                <div class="patch-header">
+                    <strong>Patch ${esc(p.version)}</strong>
+                    <span class="muted">${p.date}</span>
+                </div>
+                <div class="patch-body">${adjHtml}</div>
+            </div>`;
+        }).join('');
+    }
+
+    function renderRosters() {
+        const container = document.getElementById('roster-grid');
+        document.getElementById('roster-season-label').textContent = 'All Seasons';
+        
+        const filtered = [...MLBB_DATA.rosters];
+        filtered.sort((a, b) => (b.season - a.season) || a.team.localeCompare(b.team));
+
+        let lastSeason = null;
+        container.innerHTML = filtered.map(r => {
+            const seasonTitle = r.season !== lastSeason
+                ? `<div class="roster-season-title">Season ${r.season}</div>`
+                : '';
+            lastSeason = r.season;
+            const players = r.players.map(p => `<li><strong>${esc(p.ign)}</strong> <span class="role-tag-mini">${esc(p.role)}</span></li>`).join('');
+            const staff = r.staff.map(s => `<li><strong>${esc(s.ign)}</strong> <span class="role-tag-mini">${esc(s.role)}</span></li>`).join('');
+            return `${seasonTitle}<div class="card roster-card">
+                <div class="roster-header">
+                    <strong>${esc(r.team)}</strong>
+                    <span class="chip-season">S${r.season}</span>
+                </div>
+                <div class="roster-body">
+                    <div class="roster-col"><h4>Players</h4><ul>${players}</ul></div>
+                    <div class="roster-col"><h4>Staff</h4><ul>${staff}</ul></div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function changePage(delta) {
+        currentPage += delta;
+        renderMatches();
+    }
+
+    function formatDuration(seconds) {
+        if (!seconds) return '—';
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function openDraft(id) {
+        const m = allMatches.find(x => x.match_id === id);
+        const body = document.getElementById('modal-body');
+        const title = document.getElementById('modal-title');
+        
+        if (!m) {
+            body.innerHTML = '<p class="muted" style="text-align:center; padding:40px;">Match data not found.</p>';
+            document.getElementById('draft-modal').classList.add('active');
+            return;
+        }
+
+        title.textContent = `${m.team_a} vs ${m.team_b} · S${m.season} Draft`;
+
+        if (!m.games || m.games.length === 0) {
+            body.innerHTML = `
+                <div style="text-align:center; padding:60px 20px;">
+                    <div style="font-size:3rem; margin-bottom:20px;">📂</div>
+                    <p style="font-size:1.2rem; color:var(--text); margin-bottom:10px;">No detailed game data available for this match.</p>
+                    <p class="muted">This often happens for very old matches or future scheduled matches where the draft hasn't been recorded yet.</p>
+                </div>`;
+        } else {
+            body.innerHTML = m.games.map(g => {
+                const bPicks = (g.picks?.blue || []).join(', ') || '—';
+                const rPicks = (g.picks?.red  || []).join(', ') || '—';
+                const bBans  = (g.bans?.blue  || []).join(', ') || '—';
+                const rBans  = (g.bans?.red   || []).join(', ') || '—';
+                const duration = formatDuration(g.duration_seconds);
+                
+                return `
+                <div style="margin-bottom:32px; padding:32px; background:rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius:16px;">
+                    <div style="margin-bottom:24px; display:flex; justify-content:space-between; align-items:center;">
+                        <h4 style="color:var(--accent); font-size:1.3rem;">Game ${g.game_number}</h4>
+                        <div style="display:flex; gap:12px; align-items:center;">
+                            <span style="font-size:0.85rem; color:var(--muted); font-weight:700;">⏱️ ${duration}</span>
+                            <span style="font-size:0.9rem; background:var(--accent-glow); color:var(--accent); padding:4px 12px; border-radius:8px; font-weight:700;">Winner: ${esc(g.winner)}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+                        <div style="background:rgba(88, 166, 255, 0.05); padding:20px; border-radius:12px;">
+                            <div style="color:var(--accent); font-weight:900; text-transform:uppercase; font-size:0.75rem; margin-bottom:12px; letter-spacing:0.1em;">${esc(g.blue_side_team)} (Blue)</div>
+                            <div style="margin-bottom:16px;">
+                                <div style="color:var(--muted); font-size:0.75rem; margin-bottom:4px;">Picks:</div>
+                                <div style="font-weight:700; color:#fff;">${esc(bPicks)}</div>
+                            </div>
+                            <div>
+                                <div style="color:var(--muted); font-size:0.75rem; margin-bottom:4px;">Bans:</div>
+                                <div style="font-size:0.85rem;">${esc(bBans)}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="background:rgba(255, 123, 114, 0.05); padding:20px; border-radius:12px;">
+                            <div style="color:var(--red-h); font-weight:900; text-transform:uppercase; font-size:0.75rem; margin-bottom:12px; letter-spacing:0.1em;">${esc(g.red_side_team)} (Red)</div>
+                            <div style="margin-bottom:16px;">
+                                <div style="color:var(--muted); font-size:0.75rem; margin-bottom:4px;">Picks:</div>
+                                <div style="font-weight:700; color:#fff;">${esc(rPicks)}</div>
+                            </div>
+                            <div>
+                                <div style="color:var(--muted); font-size:0.75rem; margin-bottom:4px;">Bans:</div>
+                                <div style="font-size:0.85rem;">${esc(rBans)}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+        document.getElementById('draft-modal').classList.add('active');
+    }
+
+    function closeDraftModal(e) { 
+        if (e && e.target !== e.currentTarget && !e.target.classList.contains('modal-close')) return;
+        document.getElementById('draft-modal').classList.remove('active'); 
+    }
+    </script>
+</body>
+</html>

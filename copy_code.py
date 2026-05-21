@@ -70,6 +70,13 @@ IGN_ALIASES = {
     "Dlar":         "Dlarskie",         # ONIC PH
     "Domeng":       "Domengkite",       # Minana/Aurora Gold Lane
     "DomengDR":     "Domengkite",       # Nexplay (same player, DR tag era)
+    "Bon Chon":     "Bon Chan",         # Typo
+    "BruskoDR":     "Brusko",           # Nexplay DR tag
+    "GoyongDR":     "Goyong",           # Nexplay DR tag
+    "Had ji":       "Hadji",            # Space
+    "Had Ji":       "Hadji",            # Space
+    "Kekedot":      "Kekedoot",         # Typo
+    "YellyHazeDR":  "YellyHaze",        # Nexplay DR tag
     "E2Max":        "E2MAX",            # Execration
     "E2max":        "E2MAX",            # Execration
     "EDWARD":       "Edward",           # Blacklist → Aurora EXP Lane
@@ -108,13 +115,23 @@ IGN_ALIASES = {
     "Shaiderqt":    "ShaiderQT",
 }
 
+import re
+NORMALIZED_ALIASES = {}
+for k, v in IGN_ALIASES.items():
+    clean_k = re.sub(r'\s+|-|_|─|–', '', str(k).strip().lower())
+    clean_v = re.sub(r'\s+|-|_|─|–', '', str(v).strip().lower())
+    NORMALIZED_ALIASES[clean_k] = clean_v
+
 def resolve_ign(ign):
-    ign = str(ign).strip()
+    if not ign or str(ign) == 'nan':
+        return "unknown"
+    clean_str = re.sub(r'\s+|-|_|─|–', '', str(ign).strip().lower())
+    
     seen = set()
-    while ign in IGN_ALIASES and ign not in seen:
-        seen.add(ign)
-        ign = IGN_ALIASES[ign]
-    return ign.lower()
+    while clean_str in NORMALIZED_ALIASES and clean_str not in seen:
+        seen.add(clean_str)
+        clean_str = NORMALIZED_ALIASES[clean_str]
+    return clean_str
 
 matches_df['team_a_elo']          = 0.0
 matches_df['team_b_elo']          = 0.0
@@ -128,52 +145,7 @@ def get_team_avg_elo(team_name, season_string, elo_dict):
     if not roster_igns: return default_elo
     return sum([elo_dict.get(ign, default_elo) for ign in roster_igns]) / len(roster_igns)
 
-for index, row in matches_df.iterrows():
-    match_season = str(row['season'])
-    is_playoff   = row['is_playoff_match']
 
-    if match_season != current_global_season:
-        # Seasonal decay: pull all Elos back 15% toward 1500
-        for ign in player_elos:
-            player_elos[ign]         = 1500 + ((player_elos[ign] - 1500) * (1 - decay_rate))
-        for ign in player_playoff_elos:
-            player_playoff_elos[ign] = 1500 + ((player_playoff_elos[ign] - 1500) * (1 - decay_rate))
-        current_global_season = match_season
-
-    team_a, team_b = row['team_a_name'], row['team_b_name']
-    elo_a  = get_team_avg_elo(team_a, match_season, player_elos)
-    elo_b  = get_team_avg_elo(team_b, match_season, player_elos)
-    p_elo_a = get_team_avg_elo(team_a, match_season, player_playoff_elos)
-    p_elo_b = get_team_avg_elo(team_b, match_season, player_playoff_elos)
-
-    matches_df.at[index, 'team_a_elo']         = elo_a
-    matches_df.at[index, 'team_b_elo']         = elo_b
-    matches_df.at[index, 'team_a_playoff_elo'] = p_elo_a
-    matches_df.at[index, 'team_b_playoff_elo'] = p_elo_b
-
-    expected_a = 1 / (1 + 10 ** ((elo_b - elo_a) / 400))
-    actual_a   = 1 if row['series_score_a'] > row['series_score_b'] else 0
-    actual_b   = 1 - actual_a
-    expected_b = 1 - expected_a
-
-    k = k_playoff if is_playoff else k_regular
-
-    for ign_raw in team_rosters.get(team_a, {}).get(match_season, set()):
-        ign = resolve_ign(ign_raw)
-        player_elos[ign] = player_elos.get(ign, default_elo) + (k * (actual_a - expected_a))
-    for ign_raw in team_rosters.get(team_b, {}).get(match_season, set()):
-        ign = resolve_ign(ign_raw)
-        player_elos[ign] = player_elos.get(ign, default_elo) + (k * (actual_b - expected_b))
-
-    if is_playoff:
-        p_expected_a = 1 / (1 + 10 ** ((p_elo_b - p_elo_a) / 400))
-        p_expected_b = 1 - p_expected_a
-        for ign_raw in team_rosters.get(team_a, {}).get(match_season, set()):
-            ign = resolve_ign(ign_raw)
-            player_playoff_elos[ign] = player_playoff_elos.get(ign, default_elo) + (k_playoff * (actual_a - p_expected_a))
-        for ign_raw in team_rosters.get(team_b, {}).get(match_season, set()):
-            ign = resolve_ign(ign_raw)
-            player_playoff_elos[ign] = player_playoff_elos.get(ign, default_elo) + (k_playoff * (actual_b - p_expected_b))
 
 # ==========================================
 # STEP 3: MERGE & PATCH META
@@ -189,8 +161,8 @@ patch_lookup = {str(row['patch_version']).strip(): row['adjustments_dict'] for _
 match_cols = [
     'match_id', 'season', 'match_timestamp', 'patch_version', 'stage',
     'team_a_name', 'team_b_name',
-    'team_a_elo', 'team_b_elo',
-    'team_a_playoff_elo', 'team_b_playoff_elo',
+    
+    
     'time_weight'
 ]
 
@@ -230,7 +202,14 @@ game_winner_lookup = {}   # (match_id, game_number) -> map_winner team name
 print("Calculating all V6 features (this includes 14 tracker types)...")
 
 # --- Existing Trackers ---
-team_hero_tracker      = {}   # team -> hero -> {wins, games}
+# SOTA Trackers
+player_elos           = {}
+player_playoff_elos   = {}
+current_global_season = None
+global_synergy_matrix = {}
+global_counter_matrix = {}
+
+team_hero_tracker      = {}
 team_recent_form       = {}   # team -> last 5 results [1/0]
 h2h_tracker            = {}   # (teamA, teamB) -> {blue_wins, total}
 patch_practice         = {}   # team -> int (games on current patch)
@@ -269,6 +248,12 @@ current_series_wins = {}  # match_id -> {blue_team: wins, red_team: wins}
 series_draft_history = {} # match_id -> list of game dicts
 
 # --- Output Lists ---
+b_map_elo, r_map_elo = [], []
+b_map_p_elo, r_map_p_elo = [], []
+b_draft_exhaustion, r_draft_exhaustion = [], []
+b_synergy, r_synergy = [], []
+b_counter, r_counter = [], []
+
 b_com, r_com, b_exp, r_exp = [], [], [], []
 b_momentum, r_momentum     = [], []
 b_h2h                      = []
@@ -355,6 +340,12 @@ def get_reverse_sweep_rate(team):
     return (stats['came_back'] + 1) / (stats['down_01'] + 2)  # Bayesian smoothing
 
 # ---- MAIN LOOP ----
+b_heroes_stolen_list = []
+r_heroes_stolen_list = []
+b_synergy_delta_list = []
+r_synergy_delta_list = []
+prev_stomp_margin_list = []
+is_side_swap_list = []
 for index, row in training_df.iterrows():
     blue_team   = row['blue_side_team']
     red_team    = row['red_side_team']
@@ -365,6 +356,31 @@ for index, row in training_df.iterrows():
     game_num    = row['game_number']
     match_id    = row['match_id']
     cur_date    = row['match_timestamp']
+    match_season = str(row['season'])
+    
+    # 3. Dynamic Elo Update
+    if match_season != current_global_season:
+        if current_global_season is not None:
+            for ign in player_elos:
+                player_elos[ign] = 1500 + ((player_elos[ign] - 1500) * (1 - decay_rate))
+            for ign in player_playoff_elos:
+                player_playoff_elos[ign] = 1500 + ((player_playoff_elos[ign] - 1500) * (1 - decay_rate))
+        current_global_season = match_season
+
+    def get_team_avg_elo(team_name, season_string, elo_dict):
+        roster = team_rosters.get(team_name, {}).get(season_string, set())
+        roster_igns = [resolve_ign(ign) for ign in roster]
+        if not roster_igns: return default_elo
+        return sum([elo_dict.get(ign, default_elo) for ign in roster_igns]) / len(roster_igns)
+        
+    elo_a = get_team_avg_elo(blue_team, match_season, player_elos)
+    elo_b = get_team_avg_elo(red_team, match_season, player_elos)
+    p_elo_a = get_team_avg_elo(blue_team, match_season, player_playoff_elos)
+    p_elo_b = get_team_avg_elo(red_team, match_season, player_playoff_elos)
+    
+    b_elo = elo_a
+    r_elo = elo_b
+
 
     if patch_v != current_patch_tracker:
         patch_practice        = {}
@@ -445,8 +461,7 @@ for index, row in training_df.iterrows():
     r_exec_margin = (r_avg_loss_dur - r_avg_dur) / 60.0
     
     # Elo-weighted punish/execution score (captures aggressive clean punishment)
-    b_elo = row['team_a_elo'] if blue_team == row['team_a_name'] else row['team_b_elo']
-    r_elo = row['team_b_elo'] if red_team == row['team_b_name'] else row['team_a_elo']
+
     b_exec_punish = (1020.0 / b_avg_dur) * (b_elo / 1500.0)
     r_exec_punish = (1020.0 / r_avg_dur) * (r_elo / 1500.0)
     
@@ -494,6 +509,50 @@ for index, row in training_df.iterrows():
     b_rsweep = get_reverse_sweep_rate(blue_team)
     r_rsweep = get_reverse_sweep_rate(red_team)
 
+
+    # SOTA FEATURE CALCULATIONS
+    b_syn, r_syn, b_ctr, r_ctr = 0.0, 0.0, 0.0, 0.0
+    for i, h1 in enumerate(blue_heroes):
+        for h2 in blue_heroes[i+1:]: b_syn += global_synergy_matrix.get((h1, h2), 0.0)
+    for i, h1 in enumerate(red_heroes):
+        for h2 in red_heroes[i+1:]: r_syn += global_synergy_matrix.get((h1, h2), 0.0)
+    for bh in blue_heroes:
+        for rh in red_heroes:
+            b_ctr += global_counter_matrix.get((bh, rh), 0.0)
+            r_ctr += global_counter_matrix.get((rh, bh), 0.0)
+            
+    b_exhaust, r_exhaust = 0.0, 0.0
+    if game_num > 1:
+        prev_maps = series_draft_history.get(match_id, [])
+        for m in prev_maps:
+            if m['map_winner'] == blue_team:
+                heroes = m['picks']['blue'] if m['blue_side_team'] == blue_team else m['picks']['red']
+                for hero in heroes:
+                    hr = get_mastery(blue_team, [hero])
+                    if hr[0] > 0.60: b_exhaust += (hr[0] - 0.60)
+            if m['map_winner'] == red_team:
+                heroes = m['picks']['red'] if m['red_side_team'] == red_team else m['picks']['blue']
+                for hero in heroes:
+                    hr = get_mastery(red_team, [hero])
+                    if hr[0] > 0.60: r_exhaust += (hr[0] - 0.60)
+
+    b_heroes_stolen_list.append(0)
+    r_heroes_stolen_list.append(0)
+    b_synergy_delta_list.append(0.0)
+    r_synergy_delta_list.append(0.0)
+    prev_stomp_margin_list.append(0)
+    is_side_swap_list.append(0)
+    b_map_elo.append(elo_a)
+    r_map_elo.append(elo_b)
+    b_map_p_elo.append(p_elo_a)
+    r_map_p_elo.append(p_elo_b)
+    b_draft_exhaustion.append(b_exhaust)
+    r_draft_exhaustion.append(r_exhaust)
+    b_synergy.append(b_syn)
+    r_synergy.append(r_syn)
+    b_counter.append(b_ctr)
+    r_counter.append(r_ctr)
+
     # === ADVANCED SERIES DRAFT ADAPTATION ===
     g1_winner_banned_b = 0.0
     g1_winner_banned_r = 0.0
@@ -531,6 +590,25 @@ for index, row in training_df.iterrows():
             prev_game = prev_games[-1]
             prev_winner = prev_game['map_winner']
             blue_was_blue_in_prev = prev_game['blue_side_team'] == blue_team
+            # --- 3. Draft Deltas (Hero Stealing & Synergy) ---
+            if not blue_was_blue_in_prev:
+                is_side_swap_list[-1] = 1
+                
+            if prev_winner:
+                prev_winner_was_blue = prev_game['blue_side_team'] == prev_winner
+                prev_winner_heroes = prev_game['picks']['blue' if prev_winner_was_blue else 'red']
+                if prev_winner != blue_team: b_heroes_stolen_list[-1] = sum(1 for h in blue_heroes if h in prev_winner_heroes)
+                if prev_winner != red_team:  r_heroes_stolen_list[-1] = sum(1 for h in red_heroes if h in prev_winner_heroes)
+
+            b_synergy_delta_list[-1] = b_syn - prev_game.get('blue_synergy', b_syn)
+            r_synergy_delta_list[-1] = r_syn - prev_game.get('red_synergy', r_syn)
+            
+            dur = prev_game.get('duration', 15*60)
+            if pd.notna(dur) and dur > 0:
+                if dur < 12*60: prev_stomp_margin_list[-1] = 1
+                elif dur > 22*60: prev_stomp_margin_list[-1] = -1
+                else: prev_stomp_margin_list[-1] = 0
+
             blue_prev_heroes = prev_game['picks']['blue' if blue_was_blue_in_prev else 'red']
             red_prev_heroes = prev_game['picks']['red' if blue_was_blue_in_prev else 'blue']
 
@@ -634,13 +712,51 @@ for index, row in training_df.iterrows():
     red_won  = 1 - blue_won
 
     # Store this game in series history
+
+    # SOTA STATE UPDATES (POST-MAP)
+    if winner == blue_team:
+        for i, h1 in enumerate(blue_heroes):
+            for h2 in blue_heroes[i+1:]: global_synergy_matrix[(h1, h2)] = global_synergy_matrix.get((h1, h2), 0.0) + 1.0
+        for bh in blue_heroes:
+            for rh in red_heroes: global_counter_matrix[(bh, rh)] = global_counter_matrix.get((bh, rh), 0.0) + 1.0
+    else:
+        for i, h1 in enumerate(red_heroes):
+            for h2 in red_heroes[i+1:]: global_synergy_matrix[(h1, h2)] = global_synergy_matrix.get((h1, h2), 0.0) + 1.0
+        for rh in red_heroes:
+            for bh in blue_heroes: global_counter_matrix[(rh, bh)] = global_counter_matrix.get((rh, bh), 0.0) + 1.0
+            
+    expected_a = 1 / (1 + 10 ** ((elo_b - elo_a) / 400))
+    actual_a   = 1 if winner == blue_team else 0
+    actual_b   = 1 - actual_a
+    expected_b = 1 - expected_a
+    k = k_playoff if is_playoffs else k_regular
+    for ign_raw in team_rosters.get(blue_team, {}).get(match_season, set()):
+        ign = resolve_ign(ign_raw)
+        player_elos[ign] = player_elos.get(ign, default_elo) + (k * (actual_a - expected_a))
+    for ign_raw in team_rosters.get(red_team, {}).get(match_season, set()):
+        ign = resolve_ign(ign_raw)
+        player_elos[ign] = player_elos.get(ign, default_elo) + (k * (actual_b - expected_b))
+        
+    if is_playoffs:
+        p_expected_a = 1 / (1 + 10 ** ((p_elo_b - p_elo_a) / 400))
+        p_expected_b = 1 - p_expected_a
+        for ign_raw in team_rosters.get(blue_team, {}).get(match_season, set()):
+            ign = resolve_ign(ign_raw)
+            player_playoff_elos[ign] = player_playoff_elos.get(ign, default_elo) + (k_playoff * (actual_a - p_expected_a))
+        for ign_raw in team_rosters.get(red_team, {}).get(match_season, set()):
+            ign = resolve_ign(ign_raw)
+            player_playoff_elos[ign] = player_playoff_elos.get(ign, default_elo) + (k_playoff * (actual_b - p_expected_b))
+
     series_draft_history.setdefault(match_id, []).append({
         'game_number': game_num,
         'blue_side_team': blue_team,
         'red_side_team': red_team,
         'picks': {'blue': blue_heroes, 'red': red_heroes},
         'bans': {'blue': blue_bans, 'red': red_bans},
-        'map_winner': winner
+        'map_winner': winner,
+        'duration': duration,
+        'blue_synergy': b_syn,
+        'red_synergy': r_syn
     })
 
     # Store this game's result for future series momentum lookups
@@ -767,6 +883,23 @@ for index, row in training_df.iterrows():
 # ==========================================
 # STEP 6: ATTACH ALL COLUMNS
 # ==========================================
+
+training_df['blue_map_elo'] = b_map_elo
+training_df['red_map_elo']  = r_map_elo
+training_df['blue_map_p_elo'] = b_map_p_elo
+training_df['red_map_p_elo']  = r_map_p_elo
+training_df['blue_heroes_stolen'] = b_heroes_stolen_list
+training_df['red_heroes_stolen'] = r_heroes_stolen_list
+training_df['blue_synergy_delta'] = b_synergy_delta_list
+training_df['red_synergy_delta'] = r_synergy_delta_list
+training_df['prev_stomp_margin'] = prev_stomp_margin_list
+training_df['is_side_swap'] = is_side_swap_list
+training_df['blue_draft_exhaustion'] = b_draft_exhaustion
+training_df['red_draft_exhaustion']  = r_draft_exhaustion
+training_df['blue_synergy'] = b_synergy
+training_df['red_synergy']  = r_synergy
+training_df['blue_counter'] = b_counter
+training_df['red_counter']  = r_counter
 training_df['blue_comfort_wr']      = b_com
 training_df['red_comfort_wr']       = r_com
 training_df['blue_draft_experience']= b_exp
@@ -834,15 +967,7 @@ training_df['red_draft_reliance']     = r_draft_reliance_list
 # ==========================================
 # STEP 7: ALIGN ELO PER SIDE & SAVE
 # ==========================================
-def map_side_elo(row):
-    if row['blue_side_team'] == row['team_a_name']:
-        return pd.Series([row['team_a_elo'], row['team_b_elo'],
-                          row['team_a_playoff_elo'], row['team_b_playoff_elo']])
-    return pd.Series([row['team_b_elo'], row['team_a_elo'],
-                      row['team_b_playoff_elo'], row['team_a_playoff_elo']])
 
-training_df[['blue_side_elo', 'red_side_elo',
-             'blue_playoff_elo', 'red_playoff_elo']] = training_df.apply(map_side_elo, axis=1)
 
 training_df['target_blue_win'] = (training_df['map_winner'] == training_df['blue_side_team']).astype(int)
 
@@ -850,8 +975,14 @@ final_features = [
     'match_timestamp', 'match_id', 'season', 'game_number', 'patch_version',
     'blue_side_team', 'red_side_team',
     # Ratings
-    'blue_side_elo', 'red_side_elo',
-    'blue_playoff_elo', 'red_playoff_elo',
+    'blue_map_elo', 'red_map_elo',
+    'blue_map_p_elo', 'red_map_p_elo',
+    'blue_synergy', 'red_synergy',
+    'blue_counter', 'red_counter',
+    'blue_draft_exhaustion', 'red_draft_exhaustion',
+    'blue_heroes_stolen', 'red_heroes_stolen',
+    'blue_synergy_delta', 'red_synergy_delta',
+    'prev_stomp_margin', 'is_side_swap',
     # Draft Skill
     'blue_comfort_wr', 'red_comfort_wr',
     'blue_draft_experience', 'red_draft_experience',
@@ -989,8 +1120,10 @@ print(f"   Cleaned invalid dataset entries: kept {len(df)} valid games.")
 # DEFINE FULL FEATURE SET (with V7 additions)
 # ==========================================
 base_features = [
-    'blue_side_elo', 'red_side_elo',
-    'blue_playoff_elo', 'red_playoff_elo',
+    'blue_map_elo', 'red_map_elo',
+    'blue_map_p_elo', 'red_map_p_elo',
+    'blue_synergy', 'red_synergy',
+    'blue_counter', 'red_counter',
     'blue_comfort_wr', 'red_comfort_wr',
     'blue_draft_experience', 'red_draft_experience',
     'blue_global_draft_wr', 'red_global_draft_wr',
@@ -1023,6 +1156,10 @@ base_features = [
 # The scraper now parses games in chronologically correct order.
 # Momentum and series scores are completely valid, non-leaking pre-match signals!
 all_features = base_features + [
+    'blue_draft_exhaustion', 'red_draft_exhaustion',
+    'blue_heroes_stolen', 'red_heroes_stolen',
+    'blue_synergy_delta', 'red_synergy_delta',
+    'prev_stomp_margin', 'is_side_swap',
     'series_momentum_blue',
     'blue_series_score', 'red_series_score',
     'score_diff_blue', 'is_elimination_game',
@@ -1079,7 +1216,7 @@ param_grid = {
     'colsample_bytree':[0.7, 0.8, 0.9]
 }
 
-best_params = {'n_estimators': 300, 'max_depth': 7, 'learning_rate': 0.01176510724866476, 'subsample': 0.8, 'colsample_bytree': 0.4, 'min_child_weight': 1, 'gamma': 0.01102018315846522, 'reg_alpha': 0.0004305068446581739, 'reg_lambda': 1.558038261983666}
+best_params = {'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.02, 'subsample': 0.9, 'colsample_bytree': 0.7, 'min_child_weight': 3, 'gamma': 0.18}
 
 print(f"   Mathematically Optimal V8 XGBoost params applied: {best_params}")
 
@@ -1107,7 +1244,7 @@ def build_ensemble(best_params):
     )
     ensemble = VotingClassifier(
         estimators=[('xgb', xgb_model), ('lgb', lgb_model), ('rf', rf_model)],
-        voting='soft', weights=[1, 1, 1]   # Average probabilities, not just votes
+        voting='soft', weights=None   # Average probabilities, not just votes
     )
     return ensemble
 
@@ -1252,8 +1389,8 @@ def get_recent_stats(team_name, dataframe):
     side = 'blue' if on_blue else 'red'
     invert_h2h = 0 if on_blue else 1
     return {
-        'elo':               last_game[f'{side}_side_elo'],
-        'playoff_elo':       last_game[f'{side}_playoff_elo'],
+        'elo':               last_game[f'{side}_map_elo'],
+        'playoff_elo':       last_game[f'{side}_map_p_elo'],
         'comfort_wr':        last_game[f'{side}_comfort_wr'],
         'draft_experience':  last_game[f'{side}_draft_experience'],
         'global_draft_wr':   last_game[f'{side}_global_draft_wr'],
@@ -1337,7 +1474,14 @@ def simulate_matchup(blue_team, red_team, is_playoffs=True,
         'red_momentum':            red_stats['momentum'],
         'blue_h2h_winrate':        blue_stats['h2h_winrate'],
         'blue_patch_practice':     blue_stats['patch_practice'],
-        'red_patch_practice':      red_stats['patch_practice'],
+'red_patch_practice':      red_stats['patch_practice'],
+        'blue_map_elo': blue_stats['elo'],
+        'red_map_elo': red_stats['elo'],
+        'blue_map_p_elo': blue_stats['playoff_elo'],
+        'red_map_p_elo': red_stats['playoff_elo'],
+        'blue_synergy': 0.0, 'red_synergy': 0.0,
+        'blue_counter': 0.0, 'red_counter': 0.0,
+        'blue_draft_exhaustion': 0.0, 'red_draft_exhaustion': 0.0,
         'is_playoffs':             1 if is_playoffs else 0,
         'blue_playoff_clutch':     blue_stats['playoff_clutch'],
         'red_playoff_clutch':      red_stats['playoff_clutch'],

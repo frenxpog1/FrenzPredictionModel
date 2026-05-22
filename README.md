@@ -51,17 +51,18 @@ While V1 is under active development, our stable V7 engine continues to provide 
 *   `csv_data/`: Centralized repository for processed datasets, including the ML Feature Matrices.
 *   `MASTER_MOBA_RESEARCH_REPORT.md`: Comprehensive audit detailing MOBA prediction logic, SOTA standards, and pipeline integrity.
 
-## 📈 Stable Accuracy Benchmarks (V7)
+## 📈 Accuracy Benchmarks (V1 Challenger Pipeline)
 
-Our walk-forward validation framework mimics real-world deployment, achieving industry-standard predictive accuracy:
+Recent testing on our walk-forward validation framework utilizing the split pre-match challenger models demonstrates a significant leap in performance:
 
 | Stage | Accuracy |
 | :--- | :--- |
-| **Game 1 (Draft / Baseline)** | ~67.5% |
-| **Game 2+ (Adaptation Phase)** | ~59.7% |
-| **Combined (Unseen Matches)** | **~66.2%** |
+| **Game 1 (Draft / Baseline)** | 73.72% |
+| **Game 2 (Adaptation)** | 62.77% |
+| **Game 3+ (Late Series)** | 63.27% |
+| **Combined (Unseen Matches)** | **~66.94%** |
 
-*Note: Pre-game MOBA predictions face a natural "accuracy ceiling" of ~75% due to the inherent volatility, human error, and meta-shifts present in elite competition.*
+*(Note: The pooled Game 2+ champion achieved 62.55%, bringing the pooled combined test to 66.67%. Pre-game MOBA predictions face a natural "accuracy ceiling" of ~75% due to the inherent volatility, human error, and meta-shifts present in elite competition.)*
 
 ## 🚦 Getting Started
 

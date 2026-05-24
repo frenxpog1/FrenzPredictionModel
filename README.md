@@ -27,9 +27,10 @@ Our stable V7 engine incorporates cutting-edge feature engineering and structura
 
 *   **Dual-Track Elo System:** Tracks separate Elo ratings for Regular Season and Playoffs to accurately capture "clutch" performances and structural team scaling under pressure.
 *   **Match-Level Elo Updates (The Volatility Fix):** Elo updates are strictly bounded to the end of a match rather than per-game, eliminating extreme recency bias and "volatility traps".
-*   **Pillar 3 Data Integrity (IGN Normalization):** Consolidates fragmented player identities directly at the ingestion layer (`scraper.py`) to maintain continuous, mathematically flawless skill histories.
+*   **Pillar 3 Data Integrity (IGN Normalization & Franchise Resolver):** Consolidates fragmented player identities and dynamically maps organizational rebrands (e.g., AP.Bren -> Team Falcons PH, Blacklist -> Aurora) right at the ingestion layer to maintain continuous, mathematically flawless skill histories.
+*   **Playoff-Interaction Variables:** Isolates noise from the regular season by activating elite team traits like `Championship DNA` and `Playoff Winrate` *only* during playoff games. This prevents the model from overfitting to "coasting" behavior in the regular season.
 *   **The Comfort Exhaustion Flag:** Implements the "Comfort Trap" discovery from our research—teams winning Game 1 with top comfort picks face predictable bans and draft exhaustion in Game 2.
-*   **Side Choice × Series State Interaction:** Amplifies the psychological momentum of Game 2 recoveries for teams that draft well on their mechanically favored side.
+*   **Game 3 Clutch Winrate:** Evaluates a team's resilience and statistical baseline in deciding games, acting as a powerful proxy for "True Skill" and composure.
 
 ## 🛠 Tech Stack
 
@@ -57,11 +58,11 @@ Recent testing on our strict, purely chronological walk-forward holdout set (pre
 
 | Stage | Test Accuracy |
 | :--- | :--- |
-| **Game 1 (Draft / Baseline)** | 68.61% |
-| **Game 2+ (Pooled Adaptation)** | 63.83% |
-| **Combined (Unseen Matches)** | **65.59%** |
+| **Game 1 (Draft / Baseline)** | **69.34%** |
+| **Game 2+ (Pooled Adaptation)** | 60.85% |
+| **Combined (Unseen Matches)** | 63.98% |
 
-*(Note: Pre-game MOBA predictions face a natural "accuracy ceiling" of ~75% due to the inherent volatility, human error, execution gaps, and meta-shifts present in elite competition. A 65.59% accuracy benchmark without any live-game telemetry places this engine in the upper echelon of pre-match forecasting systems.)*
+*(Note: Pre-game MOBA predictions face a natural "accuracy ceiling" of ~75% due to the inherent volatility, human error, execution gaps, and meta-shifts present in elite competition. Reaching nearly 70% in Game 1 without any live-game telemetry places this engine in the upper echelon of pre-match forecasting systems.)*
 
 ## 🚦 Getting Started
 

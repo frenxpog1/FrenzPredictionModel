@@ -4,6 +4,42 @@ import json
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from draft_embeddings import get_svd_hero_embeddings
+
+# ── TEAM ALIAS MAP (Franchise Rebrands) ──
+# Maps historical rebranded team names to their modern franchise equivalent.
+TEAM_ALIAS_MAP = {
+    "AP.Bren": "Team Falcons PH",
+    "Aether Main": "Team Falcons PH",
+    "Aether Valkyrie": "Team Falcons PH",
+    
+    # "Aurora" (S6/S7) is mapped contextually in the function since the modern Aurora franchise exists.
+    "Sunsparks": "Team Liquid PH",
+    
+    "Execration": "Omega Esports",
+    "SGD Omega": "Omega Esports",
+    
+    "ONIC Esports PH": "ONIC PH",
+    "Onic Philippines": "ONIC PH",
+    
+    "Work-Auster Force": "TNC Pro Team",
+}
+
+def resolve_team_name(team_name, season=None):
+    t = str(team_name).strip()
+    
+    # Handle the "Aurora" collision: 
+    # S6 & S7 "Aurora" is actually "Aura PH" (which became Team Liquid PH).
+    # S14+ "Aurora" is the modern franchise formed by Blacklist players.
+    if t == "Aurora" and season is not None:
+        try:
+            s_int = int(str(season).replace('S', ''))
+            if s_int <= 10:
+                return "Team Liquid PH"
+        except:
+            pass
+            
+    return TEAM_ALIAS_MAP.get(t, t)
 
 print("🚀 Starting V6 Master Pipeline...")
 print("   New Features: Ban Disruption, Series Momentum, Gap Days, G3 Clutch, Playoff Elo, Reverse Sweep Rate")
@@ -15,6 +51,128 @@ matches_df = pd.read_csv('csv_data/matches.csv')
 games_df   = pd.read_csv('csv_data/games.csv')
 rosters_df = pd.read_csv('csv_data/season_rosters.csv')
 patches_df = pd.read_csv('csv_data/patches.csv')
+
+# --- APPLY FRANCHISE MAPPING GLOBALLY ---
+if 'team_a_name' in matches_df.columns: matches_df['team_a_name'] = matches_df.apply(lambda r: resolve_team_name(r['team_a_name'], r.get('season')), axis=1)
+if 'team_b_name' in matches_df.columns: matches_df['team_b_name'] = matches_df.apply(lambda r: resolve_team_name(r['team_b_name'], r.get('season')), axis=1)
+
+games_df['blue_side_team'] = games_df.apply(lambda r: resolve_team_name(r['blue_side_team'], r.get('season')), axis=1)
+games_df['red_side_team']  = games_df.apply(lambda r: resolve_team_name(r['red_side_team'], r.get('season')), axis=1)
+games_df['map_winner']     = games_df.apply(lambda r: resolve_team_name(r['map_winner'], r.get('season')), axis=1)
+
+rosters_df['team_name']    = rosters_df.apply(lambda r: resolve_team_name(r['team_name'], r.get('season')), axis=1)
+
+# --- LOAD OFFICIAL SEASONAL STATS & STANDINGS ---
+teams_df = pd.read_csv('csv_data/official_mpl_ph_stats/mpl_ph_official_teams_s5_s15_s17.csv')
+standings_df = pd.read_csv('csv_data/official_mpl_ph_stats/mpl_ph_official_standings_s5_s15_s17.csv')
+
+teams_df['team'] = teams_df.apply(lambda r: resolve_team_name(r['team'], r.get('season')), axis=1)
+standings_df['team'] = standings_df.apply(lambda r: resolve_team_name(r['team'], r.get('season')), axis=1)
+
+# Standings and teams parsing / compilation helpers
+def parse_w_l(val):
+    if pd.isna(val): return 0, 0
+    parts = str(val).split('-')
+    if len(parts) == 2:
+        try: return int(parts[0].strip()), int(parts[1].strip())
+        except: return 0, 0
+    return 0, 0
+
+standings_dict = {}
+for _, row in standings_df.iterrows():
+    s = row['season']
+    t = row['team']
+    mw, ml = parse_w_l(row['match_w_l'])
+    gw, gl = parse_w_l(row['games_w_l'])
+    m_played = mw + ml
+    g_played = gw + gl
+    m_wr = mw / m_played if m_played > 0 else 0.5
+    g_wr = gw / g_played if g_played > 0 else 0.5
+    
+    standings_dict[(s, t)] = {
+        'games_played': g_played,
+        'matches_played': m_played,
+        'match_winrate': m_wr,
+        'game_winrate': g_wr
+    }
+
+compiled_stats = {}
+for _, row in teams_df.iterrows():
+    s = row['season']
+    t = row['team']
+    standings = standings_dict.get((s, t), {'games_played': 0, 'match_winrate': 0.5, 'game_winrate': 0.5})
+    g_played = standings['games_played']
+    
+    if s == 11:
+        avg_kills = row['average_kills']
+        avg_deaths = row['average_deaths']
+        avg_assists = row['average_assists']
+        avg_kda = row['average_kda']
+    else:
+        avg_kills = row['total_kills'] / g_played if g_played > 0 else np.nan
+        avg_deaths = row['total_deaths'] / g_played if g_played > 0 else np.nan
+        avg_assists = row['total_assists'] / g_played if g_played > 0 else np.nan
+        avg_kda = (avg_kills + avg_assists) / max(1.0, avg_deaths) if not (pd.isna(avg_kills) or pd.isna(avg_deaths)) else np.nan
+        
+    compiled_stats[(s, t)] = {
+        'match_winrate': standings['match_winrate'],
+        'game_winrate': standings['game_winrate'],
+        'avg_kills': avg_kills,
+        'avg_deaths': avg_deaths,
+        'avg_assists': avg_assists,
+        'avg_kda': avg_kda
+    }
+
+def get_official_team_abbreviation(db_name, season):
+    name = str(db_name).strip()
+    if name == 'Blacklist Intl.': return 'BLCK'
+    elif name == 'ONIC PH': return 'ONIC'
+    elif name == 'AP.Bren': return 'APBR' if season >= 12 else 'BREN'
+    elif name == 'Omega Esports': return 'SGD' if season == 5 else 'OMG'
+    elif name == 'Execration': return 'EXE'
+    elif name == 'BSB': return 'BSB'
+    elif name == 'ULVL': return 'ULVL'
+    elif name == 'Sunsparks': return 'SS'
+    elif name == 'Geek Fam PH': return 'GEEK'
+    elif name == 'STI e-Olympians': return 'STI'
+    elif name == 'BnK Blufire': return 'BNK'
+    elif name == 'Cignal Ultra': return 'CIG'
+    elif name == 'Nexplay EVOS': return 'NXP' if season <= 7 else 'NXPE'
+    elif name == 'PlayBook Esports': return 'LPE'
+    elif name == 'Work-Auster Force': return 'WORK'
+    elif name == 'RSG PH': return 'RSG'
+    elif name == 'TNC Pro Team': return 'TNC'
+    elif name == 'Team Liquid PH': return 'AURA' if season <= 7 else 'TLPH'
+    elif name == 'Aurora': return 'AURA' if season <= 7 else 'RORA'
+    elif name == 'Minana EVOS': return 'MNNE'
+    elif name == 'Team Falcons PH': return 'FLCN'
+    elif name == 'Twisted Minds PH': return 'TWIS'
+    return None
+
+def lookup_prior_stats(db_name, current_season):
+    # Try current_season - 1 down to 5
+    for s in range(current_season - 1, 4, -1):
+        abbrev = get_official_team_abbreviation(db_name, s)
+        if abbrev and (s, abbrev) in compiled_stats:
+            stats = compiled_stats[(s, abbrev)]
+            res = {}
+            res['match_winrate'] = stats['match_winrate'] if not pd.isna(stats['match_winrate']) else 0.5
+            res['game_winrate'] = stats['game_winrate'] if not pd.isna(stats['game_winrate']) else 0.5
+            res['avg_kills'] = stats['avg_kills'] if not pd.isna(stats['avg_kills']) else 11.0
+            res['avg_deaths'] = stats['avg_deaths'] if not pd.isna(stats['avg_deaths']) else 11.0
+            res['avg_assists'] = stats['avg_assists'] if not pd.isna(stats['avg_assists']) else 25.0
+            res['avg_kda'] = stats['avg_kda'] if not pd.isna(stats['avg_kda']) else 3.0
+            return res, s
+    # Neutral defaults
+    default_stats = {
+        'match_winrate': 0.5,
+        'game_winrate': 0.5,
+        'avg_kills': 11.0,
+        'avg_deaths': 11.0,
+        'avg_assists': 25.0,
+        'avg_kda': 3.0
+    }
+    return default_stats, None
 
 matches_df['match_timestamp'] = pd.to_datetime(matches_df['match_timestamp'])
 games_df['match_timestamp']   = pd.to_datetime(games_df['match_timestamp'])
@@ -210,6 +368,7 @@ global_synergy_matrix = {}
 global_counter_matrix = {}
 
 team_hero_tracker      = {}
+seasonal_hero_tracker  = {}   # (season, team) -> set of unique heroes picked this season
 team_recent_form       = {}   # team -> last 5 results [1/0]
 h2h_tracker            = {}   # (teamA, teamB) -> {blue_wins, total}
 patch_practice         = {}   # team -> int (games on current patch)
@@ -218,9 +377,12 @@ global_hero_tracker    = {}   # hero -> {wins, games} globally
 team_win_durations     = {}   # team -> list of game durations when won
 global_side_tracker    = []   # last 50 blue-side outcomes (1/0)
 current_patch_tracker  = None
+team_patch_stats       = {}   # team -> {patch: {wins, games}}
+team_hist_stats        = {}   # team -> {wins, games}
 
 # --- V6 New Trackers ---
 team_last_game_date      = {}   # team -> last match timestamp
+team_roster_history      = {}   # team -> list of sets of resolved player IGNs (pre-match, leak-safe)
 team_g3_tracker          = {}   # team -> {wins, games} in game_number >= 3
 team_playoff_games_count = {}   # team -> total playoff games played (experience)
 
@@ -247,9 +409,16 @@ current_series_wins = {}  # match_id -> {blue_team: wins, red_team: wins}
 # IN-SERIES DRAFT TRACKER
 series_draft_history = {} # match_id -> list of game dicts
 
+# --- S17 Champion's Curse & RS Rank Trackers ---
+champions_history = {} # season (int) -> winner_team (str)
+rs_standings = {}      # season (int) -> {team: {'wins': int, 'matches': int}}
+b_rs_rank, r_rs_rank = [], []
+b_is_defending_champ, r_is_defending_champ = [], []
+
 # --- Output Lists ---
-b_map_elo, r_map_elo = [], []
-b_map_p_elo, r_map_p_elo = [], []
+b_side_elo, r_side_elo = [], []
+b_playoff_elo, r_playoff_elo = [], []
+b_prev_winner_exhaustion, r_prev_winner_exhaustion = [], []
 b_draft_exhaustion, r_draft_exhaustion = [], []
 b_synergy, r_synergy = [], []
 b_counter, r_counter = [], []
@@ -296,6 +465,37 @@ prev_played_comfort_banned_red = []
 b_comfort_patch_score = []
 r_comfort_patch_score = []
 
+# NEW: Patch Adaptation SOTA Features
+b_patch_winrate = []
+r_patch_winrate = []
+b_patch_adaptation = []
+r_patch_adaptation = []
+
+# NEW: Expected Comfort based on top 5 most-played heroes
+b_expected_comfort = []
+r_expected_comfort = []
+
+# NEW: Prior official season statistics (pre-match, leak-safe lookups)
+blue_prev_season_match_wr, red_prev_season_match_wr = [], []
+blue_prev_season_game_wr, red_prev_season_game_wr = [], []
+blue_prev_season_kda, red_prev_season_kda = [], []
+blue_prev_season_avg_kills, red_prev_season_avg_kills = [], []
+blue_prev_season_avg_deaths, red_prev_season_avg_deaths = [], []
+blue_prev_season_avg_assists, red_prev_season_avg_assists = [], []
+diff_prev_season_match_wr, diff_prev_season_game_wr, diff_prev_season_kda = [], [], []
+
+
+# NEW SOTA: Roster Stability and Draft Overlap output lists
+b_roster_stability, r_roster_stability, diff_roster_stability_list = [], [], []
+b_draft_overlap_list, r_draft_overlap_list, diff_draft_overlap_list = [], [], []
+
+# SVD Draft Embeddings features lists
+blue_draft_embs = [[] for _ in range(16)]
+red_draft_embs = [[] for _ in range(16)]
+diff_draft_embs = [[] for _ in range(16)]
+draft_style_sims = []
+
+
 def rest_factor_score(gap_days):
     """Converts days since last match to a performance multiplier."""
     if gap_days is None:     return 1.0
@@ -319,6 +519,32 @@ def get_comfort_patch_impact(team, hero_tracker, patch_version):
             score -= 1.0
     return score
 
+def get_expected_comfort(team, hero_tracker):
+    """
+    Calculates the expected comfort score for a team prior to the match.
+    Expected comfort is the average Bayesian-smoothed win rate of the team's top 5 most-played heroes historically.
+    """
+    if team not in hero_tracker or not hero_tracker[team]:
+        return 0.5  # Neutral default when no history is available
+    
+    # Sort team's historical heroes by games played descending
+    team_heroes = hero_tracker[team]
+    sorted_heroes = sorted(team_heroes.keys(), key=lambda h: team_heroes[h]['games'], reverse=True)
+    
+    # Take top 5
+    top_5 = sorted_heroes[:5]
+    if not top_5:
+        return 0.5
+        
+    smoothed_wrs = []
+    for h in top_5:
+        stats = team_heroes[h]
+        # Bayesian-smoothed win rate: (wins + 2) / (games + 4)
+        smoothed_wr = (stats['wins'] + 2) / (stats['games'] + 4)
+        smoothed_wrs.append(smoothed_wr)
+        
+    return float(np.mean(smoothed_wrs))
+
 def get_ban_disruption(banned_heroes, opponent_team, hero_tracker):
     """
     Measures how well a team targeted the opponent's comfort heroes with their bans.
@@ -339,6 +565,10 @@ def get_reverse_sweep_rate(team):
     stats = reverse_sweep_tracker.get(team, {'down_01': 0, 'came_back': 0})
     return (stats['came_back'] + 1) / (stats['down_01'] + 2)  # Bayesian smoothing
 
+# Load SVD Draft Embeddings and initialize historical trackers
+hero_embeddings, fallback_emb = get_svd_hero_embeddings("./mlbb_data.db", K=16)
+team_draft_history = {}
+
 # ---- MAIN LOOP ----
 b_heroes_stolen_list = []
 r_heroes_stolen_list = []
@@ -346,7 +576,10 @@ b_synergy_delta_list = []
 r_synergy_delta_list = []
 prev_stomp_margin_list = []
 is_side_swap_list = []
+pending_elo_updates = {}
+pending_playoff_elo_updates = {}
 for index, row in training_df.iterrows():
+    is_match_end = (index == len(training_df) - 1) or (training_df.iloc[index+1]["match_id"] != row["match_id"])
     blue_team   = row['blue_side_team']
     red_team    = row['red_side_team']
     winner      = row['map_winner']
@@ -357,6 +590,57 @@ for index, row in training_df.iterrows():
     match_id    = row['match_id']
     cur_date    = row['match_timestamp']
     match_season = str(row['season'])
+    
+    # === PRE-MATCH PRIOR SEASON STATISTICS LOOKUP (leak-safe) ===
+    cur_s_int = int(row['season'])
+    
+    # === S17 CHAMPION'S CURSE & RS RANK LOOKUP ===
+    prev_s_int = cur_s_int - 1
+    def_champ = champions_history.get(prev_s_int, None)
+    b_is_defending_champ.append(1 if blue_team == def_champ else 0)
+    r_is_defending_champ.append(1 if red_team == def_champ else 0)
+    
+    def get_rs_rank(team):
+        if cur_s_int not in rs_standings: return 99
+        s_stats = rs_standings[cur_s_int]
+        if team not in s_stats: return 99
+        team_wrs = []
+        for t, stats in s_stats.items():
+            wr = stats['wins'] / stats['games'] if stats['games'] > 0 else 0
+            team_wrs.append((wr, t))
+        team_wrs.sort(key=lambda x: x[0], reverse=True)
+        for rank, (wr, t) in enumerate(team_wrs):
+            if t == team: return rank + 1
+        return 99
+
+    b_rs_rank.append(get_rs_rank(blue_team))
+    r_rs_rank.append(get_rs_rank(red_team))
+    b_prior, b_s_found = lookup_prior_stats(blue_team, cur_s_int)
+    r_prior, r_s_found = lookup_prior_stats(red_team, cur_s_int)
+    
+    # Store them
+    blue_prev_season_match_wr.append(b_prior['match_winrate'])
+    red_prev_season_match_wr.append(r_prior['match_winrate'])
+    
+    blue_prev_season_game_wr.append(b_prior['game_winrate'])
+    red_prev_season_game_wr.append(r_prior['game_winrate'])
+    
+    blue_prev_season_kda.append(b_prior['avg_kda'])
+    red_prev_season_kda.append(r_prior['avg_kda'])
+    
+    blue_prev_season_avg_kills.append(b_prior['avg_kills'])
+    red_prev_season_avg_kills.append(r_prior['avg_kills'])
+    
+    blue_prev_season_avg_deaths.append(b_prior['avg_deaths'])
+    red_prev_season_avg_deaths.append(r_prior['avg_deaths'])
+    
+    blue_prev_season_avg_assists.append(b_prior['avg_assists'])
+    red_prev_season_avg_assists.append(r_prior['avg_assists'])
+    
+    diff_prev_season_match_wr.append(b_prior['match_winrate'] - r_prior['match_winrate'])
+    diff_prev_season_game_wr.append(b_prior['game_winrate'] - r_prior['game_winrate'])
+    diff_prev_season_kda.append(b_prior['avg_kda'] - r_prior['avg_kda'])
+
     
     # 3. Dynamic Elo Update
     if match_season != current_global_season:
@@ -398,6 +682,12 @@ for index, row in training_df.iterrows():
         red_bans   = bans_data.get('red', [])    # Red team bans (targets blue comfort)
     except: blue_bans, red_bans = [], []
 
+    # --- Hero Pool Depth (Draft Flexibility) ---
+    blue_season_key = (match_season, blue_team)
+    red_season_key  = (match_season, red_team)
+    
+    
+    
     # ===== PRE-MATCH FEATURE CALCULATION (use ONLY historical data) =====
 
     # 1. Draft Comfort & Experience
@@ -509,6 +799,23 @@ for index, row in training_df.iterrows():
     b_rsweep = get_reverse_sweep_rate(blue_team)
     r_rsweep = get_reverse_sweep_rate(red_team)
 
+    # --- NEW: Previous Winner Comfort Exhaustion (Pillar 5 Fix) ---
+    blue_exhaustion_val = 0.0
+    red_exhaustion_val = 0.0
+    if prev_game_result is not None:
+        prev_games_hist = series_draft_history.get(match_id, [])
+        if prev_games_hist:
+            if prev_game_result == blue_team:
+                last_game = prev_games_hist[-1]
+                last_game_heroes = last_game['picks']['blue' if last_game['blue_side_team'] == blue_team else 'red']
+                mastery_val, _ = get_mastery(blue_team, last_game_heroes)
+                if mastery_val > 0.6: blue_exhaustion_val = (mastery_val - 0.6)
+            else:
+                last_game = prev_games_hist[-1]
+                last_game_heroes = last_game['picks']['red' if last_game['red_side_team'] == red_team else 'blue']
+                mastery_val, _ = get_mastery(red_team, last_game_heroes)
+                if mastery_val > 0.6: red_exhaustion_val = (mastery_val - 0.6)
+
 
     # SOTA FEATURE CALCULATIONS
     b_syn, r_syn, b_ctr, r_ctr = 0.0, 0.0, 0.0, 0.0
@@ -536,16 +843,79 @@ for index, row in training_df.iterrows():
                     hr = get_mastery(red_team, [hero])
                     if hr[0] > 0.60: r_exhaust += (hr[0] - 0.60)
 
+    # === SOTA ENHANCEMENT: Roster Stability Index (Pillar 4) ===
+    def get_game_roster(team_name, roster_col_val, season_str):
+        try:
+            if pd.notna(roster_col_val) and roster_col_val != '[]':
+                players = json.loads(str(roster_col_val).replace('""', '"'))
+                if players:
+                    return set([resolve_ign(p) for p in players])
+        except:
+            pass
+        roster_set = team_rosters.get(team_name, {}).get(season_str, set())
+        return set([resolve_ign(ign) for ign in roster_set])
+
+    blue_roster = get_game_roster(blue_team, row['blue_roster'], match_season)
+    red_roster = get_game_roster(red_team, row['red_roster'], match_season)
+
+    def compute_roster_stability(team, current_roster, history_dict):
+        hist = history_dict.get(team, [])
+        if not hist:
+            return 1.0  # Perfect stability for first game
+        similarities = []
+        for prev_roster in hist[-3:]:
+            if not current_roster or not prev_roster:
+                similarities.append(1.0)
+            else:
+                intersection = len(current_roster.intersection(prev_roster))
+                union = len(current_roster.union(prev_roster))
+                similarities.append(intersection / union if union > 0 else 1.0)
+        return float(np.mean(similarities))
+
+    blue_roster_stability_val = compute_roster_stability(blue_team, blue_roster, team_roster_history)
+    red_roster_stability_val = compute_roster_stability(red_team, red_roster, team_roster_history)
+    diff_roster_stability_val = blue_roster_stability_val - red_roster_stability_val
+
+    # === SOTA ENHANCEMENT: Draft Overlap Penalty (Pillar 5) ===
+    blue_draft_overlap_val = 0.0
+    red_draft_overlap_val = 0.0
+    if game_num > 1:
+        prev_games = series_draft_history.get(match_id, [])
+        if prev_games:
+            prev_game = prev_games[-1]
+            blue_was_blue_in_prev = prev_game['blue_side_team'] == blue_team
+            prev_blue_picks = prev_game['picks']['blue' if blue_was_blue_in_prev else 'red']
+            
+            red_was_red_in_prev = prev_game['red_side_team'] == red_team
+            prev_red_picks = prev_game['picks']['red' if red_was_red_in_prev else 'blue']
+            
+            if blue_heroes and prev_blue_picks:
+                blue_draft_overlap_val = len(set(blue_heroes).intersection(set(prev_blue_picks))) / 5.0
+            if red_heroes and prev_red_picks:
+                red_draft_overlap_val = len(set(red_heroes).intersection(set(prev_red_picks))) / 5.0
+
+    diff_draft_overlap_val = blue_draft_overlap_val - red_draft_overlap_val
+
+    # Append to lists
+    b_roster_stability.append(blue_roster_stability_val)
+    r_roster_stability.append(red_roster_stability_val)
+    diff_roster_stability_list.append(diff_roster_stability_val)
+    b_draft_overlap_list.append(blue_draft_overlap_val)
+    r_draft_overlap_list.append(red_draft_overlap_val)
+    diff_draft_overlap_list.append(diff_draft_overlap_val)
+
     b_heroes_stolen_list.append(0)
     r_heroes_stolen_list.append(0)
     b_synergy_delta_list.append(0.0)
     r_synergy_delta_list.append(0.0)
     prev_stomp_margin_list.append(0)
     is_side_swap_list.append(0)
-    b_map_elo.append(elo_a)
-    r_map_elo.append(elo_b)
-    b_map_p_elo.append(p_elo_a)
-    r_map_p_elo.append(p_elo_b)
+    b_side_elo.append(elo_a)
+    r_side_elo.append(elo_b)
+    b_playoff_elo.append(p_elo_a)
+    r_playoff_elo.append(p_elo_b)
+    b_prev_winner_exhaustion.append(blue_exhaustion_val)
+    r_prev_winner_exhaustion.append(red_exhaustion_val)
     b_draft_exhaustion.append(b_exhaust)
     r_draft_exhaustion.append(r_exhaust)
     b_synergy.append(b_syn)
@@ -600,8 +970,10 @@ for index, row in training_df.iterrows():
                 if prev_winner != blue_team: b_heroes_stolen_list[-1] = sum(1 for h in blue_heroes if h in prev_winner_heroes)
                 if prev_winner != red_team:  r_heroes_stolen_list[-1] = sum(1 for h in red_heroes if h in prev_winner_heroes)
 
-            b_synergy_delta_list[-1] = b_syn - prev_game.get('blue_synergy', b_syn)
-            r_synergy_delta_list[-1] = r_syn - prev_game.get('red_synergy', r_syn)
+            prev_blue_syn = prev_game.get('blue_synergy', b_syn) if blue_was_blue_in_prev else prev_game.get('red_synergy', b_syn)
+            prev_red_syn = prev_game.get('red_synergy', r_syn) if blue_was_blue_in_prev else prev_game.get('blue_synergy', r_syn)
+            b_synergy_delta_list[-1] = b_syn - prev_blue_syn
+            r_synergy_delta_list[-1] = r_syn - prev_red_syn
             
             dur = prev_game.get('duration', 15*60)
             if pd.notna(dur) and dur > 0:
@@ -640,6 +1012,41 @@ for index, row in training_df.iterrows():
     b_comfort_patch = get_comfort_patch_impact(blue_team, team_hero_tracker, patch_v)
     r_comfort_patch = get_comfort_patch_impact(red_team, team_hero_tracker, patch_v)
 
+    # Expected comfort based on top 5 most-played heroes
+    b_exp_comfort = get_expected_comfort(blue_team, team_hero_tracker)
+    r_exp_comfort = get_expected_comfort(red_team, team_hero_tracker)
+
+    # --- NEW: Patch Adaptation ---
+    # Initialize trackers if missing
+    for team in [blue_team, red_team]:
+        if team not in team_patch_stats:
+            team_patch_stats[team] = {}
+        if patch_v not in team_patch_stats[team]:
+            team_patch_stats[team][patch_v] = {'wins': 0, 'games': 0}
+        if team not in team_hist_stats:
+            team_hist_stats[team] = {'wins': 0, 'games': 0}
+
+    # Calculate pre-match stats
+    b_pwins, b_pgames = team_patch_stats[blue_team][patch_v]['wins'], team_patch_stats[blue_team][patch_v]['games']
+    b_hwins, b_hgames = team_hist_stats[blue_team]['wins'], team_hist_stats[blue_team]['games']
+    
+    r_pwins, r_pgames = team_patch_stats[red_team][patch_v]['wins'], team_patch_stats[red_team][patch_v]['games']
+    r_hwins, r_hgames = team_hist_stats[red_team]['wins'], team_hist_stats[red_team]['games']
+
+    # Calculate rates (use 0.5 as default if < 3 games for patch, < 10 for hist)
+    b_p_rate = b_pwins / b_pgames if b_pgames >= 3 else 0.5
+    b_h_rate = b_hwins / b_hgames if b_hgames >= 10 else 0.5
+    r_p_rate = r_pwins / r_pgames if r_pgames >= 3 else 0.5
+    r_h_rate = r_hwins / r_hgames if r_hgames >= 10 else 0.5
+
+    b_p_adapt = b_p_rate - b_h_rate if b_pgames >= 3 else 0.0
+    r_p_adapt = r_p_rate - r_h_rate if r_pgames >= 3 else 0.0
+
+    b_patch_winrate.append(b_p_rate)
+    r_patch_winrate.append(r_p_rate)
+    b_patch_adaptation.append(b_p_adapt)
+    r_patch_adaptation.append(r_p_adapt)
+
     # --- V8+ Playstyle Archetypes ---
     b_draft_score = (b_global_wr * 0.4) + (b_wr * 0.4) + (b_ban_dis * 0.2)
     r_draft_score = (r_global_wr * 0.4) + (r_wr * 0.4) + (r_ban_dis * 0.2)
@@ -653,6 +1060,41 @@ for index, row in training_df.iterrows():
     
     b_draft_reliance = b_draft_mastery / (b_exec_mastery + 0.1)
     r_draft_reliance = r_draft_mastery / (r_exec_mastery + 0.1)
+
+    # --- Expected Draft Style SVD Features (100% Pre-Match Leak-Safe) ---
+    b_draft_history = team_draft_history.get(blue_team, [])
+    if not b_draft_history:
+        E_blue = np.array(fallback_emb)
+    else:
+        # Collect all heroes from last 10 games
+        b_heroes_flat = [h for g in b_draft_history for h in g]
+        b_vectors = [np.array(hero_embeddings.get(h, fallback_emb)) for h in b_heroes_flat]
+        E_blue = np.mean(b_vectors, axis=0)
+
+    r_draft_history = team_draft_history.get(red_team, [])
+    if not r_draft_history:
+        E_red = np.array(fallback_emb)
+    else:
+        # Collect all heroes from last 10 games
+        r_heroes_flat = [h for g in r_draft_history for h in g]
+        r_vectors = [np.array(hero_embeddings.get(h, fallback_emb)) for h in r_heroes_flat]
+        E_red = np.mean(r_vectors, axis=0)
+
+    # Cosine Similarity between E_blue and E_red
+    dot_prod = np.dot(E_blue, E_red)
+    norm_eb = np.linalg.norm(E_blue)
+    norm_er = np.linalg.norm(E_red)
+    if norm_eb == 0 or norm_er == 0:
+        draft_style_sim = 1.0
+    else:
+        draft_style_sim = float(dot_prod / (norm_eb * norm_er))
+
+    # Append features
+    draft_style_sims.append(draft_style_sim)
+    for i in range(16):
+        blue_draft_embs[i].append(float(E_blue[i]))
+        red_draft_embs[i].append(float(E_red[i]))
+        diff_draft_embs[i].append(float(E_blue[i] - E_red[i]))
 
     # === APPEND ALL FEATURES ===
     b_com.append(b_wr);         r_com.append(r_wr)
@@ -707,6 +1149,10 @@ for index, row in training_df.iterrows():
     b_comfort_patch_score.append(b_comfort_patch)
     r_comfort_patch_score.append(r_comfort_patch)
 
+    # NEW: Expected comfort based on top 5 most-played heroes
+    b_expected_comfort.append(b_exp_comfort)
+    r_expected_comfort.append(r_exp_comfort)
+
     # ===== UPDATE ALL TRACKERS AFTER RECORDING PRE-MATCH STATE =====
     blue_won = 1 if winner == blue_team else 0
     red_won  = 1 - blue_won
@@ -732,20 +1178,35 @@ for index, row in training_df.iterrows():
     k = k_playoff if is_playoffs else k_regular
     for ign_raw in team_rosters.get(blue_team, {}).get(match_season, set()):
         ign = resolve_ign(ign_raw)
-        player_elos[ign] = player_elos.get(ign, default_elo) + (k * (actual_a - expected_a))
+        pending_elo_updates[ign] = pending_elo_updates.get(ign, 0.0) + (k * (actual_a - expected_a))
     for ign_raw in team_rosters.get(red_team, {}).get(match_season, set()):
         ign = resolve_ign(ign_raw)
-        player_elos[ign] = player_elos.get(ign, default_elo) + (k * (actual_b - expected_b))
+        pending_elo_updates[ign] = pending_elo_updates.get(ign, 0.0) + (k * (actual_b - expected_b))
         
     if is_playoffs:
         p_expected_a = 1 / (1 + 10 ** ((p_elo_b - p_elo_a) / 400))
         p_expected_b = 1 - p_expected_a
         for ign_raw in team_rosters.get(blue_team, {}).get(match_season, set()):
             ign = resolve_ign(ign_raw)
-            player_playoff_elos[ign] = player_playoff_elos.get(ign, default_elo) + (k_playoff * (actual_a - p_expected_a))
+            pending_playoff_elo_updates[ign] = pending_playoff_elo_updates.get(ign, 0.0) + (k_playoff * (actual_a - p_expected_a))
         for ign_raw in team_rosters.get(red_team, {}).get(match_season, set()):
             ign = resolve_ign(ign_raw)
-            player_playoff_elos[ign] = player_playoff_elos.get(ign, default_elo) + (k_playoff * (actual_b - p_expected_b))
+            pending_playoff_elo_updates[ign] = pending_playoff_elo_updates.get(ign, 0.0) + (k_playoff * (actual_b - p_expected_b))
+
+    if is_match_end:
+        for ign, delta in pending_elo_updates.items():
+            player_elos[ign] = player_elos.get(ign, default_elo) + delta
+        for ign, delta in pending_playoff_elo_updates.items():
+            player_playoff_elos[ign] = player_playoff_elos.get(ign, default_elo) + delta
+        pending_elo_updates.clear()
+        pending_playoff_elo_updates.clear()
+
+
+    # Update team draft history (recorded post-game to be leak-safe for next matches)
+    team_draft_history.setdefault(blue_team, []).append(blue_heroes)
+    team_draft_history[blue_team] = team_draft_history[blue_team][-10:]
+    team_draft_history.setdefault(red_team, []).append(red_heroes)
+    team_draft_history[red_team] = team_draft_history[red_team][-10:]
 
     series_draft_history.setdefault(match_id, []).append({
         'game_number': game_num,
@@ -779,6 +1240,9 @@ for index, row in training_df.iterrows():
         global_hero_tracker.setdefault(h, {'wins': 0, 'games': 0})
         global_hero_tracker[h]['games'] += 1
         global_hero_tracker[h]['wins']  += red_won
+        
+    for h in blue_heroes: seasonal_hero_tracker.setdefault(blue_season_key, set()).add(h)
+    for h in red_heroes:  seasonal_hero_tracker.setdefault(red_season_key, set()).add(h)
 
     # Recent Form (last 5 games)
     team_recent_form.setdefault(blue_team, [])
@@ -792,9 +1256,20 @@ for index, row in training_df.iterrows():
     if (mk[0] == blue_team and blue_won) or (mk[0] == red_team and red_won):
         h2h_tracker[mk]['blue_wins'] += 1
 
-    # Patch Practice
+    # Patch Practice & Adaptation
     patch_practice[blue_team] = patch_practice.get(blue_team, 0) + 1
     patch_practice[red_team]  = patch_practice.get(red_team,  0) + 1
+    
+    team_patch_stats[blue_team][patch_v]['games'] += 1
+    team_patch_stats[red_team][patch_v]['games'] += 1
+    team_hist_stats[blue_team]['games'] += 1
+    team_hist_stats[red_team]['games'] += 1
+    if blue_won:
+        team_patch_stats[blue_team][patch_v]['wins'] += 1
+        team_hist_stats[blue_team]['wins'] += 1
+    else:
+        team_patch_stats[red_team][patch_v]['wins'] += 1
+        team_hist_stats[red_team]['wins'] += 1
 
     # Playoff Clutch
     if is_playoffs == 1:
@@ -843,6 +1318,10 @@ for index, row in training_df.iterrows():
     team_last_game_date[blue_team] = cur_date
     team_last_game_date[red_team]  = cur_date
 
+    # Update roster history tracker chronologically (pre-match information, recorded post-game to be leak-safe)
+    team_roster_history.setdefault(blue_team, []).append(blue_roster)
+    team_roster_history.setdefault(red_team, []).append(red_roster)
+
     # V6: G3 Clutch Tracker (game 3 or later = "deciding game pressure")
     if game_num >= 3:
         team_g3_tracker.setdefault(blue_team, {'wins': 0, 'games': 0})
@@ -880,14 +1359,48 @@ for index, row in training_df.iterrows():
             if series_winner_team == g1_loss:
                 reverse_sweep_tracker[g1_loss]['came_back'] += 1
 
+    # === S17 CHAMPION'S CURSE & RS RANK UPDATES (Leak-safe) ===
+    stage_str = str(row['stage']).strip().lower()
+    
+    if stage_str in ['rs', 'group stage', 'regular season']:
+        if cur_s_int not in rs_standings:
+            rs_standings[cur_s_int] = {}
+        if blue_team not in rs_standings[cur_s_int]:
+            rs_standings[cur_s_int][blue_team] = {'wins': 0, 'games': 0}
+        if red_team not in rs_standings[cur_s_int]:
+            rs_standings[cur_s_int][red_team] = {'wins': 0, 'games': 0}
+            
+        rs_standings[cur_s_int][blue_team]['games'] += 1
+        rs_standings[cur_s_int][red_team]['games'] += 1
+        
+        if blue_won:
+            rs_standings[cur_s_int][blue_team]['wins'] += 1
+        else:
+            rs_standings[cur_s_int][red_team]['wins'] += 1
+
+    if stage_str in ['playoffs', 'grand final', 'upper bracket', 'lower bracket']:
+        if game_num == last_game_in_match.get(match_id, -1):
+            series_wins = current_series_wins[match_id]
+            series_winner_team = max(series_wins, key=series_wins.get)
+            champions_history[cur_s_int] = series_winner_team
+
 # ==========================================
 # STEP 6: ATTACH ALL COLUMNS
 # ==========================================
 
-training_df['blue_map_elo'] = b_map_elo
-training_df['red_map_elo']  = r_map_elo
-training_df['blue_map_p_elo'] = b_map_p_elo
-training_df['red_map_p_elo']  = r_map_p_elo
+training_df['blue_roster_stability'] = b_roster_stability
+training_df['red_roster_stability'] = r_roster_stability
+training_df['diff_roster_stability'] = diff_roster_stability_list
+training_df['blue_draft_overlap'] = b_draft_overlap_list
+training_df['red_draft_overlap'] = r_draft_overlap_list
+training_df['diff_draft_overlap'] = diff_draft_overlap_list
+
+training_df['blue_side_elo'] = b_side_elo
+training_df['red_side_elo']  = r_side_elo
+training_df['blue_playoff_elo'] = b_playoff_elo
+training_df['red_playoff_elo']  = r_playoff_elo
+training_df['blue_prev_winner_exhaustion'] = b_prev_winner_exhaustion
+training_df['red_prev_winner_exhaustion']  = r_prev_winner_exhaustion
 training_df['blue_heroes_stolen'] = b_heroes_stolen_list
 training_df['red_heroes_stolen'] = r_heroes_stolen_list
 training_df['blue_synergy_delta'] = b_synergy_delta_list
@@ -947,6 +1460,39 @@ training_df['prev_played_comfort_banned_red'] = prev_played_comfort_banned_red
 training_df['blue_comfort_patch_score'] = b_comfort_patch_score
 training_df['red_comfort_patch_score']  = r_comfort_patch_score
 
+training_df['blue_patch_winrate'] = b_patch_winrate
+training_df['red_patch_winrate']  = r_patch_winrate
+training_df['blue_patch_adaptation'] = b_patch_adaptation
+training_df['red_patch_adaptation']  = r_patch_adaptation
+
+training_df['blue_expected_comfort'] = b_expected_comfort
+training_df['red_expected_comfort']  = r_expected_comfort
+
+# NEW: S17 Champion's Curse & RS Rank features
+training_df['blue_rs_rank'] = b_rs_rank
+training_df['red_rs_rank']  = r_rs_rank
+training_df['blue_is_defending_champ'] = b_is_defending_champ
+training_df['red_is_defending_champ']  = r_is_defending_champ
+
+# NEW: Prior official season statistics dataframe columns
+training_df['blue_prev_season_match_wr'] = blue_prev_season_match_wr
+training_df['red_prev_season_match_wr']  = red_prev_season_match_wr
+training_df['blue_prev_season_game_wr']  = blue_prev_season_game_wr
+training_df['red_prev_season_game_wr']   = red_prev_season_game_wr
+training_df['blue_prev_season_kda']      = blue_prev_season_kda
+training_df['red_prev_season_kda']       = red_prev_season_kda
+training_df['blue_prev_season_avg_kills'] = blue_prev_season_avg_kills
+training_df['red_prev_season_avg_kills']  = red_prev_season_avg_kills
+training_df['blue_prev_season_avg_deaths'] = blue_prev_season_avg_deaths
+training_df['red_prev_season_avg_deaths']  = red_prev_season_avg_deaths
+training_df['blue_prev_season_avg_assists'] = blue_prev_season_avg_assists
+training_df['red_prev_season_avg_assists']  = red_prev_season_avg_assists
+
+training_df['diff_prev_season_match_wr'] = diff_prev_season_match_wr
+training_df['diff_prev_season_game_wr']  = diff_prev_season_game_wr
+training_df['diff_prev_season_kda']       = diff_prev_season_kda
+
+
 # V8 Columns
 training_df['blue_avg_loss_duration'] = b_avg_loss_duration
 training_df['red_avg_loss_duration']  = r_avg_loss_duration
@@ -964,6 +1510,13 @@ training_df['red_execution_mastery']  = r_exec_mastery_list
 training_df['blue_draft_reliance']    = b_draft_reliance_list
 training_df['red_draft_reliance']     = r_draft_reliance_list
 
+# SVD Draft Embeddings columns assignment
+training_df['draft_style_sim'] = draft_style_sims
+for i in range(16):
+    training_df[f'blue_draft_emb_{i}'] = blue_draft_embs[i]
+    training_df[f'red_draft_emb_{i}'] = red_draft_embs[i]
+    training_df[f'diff_draft_emb_{i}'] = diff_draft_embs[i]
+
 # ==========================================
 # STEP 7: ALIGN ELO PER SIDE & SAVE
 # ==========================================
@@ -974,12 +1527,18 @@ training_df['target_blue_win'] = (training_df['map_winner'] == training_df['blue
 final_features = [
     'match_timestamp', 'match_id', 'season', 'game_number', 'patch_version',
     'blue_side_team', 'red_side_team',
+    # SOTA features
+    'blue_roster_stability', 'red_roster_stability', 'diff_roster_stability',
+    'blue_draft_overlap', 'red_draft_overlap', 'diff_draft_overlap',
+    'blue_rs_rank', 'red_rs_rank',
+    'blue_is_defending_champ', 'red_is_defending_champ',
     # Ratings
-    'blue_map_elo', 'red_map_elo',
-    'blue_map_p_elo', 'red_map_p_elo',
+    'blue_side_elo', 'red_side_elo',
+    'blue_playoff_elo', 'red_playoff_elo',
     'blue_synergy', 'red_synergy',
     'blue_counter', 'red_counter',
     'blue_draft_exhaustion', 'red_draft_exhaustion',
+    'blue_prev_winner_exhaustion', 'red_prev_winner_exhaustion',
     'blue_heroes_stolen', 'red_heroes_stolen',
     'blue_synergy_delta', 'red_synergy_delta',
     'prev_stomp_margin', 'is_side_swap',
@@ -1024,6 +1583,32 @@ final_features = [
     'prev_winner_heroes_banned_blue', 'prev_winner_heroes_banned_red',
     'prev_played_comfort_banned_blue', 'prev_played_comfort_banned_red',
     'blue_comfort_patch_score', 'red_comfort_patch_score',
+    'blue_patch_winrate', 'red_patch_winrate',
+    'blue_patch_adaptation', 'red_patch_adaptation',
+    'blue_expected_comfort', 'red_expected_comfort',
+    # Official Seasonal Statistics (Prior Season)
+    'blue_prev_season_match_wr', 'red_prev_season_match_wr',
+    'blue_prev_season_game_wr', 'red_prev_season_game_wr',
+    'blue_prev_season_kda', 'red_prev_season_kda',
+    'blue_prev_season_avg_kills', 'red_prev_season_avg_kills',
+    'blue_prev_season_avg_deaths', 'red_prev_season_avg_deaths',
+    'blue_prev_season_avg_assists', 'red_prev_season_avg_assists',
+    'diff_prev_season_match_wr', 'diff_prev_season_game_wr',
+    'diff_prev_season_kda',
+    # SVD Draft Embeddings features
+    'draft_style_sim',
+    'diff_draft_emb_0', 'diff_draft_emb_1', 'diff_draft_emb_2', 'diff_draft_emb_3',
+    'diff_draft_emb_4', 'diff_draft_emb_5', 'diff_draft_emb_6', 'diff_draft_emb_7',
+    'diff_draft_emb_8', 'diff_draft_emb_9', 'diff_draft_emb_10', 'diff_draft_emb_11',
+    'diff_draft_emb_12', 'diff_draft_emb_13', 'diff_draft_emb_14', 'diff_draft_emb_15',
+    'blue_draft_emb_0', 'blue_draft_emb_1', 'blue_draft_emb_2', 'blue_draft_emb_3',
+    'blue_draft_emb_4', 'blue_draft_emb_5', 'blue_draft_emb_6', 'blue_draft_emb_7',
+    'blue_draft_emb_8', 'blue_draft_emb_9', 'blue_draft_emb_10', 'blue_draft_emb_11',
+    'blue_draft_emb_12', 'blue_draft_emb_13', 'blue_draft_emb_14', 'blue_draft_emb_15',
+    'red_draft_emb_0', 'red_draft_emb_1', 'red_draft_emb_2', 'red_draft_emb_3',
+    'red_draft_emb_4', 'red_draft_emb_5', 'red_draft_emb_6', 'red_draft_emb_7',
+    'red_draft_emb_8', 'red_draft_emb_9', 'red_draft_emb_10', 'red_draft_emb_11',
+    'red_draft_emb_12', 'red_draft_emb_13', 'red_draft_emb_14', 'red_draft_emb_15',
     # Target
     'time_weight', 'target_blue_win', 'stage'
 ]
@@ -1042,6 +1627,7 @@ from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 from sklearn.model_selection import TimeSeriesSplit, RandomizedSearchCV
 from sklearn.metrics import accuracy_score
 import lightgbm as lgb
+from catboost import CatBoostClassifier
 
 print("\n📊 Loading Feature Matrix for V7 Engine...")
 df = pd.read_csv('csv_data/ML_Feature_Matrix.csv')
@@ -1120,8 +1706,9 @@ print(f"   Cleaned invalid dataset entries: kept {len(df)} valid games.")
 # DEFINE FULL FEATURE SET (with V7 additions)
 # ==========================================
 base_features = [
-    'blue_map_elo', 'red_map_elo',
-    'blue_map_p_elo', 'red_map_p_elo',
+    'blue_roster_stability', 'red_roster_stability', 'diff_roster_stability',
+    'blue_side_elo', 'red_side_elo',
+    'blue_playoff_elo', 'red_playoff_elo',
     'blue_synergy', 'red_synergy',
     'blue_counter', 'red_counter',
     'blue_comfort_wr', 'red_comfort_wr',
@@ -1142,6 +1729,7 @@ base_features = [
     'blue_avg_win_duration', 'red_avg_win_duration',
     'current_blue_side_advantage',
     'blue_comfort_patch_score', 'red_comfort_patch_score',
+    'blue_expected_comfort', 'red_expected_comfort',
     # V8 Game Duration & Dynamic Late-Game features
     'blue_avg_loss_duration', 'red_avg_loss_duration',
     'blue_execution_margin', 'red_execution_margin',
@@ -1150,13 +1738,26 @@ base_features = [
     # 'blue_draft_mastery', 'red_draft_mastery',
     # 'blue_execution_mastery', 'red_execution_mastery',
     # 'blue_draft_reliance', 'red_draft_reliance',
+    # Prior official season statistics (pre-match, leak-safe)
+    'blue_prev_season_match_wr', 'red_prev_season_match_wr',
+    'blue_prev_season_game_wr', 'red_prev_season_game_wr',
+    'blue_prev_season_kda', 'red_prev_season_kda',
+    'blue_prev_season_avg_kills', 'red_prev_season_avg_kills',
+    'blue_prev_season_avg_deaths', 'red_prev_season_avg_deaths',
+    'blue_prev_season_avg_assists', 'red_prev_season_avg_assists',
+    'diff_prev_season_match_wr', 'diff_prev_season_game_wr',
+    'diff_prev_season_kda',
 ]
+
+g1_features = base_features + ['draft_style_sim']
 
 # RE-ENABLED MOMENTUM & PRESSURE FEATURES (SCRAPER BUG FIXED)
 # The scraper now parses games in chronologically correct order.
 # Momentum and series scores are completely valid, non-leaking pre-match signals!
 all_features = base_features + [
+    'blue_draft_overlap', 'red_draft_overlap', 'diff_draft_overlap',
     'blue_draft_exhaustion', 'red_draft_exhaustion',
+    'blue_prev_winner_exhaustion', 'red_prev_winner_exhaustion',
     'blue_heroes_stolen', 'red_heroes_stolen',
     'blue_synergy_delta', 'red_synergy_delta',
     'prev_stomp_margin', 'is_side_swap',
@@ -1178,25 +1779,37 @@ all_features = base_features + [
 df_g1   = df[df['game_number'] == 1].copy()
 df_g2plus = df[df['game_number'] > 1].copy()
 
-X_g1      = df_g1[base_features];     y_g1  = df_g1['target_blue_win'];     w_g1  = df_g1['time_weight']
+X_g1      = df_g1[g1_features];     y_g1  = df_g1['target_blue_win'];     w_g1  = df_g1['time_weight']
 X_g2plus  = df_g2plus[all_features];  y_g2  = df_g2plus['target_blue_win']; w_g2  = df_g2plus['time_weight']
 
-# Chronological train/test split (15% holdout)
-split_g1    = int(len(df_g1) * 0.85)
-split_g2    = int(len(df_g2plus) * 0.85)
+# Grouped Match-ID Chronological Split (No leakage across series)
+unique_matches = df['match_id'].unique()
+split_idx = int(len(unique_matches) * 0.85)
+train_match_ids = unique_matches[:split_idx]
+test_match_ids = unique_matches[split_idx:]
 
-# Normalize weights using full-subset mean for each model.
-# Confirmed by exhaustive grid search: this gives optimal 67.65% G1 + 54.63% G2+ + 59.66% Combined.
-w_g1 = w_g1 / w_g1.mean()
-w_g2 = w_g2 / w_g2.mean()
+train_df = df[df['match_id'].isin(train_match_ids)].copy()
+test_df = df[df['match_id'].isin(test_match_ids)].copy()
 
-X_train_g1,    X_test_g1    = X_g1.iloc[:split_g1],    X_g1.iloc[split_g1:]
-y_train_g1,    y_test_g1    = y_g1.iloc[:split_g1],    y_g1.iloc[split_g1:]
-w_train_g1,    w_test_g1    = w_g1.iloc[:split_g1],    w_g1.iloc[split_g1:]
+train_g1 = train_df[train_df['game_number'] == 1].copy()
+test_g1 = test_df[test_df['game_number'] == 1].copy()
+train_g2 = train_df[train_df['game_number'] > 1].copy()
+test_g2 = test_df[test_df['game_number'] > 1].copy()
 
-X_train_g2,    X_test_g2    = X_g2plus.iloc[:split_g2],  X_g2plus.iloc[split_g2:]
-y_train_g2,    y_test_g2    = y_g2.iloc[:split_g2],      y_g2.iloc[split_g2:]
-w_train_g2,    w_test_g2    = w_g2.iloc[:split_g2],      w_g2.iloc[split_g2:]
+X_train_g1 = train_g1[g1_features]; y_train_g1 = train_g1['target_blue_win']; w_train_g1 = train_g1['time_weight']
+X_test_g1  = test_g1[g1_features];  y_test_g1  = test_g1['target_blue_win'];  w_test_g1  = test_g1['time_weight']
+
+X_train_g2 = train_g2[all_features];  y_train_g2 = train_g2['target_blue_win']; w_train_g2 = train_g2['time_weight']
+X_test_g2  = test_g2[all_features];   y_test_g2  = test_g2['target_blue_win'];  w_test_g2  = test_g2['time_weight']
+
+# Normalize weights using training subset mean for each model to prevent leakage
+mean_w_g1 = w_train_g1.mean() if w_train_g1.mean() != 0 else 1.0
+mean_w_g2 = w_train_g2.mean() if w_train_g2.mean() != 0 else 1.0
+
+w_train_g1 = w_train_g1 / mean_w_g1
+w_test_g1  = w_test_g1 / mean_w_g1
+w_train_g2 = w_train_g2 / mean_w_g2
+w_test_g2  = w_test_g2 / mean_w_g2
 
 print(f"   Game 1 model  → {len(X_train_g1)} train / {len(X_test_g1)} test")
 print(f"   Game 2+ model → {len(X_train_g2)} train / {len(X_test_g2)} test")
@@ -1223,7 +1836,7 @@ print(f"   Mathematically Optimal V8 XGBoost params applied: {best_params}")
 # ==========================================
 # TRAIN ALL 3 ALGORITHMS WITH TUNED PARAMS
 # ==========================================
-print("\n🤖 Training V7 Ensemble (XGBoost + LightGBM + RandomForest)...")
+print("\n🤖 Training V8 Ensemble (XGBoost + LightGBM + CatBoost + RandomForest)...")
 
 def build_ensemble(best_params):
     xgb_model = xgb.XGBClassifier(
@@ -1242,8 +1855,20 @@ def build_ensemble(best_params):
         max_depth=best_params.get('max_depth', 3) + 2,
         random_state=42, n_jobs=-1
     )
+    cat_model = CatBoostClassifier(
+        iterations=250,
+        learning_rate=0.02,
+        depth=3,
+        random_seed=42,
+        verbose=0
+    )
     ensemble = VotingClassifier(
-        estimators=[('xgb', xgb_model), ('lgb', lgb_model), ('rf', rf_model)],
+        estimators=[
+            ('xgb', xgb_model), 
+            ('lgb', lgb_model), 
+            ('rf', rf_model),
+            ('cat', cat_model)
+        ],
         voting='soft', weights=None   # Average probabilities, not just votes
     )
     return ensemble
@@ -1278,8 +1903,8 @@ print("="*55)
 # ==========================================
 # PREDICTION TRACKER — WHERE DID IT GO RIGHT/WRONG?
 # ==========================================
-test_g1_df   = df_g1.iloc[split_g1:].copy().reset_index(drop=True)
-test_g2_df   = df_g2plus.iloc[split_g2:].copy().reset_index(drop=True)
+test_g1_df   = test_g1.copy().reset_index(drop=True)
+test_g2_df   = test_g2.copy().reset_index(drop=True)
 test_g1_df['predicted_blue_win'] = pred_g1
 test_g2_df['predicted_blue_win'] = pred_g2
 test_g1_df['confidence'] = ensemble_g1.predict_proba(X_test_g1)[:, 1]
@@ -1361,7 +1986,7 @@ print(f"\n💾 Full tracker saved to csv_data/prediction_tracker.csv")
 # ==========================================
 xgb_g1 = ensemble_g1.named_estimators_['xgb']
 importance_df = pd.DataFrame({
-    'Feature':    base_features,
+    'Feature':    g1_features,
     'Importance': xgb_g1.feature_importances_
 }).sort_values('Importance', ascending=False)
 print("\n📈 TOP 15 FEATURES (Game 1 Model):")
@@ -1388,9 +2013,10 @@ def get_recent_stats(team_name, dataframe):
     on_blue   = last_game['blue_side_team'] == team_name
     side = 'blue' if on_blue else 'red'
     invert_h2h = 0 if on_blue else 1
-    return {
-        'elo':               last_game[f'{side}_map_elo'],
-        'playoff_elo':       last_game[f'{side}_map_p_elo'],
+    stats_dict = {
+        'elo':               last_game[f'{side}_side_elo'],
+        'playoff_elo':       last_game[f'{side}_playoff_elo'],
+        'roster_stability':  last_game[f'{side}_roster_stability'],
         'comfort_wr':        last_game[f'{side}_comfort_wr'],
         'draft_experience':  last_game[f'{side}_draft_experience'],
         'global_draft_wr':   last_game[f'{side}_global_draft_wr'],
@@ -1407,22 +2033,42 @@ def get_recent_stats(team_name, dataframe):
         'execution_punish_score': last_game[f'{side}_execution_punish_score'],
         'lategame_winrate':  last_game[f'{side}_lategame_winrate'],
         'ban_disruption':    last_game[f'{side}_ban_disruption'],
+        'comfort_patch_score':last_game[f'{side}_comfort_patch_score'],
+        'patch_winrate':     last_game[f'{side}_patch_winrate'],
+        'patch_adaptation':  last_game[f'{side}_patch_adaptation'],
         # 'draft_mastery':     last_game[f'{side}_draft_mastery'],
         # 'execution_mastery': last_game[f'{side}_execution_mastery'],
         # 'draft_reliance':    last_game[f'{side}_draft_reliance'],
         'h2h_winrate':       last_game['blue_h2h_winrate'] if on_blue else 1.0 - last_game['blue_h2h_winrate'],
         'comfort_patch_score':last_game[f'{side}_comfort_patch_score'],
+        'expected_comfort':  last_game[f'{side}_expected_comfort'],
+        'prev_season_match_wr': last_game[f'{side}_prev_season_match_wr'],
+        'prev_season_game_wr': last_game[f'{side}_prev_season_game_wr'],
+        'prev_season_kda': last_game[f'{side}_prev_season_kda'],
+        'prev_season_avg_kills': last_game[f'{side}_prev_season_avg_kills'],
+        'prev_season_avg_deaths': last_game[f'{side}_prev_season_avg_deaths'],
+        'prev_season_avg_assists': last_game[f'{side}_prev_season_avg_assists'],
+        'draft_overlap': last_game[f'{side}_draft_overlap'],
+        'prev_winner_exhaustion': last_game[f'{side}_prev_winner_exhaustion'],
+        'ban_disruption': last_game[f'{side}_ban_disruption'],
     }
+    for i in range(16):
+        stats_dict[f'draft_emb_{i}'] = last_game[f'{side}_draft_emb_{i}']
+    return stats_dict
 
 def simulate_matchup(blue_team, red_team, is_playoffs=True,
                      game_number=1, blue_series_score=0, red_series_score=0,
                      blue_won_last_game=None,
                      blue_comfort_patch_score=0.0, red_comfort_patch_score=0.0,
+                     blue_patch_winrate=0.5, red_patch_winrate=0.5,
+                     blue_patch_adaptation=0.0, red_patch_adaptation=0.0,
+                     blue_expected_comfort=0.0, red_expected_comfort=0.0,
                      blue_g1_comfort=0.5, red_g1_comfort=0.5,
                      g1_winner_heroes_banned_blue=0.0, g1_winner_heroes_banned_red=0.0,
                      blue_prev_comfort=0.5, red_prev_comfort=0.5,
                      prev_winner_heroes_banned_blue=0.0, prev_winner_heroes_banned_red=0.0,
-                     prev_played_comfort_banned_blue=0.0, prev_played_comfort_banned_red=0.0):
+                     prev_played_comfort_banned_blue=0.0, prev_played_comfort_banned_red=0.0,
+                     blue_prev_winner_exhaustion=0.0, red_prev_winner_exhaustion=0.0):
     """
     Simulate a matchup using the V7 Dual Ensemble Model.
 
@@ -1454,12 +2100,16 @@ def simulate_matchup(blue_team, red_team, is_playoffs=True,
                    (game_number >= 3 and blue_series_score == red_series_score) else 0
 
     latest_blue_bias = df['current_blue_side_advantage'].iloc[-1]
+    series_momentum = momentum
 
     base_row = {
         'blue_side_elo':           blue_stats['elo'],
         'red_side_elo':            red_stats['elo'],
         'blue_playoff_elo':        blue_stats['playoff_elo'],
         'red_playoff_elo':         red_stats['playoff_elo'],
+        'blue_roster_stability':   blue_stats['roster_stability'],
+        'red_roster_stability':    red_stats['roster_stability'],
+        'diff_roster_stability':   blue_stats['roster_stability'] - red_stats['roster_stability'],
         'blue_comfort_wr':         blue_stats['comfort_wr'],
         'red_comfort_wr':          red_stats['comfort_wr'],
         'blue_draft_experience':   blue_stats['draft_experience'],
@@ -1474,14 +2124,11 @@ def simulate_matchup(blue_team, red_team, is_playoffs=True,
         'red_momentum':            red_stats['momentum'],
         'blue_h2h_winrate':        blue_stats['h2h_winrate'],
         'blue_patch_practice':     blue_stats['patch_practice'],
-'red_patch_practice':      red_stats['patch_practice'],
-        'blue_map_elo': blue_stats['elo'],
-        'red_map_elo': red_stats['elo'],
-        'blue_map_p_elo': blue_stats['playoff_elo'],
-        'red_map_p_elo': red_stats['playoff_elo'],
+        'red_patch_practice':      red_stats['patch_practice'],
         'blue_synergy': 0.0, 'red_synergy': 0.0,
         'blue_counter': 0.0, 'red_counter': 0.0,
         'blue_draft_exhaustion': 0.0, 'red_draft_exhaustion': 0.0,
+        'blue_prev_winner_exhaustion': 0.0, 'red_prev_winner_exhaustion': 0.0,
         'is_playoffs':             1 if is_playoffs else 0,
         'blue_playoff_clutch':     blue_stats['playoff_clutch'],
         'red_playoff_clutch':      red_stats['playoff_clutch'],
@@ -1507,16 +2154,54 @@ def simulate_matchup(blue_team, red_team, is_playoffs=True,
         # 'red_draft_mastery':       red_stats['draft_mastery'],
         # 'blue_execution_mastery':  blue_stats['execution_mastery'],
         # 'red_execution_mastery':   red_stats['execution_mastery'],
-        # 'blue_draft_reliance':     blue_stats['draft_reliance'],
-        # 'red_draft_reliance':      red_stats['draft_reliance'],
         'current_blue_side_advantage': latest_blue_bias,
+        'momentum_x_side_advantage': series_momentum * latest_blue_bias,
         'blue_comfort_patch_score': blue_comfort_patch_score if blue_comfort_patch_score != 0.0 else blue_stats['comfort_patch_score'],
-        'red_comfort_patch_score':  red_comfort_patch_score if red_comfort_patch_score != 0.0 else red_stats['comfort_patch_score']
+        'red_comfort_patch_score':  red_comfort_patch_score if red_comfort_patch_score != 0.0 else red_stats['comfort_patch_score'],
+        'blue_patch_winrate':       blue_patch_winrate if blue_patch_winrate != 0.5 else blue_stats['patch_winrate'],
+        'red_patch_winrate':        red_patch_winrate if red_patch_winrate != 0.5 else red_stats['patch_winrate'],
+        'blue_patch_adaptation':    blue_patch_adaptation if blue_patch_adaptation != 0.0 else blue_stats['patch_adaptation'],
+        'red_patch_adaptation':     red_patch_adaptation if red_patch_adaptation != 0.0 else red_stats['patch_adaptation'],
+        'blue_expected_comfort':    blue_expected_comfort if blue_expected_comfort != 0.0 else blue_stats['expected_comfort'],
+        'red_expected_comfort':     red_expected_comfort if red_expected_comfort != 0.0 else red_stats['expected_comfort'],
+        'blue_prev_season_match_wr': blue_stats['prev_season_match_wr'],
+        'red_prev_season_match_wr': red_stats['prev_season_match_wr'],
+        'blue_prev_season_game_wr': blue_stats['prev_season_game_wr'],
+        'red_prev_season_game_wr': red_stats['prev_season_game_wr'],
+        'blue_prev_season_kda': blue_stats['prev_season_kda'],
+        'red_prev_season_kda': red_stats['prev_season_kda'],
+        'blue_prev_season_avg_kills': blue_stats['prev_season_avg_kills'],
+        'red_prev_season_avg_kills': red_stats['prev_season_avg_kills'],
+        'blue_prev_season_avg_deaths': blue_stats['prev_season_avg_deaths'],
+        'red_prev_season_avg_deaths': red_stats['prev_season_avg_deaths'],
+        'blue_prev_season_avg_assists': blue_stats['prev_season_avg_assists'],
+        'red_prev_season_avg_assists': red_stats['prev_season_avg_assists'],
+        'diff_prev_season_match_wr': blue_stats['prev_season_match_wr'] - red_stats['prev_season_match_wr'],
+        'diff_prev_season_game_wr': blue_stats['prev_season_game_wr'] - red_stats['prev_season_game_wr'],
+        'diff_prev_season_kda': blue_stats['prev_season_kda'] - red_stats['prev_season_kda'],
+        
     }
+
+    # SVD Draft Embeddings features
+    b_emb = [blue_stats[f'draft_emb_{i}'] for i in range(16)]
+    r_emb = [red_stats[f'draft_emb_{i}'] for i in range(16)]
+    dot_prod = np.dot(b_emb, r_emb)
+    norm_eb = np.linalg.norm(b_emb)
+    norm_er = np.linalg.norm(r_emb)
+    if norm_eb == 0 or norm_er == 0:
+        draft_style_sim = 1.0
+    else:
+        draft_style_sim = float(dot_prod / (norm_eb * norm_er))
+
+    base_row['draft_style_sim'] = draft_style_sim
+    for i in range(16):
+        base_row[f'blue_draft_emb_{i}'] = blue_stats[f'draft_emb_{i}']
+        base_row[f'red_draft_emb_{i}'] = red_stats[f'draft_emb_{i}']
+        base_row[f'diff_draft_emb_{i}'] = blue_stats[f'draft_emb_{i}'] - red_stats[f'draft_emb_{i}']
 
     # Choose the right model and feature set
     if game_number == 1:
-        matchup = pd.DataFrame([base_row])[base_features]
+        matchup = pd.DataFrame([base_row])[g1_features]
         model   = ensemble_g1
     else:
         full_row = {
@@ -1535,7 +2220,12 @@ def simulate_matchup(blue_team, red_team, is_playoffs=True,
             'prev_winner_heroes_banned_blue': prev_winner_heroes_banned_blue,
             'prev_winner_heroes_banned_red': prev_winner_heroes_banned_red,
             'prev_played_comfort_banned_blue': prev_played_comfort_banned_blue,
-            'prev_played_comfort_banned_red': prev_played_comfort_banned_red
+            'prev_played_comfort_banned_red': prev_played_comfort_banned_red,
+            'blue_prev_winner_exhaustion': blue_prev_winner_exhaustion,
+            'red_prev_winner_exhaustion': red_prev_winner_exhaustion,
+            'blue_draft_overlap': 0.0,
+            'red_draft_overlap': 0.0,
+            'diff_draft_overlap': 0.0
         }
         matchup = pd.DataFrame([full_row])[all_features]
         model   = ensemble_g2
@@ -1562,11 +2252,11 @@ def simulate_matchup(blue_team, red_team, is_playoffs=True,
 print("\n\n--- 🏆 SIMULATING THE PLAYOFF BRACKET (V7 ENGINE) ---\n")
 
 # Game 1 — uses the Game 1 specialist model
-simulate_matchup("Team Liquid PH", "AP.Bren", is_playoffs=True, game_number=1)
+simulate_matchup("Team Liquid PH", "Team Falcons PH", is_playoffs=True, game_number=1)
 simulate_matchup("ONIC PH",        "RSG PH",  is_playoffs=True, game_number=1)
 
 # Example: Game 2 after Team Liquid PH won Game 1
-# simulate_matchup("Team Liquid PH", "AP.Bren", is_playoffs=True,
+# simulate_matchup("Team Liquid PH", "Team Falcons PH", is_playoffs=True,
 #                  game_number=2, blue_series_score=1, red_series_score=0,
 #                  blue_won_last_game=True)
 

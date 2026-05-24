@@ -47,6 +47,8 @@ import lightgbm as lgb
 from catboost import CatBoostClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
 
 # ----------------------------------------------------
 # 1. DATA IMPORT
@@ -114,6 +116,51 @@ def add_safe_series_state(dataframe):
 
 
 df = add_safe_series_state(df)
+df['momentum_x_side_advantage'] = df['series_momentum_blue'] * df['current_blue_side_advantage']
+
+df['diff_draft_experience'] = df['blue_draft_experience'] - df['red_draft_experience']
+df['diff_patch_practice'] = df['blue_patch_practice'] - df['red_patch_practice']
+df['diff_roster_stability'] = df['blue_roster_stability'] - df['red_roster_stability']
+df['diff_patch_wr'] = df['blue_patch_winrate'] - df['red_patch_winrate']
+df['diff_patch_adapt'] = df['blue_patch_adaptation'] - df['red_patch_adaptation']
+df['diff_playoff_clutch'] = df['blue_playoff_clutch'] - df['red_playoff_clutch']
+df['diff_playoff_exp'] = df['blue_playoff_exp'] - df['red_playoff_exp']
+df['diff_g3_clutch'] = df['blue_g3_clutch_wr'] - df['red_g3_clutch_wr']
+df['diff_reverse_sweep'] = df['blue_reverse_sweep_rate'] - df['red_reverse_sweep_rate']
+df['diff_rest'] = df['blue_rest_factor'] - df['red_rest_factor']
+
+# Only apply RS Rank diff if it's playoffs! Otherwise it's noise.
+df['diff_rs_rank'] = (df['blue_rs_rank'] - df['red_rs_rank']) * df['is_playoffs']
+
+# ----------------------------------------------------
+# 1.5 SOTA Game 2+ Feature Engineering
+# ----------------------------------------------------
+print("🧪 Engineering SOTA Game 2+ Features from Game 1 state...")
+try:
+    games_df = pd.read_csv('csv_data/games.csv')
+    g1_games = games_df[games_df['game_number'] == 1][['match_id', 'game_duration_seconds']].copy()
+    g1_games.rename(columns={'game_duration_seconds': 'g1_duration'}, inplace=True)
+    df = df.merge(g1_games, on='match_id', how='left')
+    df['G1_Duration_Deviation'] = df['g1_duration'].fillna(900) - 900
+except Exception as e:
+    print(f"Warning: Could not load games.csv for duration: {e}")
+    df['G1_Duration_Deviation'] = 0
+
+df['G1_Upset_Magnitude'] = np.where(
+    df['series_momentum_blue'] == 1,
+    df['red_side_elo'] - df['blue_side_elo'],
+    np.where(df['series_momentum_blue'] == 0, df['blue_side_elo'] - df['red_side_elo'], 0)
+)
+
+df['G1_Winner_Comfort_Advantage'] = np.where(
+    df['series_momentum_blue'] == 1,
+    df['blue_g1_comfort'] - df['red_g1_comfort'],
+    np.where(df['series_momentum_blue'] == 0, df['red_g1_comfort'] - df['blue_g1_comfort'], 0)
+)
+
+df['diff_draft_exhaustion'] = df['blue_draft_exhaustion'] - df['red_draft_exhaustion']
+
+df = df.copy() # De-fragment dataframe
 
 # ----------------------------------------------------
 # 2. FEATURE POLICY
@@ -143,6 +190,10 @@ base_features = [
     'blue_momentum', 'red_momentum',
     'blue_h2h_winrate',
     'blue_patch_practice', 'red_patch_practice',
+    'diff_patch_practice',
+    'diff_playoff_clutch', 'diff_playoff_exp',
+    'diff_g3_clutch', 'diff_reverse_sweep', 'diff_rest',
+    'diff_rs_rank', 'blue_is_defending_champ', 'red_is_defending_champ',
     'is_playoffs',
     'blue_playoff_clutch', 'red_playoff_clutch',
     'blue_playoff_exp', 'red_playoff_exp',
@@ -184,6 +235,10 @@ series_score_features = [
     'score_diff_blue_safe',
     'blue_leads_series',
     'red_leads_series',
+    'G1_Duration_Deviation',
+    'G1_Upset_Magnitude',
+    'G1_Winner_Comfort_Advantage',
+    'is_late_series_game'
 ]
 
 late_series_features = [
@@ -192,26 +247,31 @@ late_series_features = [
     'is_late_series_game',
 ]
 
+patch_adaptation_features = ['diff_patch_wr', 'diff_patch_adapt']
+
 pre_match_series_features = [
-    'blue_draft_exhaustion', 'red_draft_exhaustion',
+    'blue_draft_exhaustion', 'red_draft_exhaustion', 'diff_draft_exhaustion',
     'blue_prev_winner_exhaustion', 'red_prev_winner_exhaustion',
     'blue_g1_comfort', 'red_g1_comfort',
     'blue_prev_comfort', 'red_prev_comfort',
 ]
-
 g1_features = base_features + ['draft_style_sim']
-g2plus_features = base_features + pace_features + series_features + pre_match_series_features
+g2plus_features = base_features + pace_features + series_features + pre_match_series_features + patch_adaptation_features + ['draft_style_sim', 'momentum_x_side_advantage']
 
 # Candidate split models. These are evaluated against the pooled champion.
 g2_features = [
     'blue_side_elo', 'red_side_elo',
-    'blue_playoff_elo', 'red_playoff_elo',
-    'blue_momentum', 'red_momentum',
     'series_momentum_blue',
+    'current_blue_side_advantage',
+    'G1_Duration_Deviation',
+    'G1_Upset_Magnitude',
+    'G1_Winner_Comfort_Advantage',
+    'momentum_x_side_advantage',
     'blue_g1_comfort', 'red_g1_comfort',
-    'blue_draft_exhaustion', 'red_draft_exhaustion',
+    'blue_playoff_elo', 'red_playoff_elo',
+    'is_side_swap'
 ]
-g3plus_features = base_features + pace_features + series_features + pre_match_series_features
+g3plus_features = base_features + pace_features + series_features + pre_match_series_features + patch_adaptation_features + ['draft_style_sim', 'momentum_x_side_advantage']
 
 pre_match_feature_sets = {
     'g1': g1_features,
@@ -281,7 +341,6 @@ g1_params = {
     'random_state': 42,
     'eval_metric': 'logloss',
     'verbosity': 0,
-    'n_jobs': -1,
     'tree_method': 'hist',
 }
 
@@ -295,7 +354,6 @@ g2plus_params = {
     'random_state': 42,
     'eval_metric': 'logloss',
     'verbosity': 0,
-    'n_jobs': -1,
     'tree_method': 'hist',
 }
 
@@ -309,7 +367,6 @@ split_params = {
     'random_state': 42,
     'eval_metric': 'logloss',
     'verbosity': 0,
-    'n_jobs': -1,
     'tree_method': 'hist',
 }
 
@@ -326,14 +383,12 @@ def build_ensemble(params, is_g2plus=False):
             random_state=42,
             eval_metric='logloss',
             verbosity=0,
-            n_jobs=-1,
             tree_method='hist'
         )
         rf_model = RandomForestClassifier(
             n_estimators=50,
             max_depth=2,
-            random_state=42,
-            n_jobs=-1
+            random_state=42
         )
         ensemble = VotingClassifier(
             estimators=[
@@ -354,7 +409,6 @@ def build_ensemble(params, is_g2plus=False):
         random_state=42,
         eval_metric='logloss',
         verbosity=0,
-        n_jobs=-1,
         tree_method='hist'
     )
     lgb_model = lgb.LGBMClassifier(
@@ -368,7 +422,7 @@ def build_ensemble(params, is_g2plus=False):
     rf_model = RandomForestClassifier(
         n_estimators=300,
         max_depth=params.get('max_depth', 3) + 2,
-        random_state=42, n_jobs=-1
+        random_state=42
     )
     cat_model = CatBoostClassifier(
         iterations=250,
@@ -432,18 +486,18 @@ def train_split_architecture(train):
     # Game 1 model (ensemble of XGB+LGB+RF+Cat)
     g1_model = fit_bucket(train, lambda d: d['game_number'] == 1, g1_features, g1_params, is_g2plus=False)
     
-    # Game 2 model (Logistic Regression C=0.01 on sparse features)
+    # Game 2 model (Logistic Regression with SOTA features)
     g2_bucket = train[train['game_number'] == 2].copy()
-    g2_model = LogisticRegression(C=0.01, random_state=42, max_iter=1000, n_jobs=-1)
+    g2_model = LogisticRegression(C=0.01, random_state=42, max_iter=1000)
     g2_model.fit(
         g2_bucket[g2_features],
         g2_bucket['target_blue_win'],
         sample_weight=g2_bucket['time_weight']
     )
     
-    # Game 3+ model: Random Forest (depth=5, n_est=100) trained on all Game 2+ games
+    # Game 3+ model: Random Forest (depth=2, n_est=50)
     g2plus_bucket = train[train['game_number'] > 1].copy()
-    g3plus_model = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42, n_jobs=-1)
+    g3plus_model = RandomForestClassifier(n_estimators=50, max_depth=2, random_state=42)
     g3plus_model.fit(
         g2plus_bucket[g3plus_features],
         g2plus_bucket['target_blue_win'],
@@ -657,13 +711,18 @@ def get_recent_stats(team_name, dataframe):
         'elo': last_game[f'{side}_side_elo'],
         'playoff_elo': last_game[f'{side}_playoff_elo'],
         'roster_stability': last_game[f'{side}_roster_stability'],
-        'momentum': last_game[f'{side}_momentum'],
-        'patch_practice': last_game[f'{side}_patch_practice'],
+        'draft_overlap': last_game[f'{side}_draft_overlap'],
+        'prev_winner_exhaustion': last_game[f'{side}_prev_winner_exhaustion'],
+        'ban_disruption': last_game[f'{side}_ban_disruption'],
         'playoff_clutch': last_game[f'{side}_playoff_clutch'],
         'playoff_exp': last_game[f'{side}_playoff_exp'],
         'g3_clutch_wr': last_game[f'{side}_g3_clutch_wr'],
         'reverse_sweep_rate': last_game[f'{side}_reverse_sweep_rate'],
         'rest_factor': last_game[f'{side}_rest_factor'],
+        'momentum': last_game[f'{side}_momentum'],
+        'patch_practice': last_game[f'{side}_patch_practice'],
+        'patch_winrate': last_game[f'{side}_patch_winrate'],
+        'patch_adaptation': last_game[f'{side}_patch_adaptation'],
         'avg_win_duration': last_game[f'{side}_avg_win_duration'],
         'avg_loss_duration': last_game[f'{side}_avg_loss_duration'],
         'execution_margin': last_game[f'{side}_execution_margin'],
@@ -678,6 +737,8 @@ def get_recent_stats(team_name, dataframe):
         'prev_season_avg_kills': last_game[f'{side}_prev_season_avg_kills'],
         'prev_season_avg_deaths': last_game[f'{side}_prev_season_avg_deaths'],
         'prev_season_avg_assists': last_game[f'{side}_prev_season_avg_assists'],
+        'rs_rank': last_game[f'{side}_rs_rank'],
+        'is_defending_champ': last_game[f'{side}_is_defending_champ'],
     }
     for i in range(16):
         stats_dict[f'draft_emb_{i}'] = last_game[f'{side}_draft_emb_{i}']
@@ -733,6 +794,19 @@ def simulate_matchup(
         'blue_h2h_winrate': blue_stats['h2h_winrate'],
         'blue_patch_practice': blue_stats['patch_practice'],
         'red_patch_practice': red_stats['patch_practice'],
+        'diff_patch_practice': blue_stats['patch_practice'] - red_stats['patch_practice'],
+        'diff_patch_wr': blue_stats['patch_winrate'] - red_stats['patch_winrate'],
+        'diff_patch_adapt': blue_stats['patch_adaptation'] - red_stats['patch_adaptation'],
+        'diff_playoff_clutch': blue_stats['playoff_clutch'] - red_stats['playoff_clutch'],
+        'diff_playoff_exp': blue_stats['playoff_exp'] - red_stats['playoff_exp'],
+        'diff_g3_clutch': blue_stats['g3_clutch_wr'] - red_stats['g3_clutch_wr'],
+        'diff_reverse_sweep': blue_stats['reverse_sweep_rate'] - red_stats['reverse_sweep_rate'],
+        'diff_rest': blue_stats['rest_factor'] - red_stats['rest_factor'],
+        'blue_rs_rank': blue_stats['rs_rank'],
+        'red_rs_rank': red_stats['rs_rank'],
+        'diff_rs_rank': (blue_stats['rs_rank'] - red_stats['rs_rank']) if is_playoffs else 0,
+        'blue_is_defending_champ': blue_stats['is_defending_champ'],
+        'red_is_defending_champ': red_stats['is_defending_champ'],
         'is_playoffs': 1 if is_playoffs else 0,
         'blue_playoff_clutch': blue_stats['playoff_clutch'],
         'red_playoff_clutch': red_stats['playoff_clutch'],
@@ -747,6 +821,7 @@ def simulate_matchup(
         'blue_avg_win_duration': blue_stats['avg_win_duration'],
         'red_avg_win_duration': red_stats['avg_win_duration'],
         'current_blue_side_advantage': df['current_blue_side_advantage'].iloc[-1],
+        'momentum_x_side_advantage': series_momentum * df['current_blue_side_advantage'].iloc[-1],
         'blue_comfort_patch_score': blue_stats['comfort_patch_score'],
         'red_comfort_patch_score': red_stats['comfort_patch_score'],
         'blue_expected_comfort': blue_stats['expected_comfort'],

@@ -15,6 +15,18 @@ class Team(Base):
     glicko_phi = Column(Float, default=350.0)
     glicko_sigma = Column(Float, default=0.06)
 
+class Player(Base):
+    __tablename__ = "players"
+    id = Column(Integer, primary_key=True, index=True)
+    ign = Column(String, unique=True, index=True)
+    real_name = Column(String, nullable=True)
+    current_team_id = Column(Integer, ForeignKey("teams.id"), nullable=True)
+    glicko_mu = Column(Float, default=1500.0)
+    glicko_phi = Column(Float, default=350.0)
+    glicko_sigma = Column(Float, default=0.06)
+    
+    performances = relationship("PlayerPerformance", back_populates="player")
+
 class Patch(Base):
     __tablename__ = "patches"
     patch_version = Column(String, primary_key=True, index=True)
@@ -52,7 +64,27 @@ class Game(Base):
     blue_roster = Column(JSON, nullable=True) # [5 ign-names]
     red_roster = Column(JSON, nullable=True) # [5 ign-names]
     
+    # Pillar 5: PH Macro Metrics
+    blue_turtles = Column(Integer, default=0)
+    red_turtles = Column(Integer, default=0)
+    blue_lords = Column(Integer, default=0)
+    red_lords = Column(Integer, default=0)
+    
     match = relationship("Match", back_populates="games")
+    player_performances = relationship("PlayerPerformance", back_populates="game")
+
+class PlayerPerformance(Base):
+    __tablename__ = "player_performances"
+    id = Column(Integer, primary_key=True, index=True)
+    player_id = Column(Integer, ForeignKey("players.id"))
+    game_id = Column(Integer, ForeignKey("games.id"))
+    hero_id = Column(Integer, ForeignKey("heroes.id"), nullable=True)
+    team_name = Column(String)
+    role = Column(String, nullable=True) # 'Jungler', 'Roamer', etc.
+    side = Column(String) # 'Blue' or 'Red'
+    
+    player = relationship("Player", back_populates="performances")
+    game = relationship("Game", back_populates="player_performances")
 
 class Hero(Base):
     __tablename__ = "heroes"
@@ -73,4 +105,3 @@ class SeasonRoster(Base):
     team_name = Column(String, index=True)
     players = Column(JSON) # List of dictionaries: [{"ign": "...", "role": "...", "name": "..."}]
     staff = Column(JSON)   # List of dictionaries: [{"name": "...", "role": "..."}]
-

@@ -132,6 +132,9 @@ df['diff_rest'] = df['blue_rest_factor'] - df['red_rest_factor']
 # Only apply RS Rank diff if it's playoffs! Otherwise it's noise.
 df['diff_rs_rank'] = (df['blue_rs_rank'] - df['red_rs_rank']) * df['is_playoffs']
 
+df['diff_championship_dna'] = df['blue_championship_dna'] - df['red_championship_dna']
+df['diff_playoff_winrate'] = df['blue_playoff_winrate'] - df['red_playoff_winrate']
+
 # ----------------------------------------------------
 # 1.5 SOTA Game 2+ Feature Engineering
 # ----------------------------------------------------
@@ -187,16 +190,15 @@ base_features = [
     'blue_roster_stability', 'red_roster_stability', 'diff_roster_stability',
     'blue_side_elo', 'red_side_elo',
     'blue_playoff_elo', 'red_playoff_elo',
+    'blue_championship_dna', 'red_championship_dna', 'diff_championship_dna',
+    'blue_playoff_winrate', 'red_playoff_winrate', 'diff_playoff_winrate',
     'blue_momentum', 'red_momentum',
     'blue_h2h_winrate',
     'blue_patch_practice', 'red_patch_practice',
     'diff_patch_practice',
-    'diff_playoff_clutch', 'diff_playoff_exp',
     'diff_g3_clutch', 'diff_reverse_sweep', 'diff_rest',
     'diff_rs_rank', 'blue_is_defending_champ', 'red_is_defending_champ',
     'is_playoffs',
-    'blue_playoff_clutch', 'red_playoff_clutch',
-    'blue_playoff_exp', 'red_playoff_exp',
     'blue_g3_clutch_wr', 'red_g3_clutch_wr',
     'blue_reverse_sweep_rate', 'red_reverse_sweep_rate',
     'blue_rest_factor', 'red_rest_factor',
@@ -255,7 +257,8 @@ pre_match_series_features = [
     'blue_g1_comfort', 'red_g1_comfort',
     'blue_prev_comfort', 'red_prev_comfort',
 ]
-g1_features = base_features + ['draft_style_sim']
+base_features_g1 = [f for f in base_features if f not in ['diff_championship_dna', 'diff_playoff_winrate']]
+g1_features = base_features_g1 + ['draft_style_sim']
 g2plus_features = base_features + pace_features + series_features + pre_match_series_features + patch_adaptation_features + ['draft_style_sim', 'momentum_x_side_advantage']
 
 # Candidate split models. These are evaluated against the pooled champion.
@@ -269,6 +272,8 @@ g2_features = [
     'momentum_x_side_advantage',
     'blue_g1_comfort', 'red_g1_comfort',
     'blue_playoff_elo', 'red_playoff_elo',
+    'blue_championship_dna', 'red_championship_dna',
+    'blue_playoff_winrate', 'red_playoff_winrate',
     'is_side_swap'
 ]
 g3plus_features = base_features + pace_features + series_features + pre_match_series_features + patch_adaptation_features + ['draft_style_sim', 'momentum_x_side_advantage']
@@ -374,8 +379,8 @@ split_params = {
 def build_ensemble(params, is_g2plus=False):
     if is_g2plus:
         xgb_model = xgb.XGBClassifier(
-            n_estimators=10,
-            learning_rate=0.02,
+            n_estimators=20,
+            learning_rate=0.05,
             max_depth=2,
             subsample=0.9,
             colsample_bytree=0.8,
@@ -386,8 +391,8 @@ def build_ensemble(params, is_g2plus=False):
             tree_method='hist'
         )
         rf_model = RandomForestClassifier(
-            n_estimators=50,
-            max_depth=2,
+            n_estimators=100,
+            max_depth=3,
             random_state=42
         )
         ensemble = VotingClassifier(
@@ -395,50 +400,28 @@ def build_ensemble(params, is_g2plus=False):
                 ('xgb', xgb_model),
                 ('rf', rf_model)
             ],
-            voting='soft', weights=None
+            voting='soft', weights=[1, 1]
         )
         return ensemble
 
-    xgb_model = xgb.XGBClassifier(
-        n_estimators=params.get('n_estimators', 200),
-        learning_rate=params.get('learning_rate', 0.02),
-        max_depth=params.get('max_depth', 3),
-        subsample=params.get('subsample', 0.9),
-        colsample_bytree=params.get('colsample_bytree', 0.8),
-        reg_lambda=params.get('reg_lambda', 2.0),
-        random_state=42,
-        eval_metric='logloss',
-        verbosity=0,
-        tree_method='hist'
-    )
-    lgb_model = lgb.LGBMClassifier(
-        n_estimators=params.get('n_estimators', 200),
-        learning_rate=params.get('learning_rate', 0.02),
-        max_depth=params.get('max_depth', 3),
-        subsample=params.get('subsample', 0.9),
-        colsample_bytree=params.get('colsample_bytree', 0.8),
-        random_state=42, verbose=-1
-    )
     rf_model = RandomForestClassifier(
         n_estimators=300,
-        max_depth=params.get('max_depth', 3) + 2,
+        max_depth=6,
         random_state=42
     )
     cat_model = CatBoostClassifier(
-        iterations=250,
-        learning_rate=0.02,
-        depth=3,
+        iterations=200,
+        learning_rate=0.05,
+        depth=4,
         random_seed=42,
         verbose=0
     )
     ensemble = VotingClassifier(
         estimators=[
-            ('xgb', xgb_model), 
-            ('lgb', lgb_model), 
             ('rf', rf_model),
             ('cat', cat_model)
         ],
-        voting='soft', weights=None
+        voting='soft', weights=[3, 1]
     )
     return ensemble
 
@@ -716,6 +699,8 @@ def get_recent_stats(team_name, dataframe):
         'ban_disruption': last_game[f'{side}_ban_disruption'],
         'playoff_clutch': last_game[f'{side}_playoff_clutch'],
         'playoff_exp': last_game[f'{side}_playoff_exp'],
+        'championship_dna': last_game[f'{side}_championship_dna'],
+        'playoff_winrate': last_game[f'{side}_playoff_winrate'],
         'g3_clutch_wr': last_game[f'{side}_g3_clutch_wr'],
         'reverse_sweep_rate': last_game[f'{side}_reverse_sweep_rate'],
         'rest_factor': last_game[f'{side}_rest_factor'],
@@ -812,6 +797,12 @@ def simulate_matchup(
         'red_playoff_clutch': red_stats['playoff_clutch'],
         'blue_playoff_exp': blue_stats['playoff_exp'],
         'red_playoff_exp': red_stats['playoff_exp'],
+        'blue_championship_dna': blue_stats['championship_dna'],
+        'red_championship_dna': red_stats['championship_dna'],
+        'diff_championship_dna': blue_stats['championship_dna'] - red_stats['championship_dna'],
+        'blue_playoff_winrate': blue_stats['playoff_winrate'],
+        'red_playoff_winrate': red_stats['playoff_winrate'],
+        'diff_playoff_winrate': blue_stats['playoff_winrate'] - red_stats['playoff_winrate'],
         'blue_g3_clutch_wr': blue_stats['g3_clutch_wr'],
         'red_g3_clutch_wr': red_stats['g3_clutch_wr'],
         'blue_reverse_sweep_rate': blue_stats['reverse_sweep_rate'],
@@ -969,7 +960,7 @@ def simulate_matchup(
 
 
 print("Sample playoff matchups:")
-simulate_matchup("Team Liquid PH", "AP.Bren", is_playoffs=True, game_number=1)
+simulate_matchup("Team Liquid PH", "Team Falcons PH", is_playoffs=True, game_number=1)
 simulate_matchup("ONIC PH", "RSG PH", is_playoffs=True, game_number=1)
 """
         ),

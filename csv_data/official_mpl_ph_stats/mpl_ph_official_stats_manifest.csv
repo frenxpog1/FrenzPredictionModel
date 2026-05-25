@@ -1,0 +1,13 @@
+season,url,players_rows,teams_rows,heroes_rows,standings_rows,player_columns
+5,https://ph-mpl.com/s5/data,59,10,111,10,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"
+6,https://ph-mpl.com/s6/data,59,10,111,10,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"
+7,https://ph-mpl.com/s7/data,62,10,111,10,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"
+8,https://ph-mpl.com/s8/data,72,8,111,8,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"
+9,https://ph-mpl.com/s9/data,70,8,115,8,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"
+10,https://ph-mpl.com/s10/data,70,8,116,8,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"
+11,https://ph-mpl.com/s11/data,56,8,119,8,"season,source_url,source_schema,player,team,average_kills,average_deaths,average_assists,average_kda,average_damage_gold,average_teamfight,total_hero_used"
+12,https://ph-mpl.com/s12/data,63,8,121,8,"season,source_url,source_schema,player,team,average_kills,average_deaths,average_assists,average_kda,average_damage_gold,average_teamfight,total_hero_used"
+13,https://ph-mpl.com/s13/data,61,8,124,8,"season,source_url,source_schema,player,team,average_kills,average_deaths,average_assists,average_kda,average_damage_gold,average_teamfight,total_hero_used"
+14,https://ph-mpl.com/s14/data,53,8,125,8,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"
+15,https://ph-mpl.com/s15/data,51,8,128,8,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"
+17,https://ph-mpl.com/data,49,8,132,8,"season,source_url,source_schema,player,team,total_kills,avg_kills,total_deaths,avg_deaths,total_assists,avg_assists,kda_ratio,kill_participation"

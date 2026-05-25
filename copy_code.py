@@ -9,18 +9,20 @@ from draft_embeddings import get_svd_hero_embeddings
 # ── TEAM ALIAS MAP (Franchise Rebrands) ──
 # Maps historical rebranded team names to their modern franchise equivalent.
 TEAM_ALIAS_MAP = {
-    "AP.Bren": "Team Falcons PH",
     "Aether Main": "Team Falcons PH",
     "Aether Valkyrie": "Team Falcons PH",
     
     # "Aurora" (S6/S7) is mapped contextually in the function since the modern Aurora franchise exists.
     "Sunsparks": "Team Liquid PH",
     
+    "ECHO": "Team Liquid PH",
+    
     "Execration": "Omega Esports",
     "SGD Omega": "Omega Esports",
     
     "ONIC Esports PH": "ONIC PH",
     "Onic Philippines": "ONIC PH",
+    "Fnatic ONIC PH": "ONIC PH",
     
     "Work-Auster Force": "TNC Pro Team",
 }
@@ -38,6 +40,19 @@ def resolve_team_name(team_name, season=None):
                 return "Team Liquid PH"
         except:
             pass
+            
+    # Handle AP.Bren vs Team Falcons PH transition:
+    # Before Season 15, AP.Bren is the franchise that rebranded to Team Falcons PH in Season 15.
+    # In Season 15+, AP.Bren and Team Falcons PH are two separate teams.
+    if t == "AP.Bren" and season is not None:
+        try:
+            s_int = int(str(season).replace('S', ''))
+            if s_int < 15:
+                return "Team Falcons PH"
+        except:
+            pass
+    elif t == "Falcons AP.Bren" or t == "FC AP.Bren":
+        return "Team Falcons PH"
             
     return TEAM_ALIAS_MAP.get(t, t)
 
@@ -150,29 +165,51 @@ def get_official_team_abbreviation(db_name, season):
     return None
 
 def lookup_prior_stats(db_name, current_season):
-    # Try current_season - 1 down to 5
+    res = {
+        'match_winrate': np.nan,
+        'game_winrate': np.nan,
+        'avg_kills': np.nan,
+        'avg_deaths': np.nan,
+        'avg_assists': np.nan,
+        'avg_kda': np.nan
+    }
+    
+    # 1. Find the most recent match_winrate and game_winrate
     for s in range(current_season - 1, 4, -1):
         abbrev = get_official_team_abbreviation(db_name, s)
         if abbrev and (s, abbrev) in compiled_stats:
             stats = compiled_stats[(s, abbrev)]
-            res = {}
-            res['match_winrate'] = stats['match_winrate'] if not pd.isna(stats['match_winrate']) else 0.5
-            res['game_winrate'] = stats['game_winrate'] if not pd.isna(stats['game_winrate']) else 0.5
-            res['avg_kills'] = stats['avg_kills'] if not pd.isna(stats['avg_kills']) else 11.0
-            res['avg_deaths'] = stats['avg_deaths'] if not pd.isna(stats['avg_deaths']) else 11.0
-            res['avg_assists'] = stats['avg_assists'] if not pd.isna(stats['avg_assists']) else 25.0
-            res['avg_kda'] = stats['avg_kda'] if not pd.isna(stats['avg_kda']) else 3.0
-            return res, s
-    # Neutral defaults
-    default_stats = {
-        'match_winrate': 0.5,
-        'game_winrate': 0.5,
-        'avg_kills': 11.0,
-        'avg_deaths': 11.0,
-        'avg_assists': 25.0,
-        'avg_kda': 3.0
-    }
-    return default_stats, None
+            if pd.isna(res['match_winrate']) and not pd.isna(stats['match_winrate']):
+                res['match_winrate'] = stats['match_winrate']
+            if pd.isna(res['game_winrate']) and not pd.isna(stats['game_winrate']):
+                res['game_winrate'] = stats['game_winrate']
+            if not pd.isna(res['match_winrate']) and not pd.isna(res['game_winrate']):
+                break
+                
+    # 2. Find the most recent valid kills/deaths/assists/kda (stats not all 0), only S15 or older
+    for s in range(min(current_season - 1, 15), 4, -1):
+        abbrev = get_official_team_abbreviation(db_name, s)
+        if abbrev and (s, abbrev) in compiled_stats:
+            stats = compiled_stats[(s, abbrev)]
+            # If stats are all 0 or NaN, skip
+            if stats.get('avg_kills', 0) == 0 and stats.get('avg_deaths', 0) == 0:
+                continue
+            if pd.isna(res['avg_kills']) and not pd.isna(stats['avg_kills']):
+                res['avg_kills'] = stats['avg_kills']
+                res['avg_deaths'] = stats['avg_deaths']
+                res['avg_assists'] = stats['avg_assists']
+                res['avg_kda'] = stats['avg_kda']
+                break
+                
+    # Fill in defaults if still NaN
+    if pd.isna(res['match_winrate']): res['match_winrate'] = 0.5
+    if pd.isna(res['game_winrate']): res['game_winrate'] = 0.5
+    if pd.isna(res['avg_kills']): res['avg_kills'] = 11.0
+    if pd.isna(res['avg_deaths']): res['avg_deaths'] = 11.0
+    if pd.isna(res['avg_assists']): res['avg_assists'] = 25.0
+    if pd.isna(res['avg_kda']): res['avg_kda'] = 3.0
+    
+    return res, None
 
 matches_df['match_timestamp'] = pd.to_datetime(matches_df['match_timestamp'])
 games_df['match_timestamp']   = pd.to_datetime(games_df['match_timestamp'])
@@ -217,8 +254,11 @@ player_playoff_elos = {}   # Only updated for playoff matches
 
 default_elo  = 1500
 k_regular    = 32
-k_playoff    = 56   # Higher K-factor for playoffs — results matter more
-decay_rate   = 0.15
+k_playoff    = 56
+decay_rate   = 0.20
+
+player_championship_wins = {}
+player_playoff_experience = {}
 
 # ── IGN ALIAS MAP (For Missing Liquipedia Redirects) ──
 IGN_ALIASES = {
@@ -418,6 +458,8 @@ b_is_defending_champ, r_is_defending_champ = [], []
 # --- Output Lists ---
 b_side_elo, r_side_elo = [], []
 b_playoff_elo, r_playoff_elo = [], []
+b_championship_dna, r_championship_dna = [], []
+b_playoff_winrate, r_playoff_winrate = [], []
 b_prev_winner_exhaustion, r_prev_winner_exhaustion = [], []
 b_draft_exhaustion, r_draft_exhaustion = [], []
 b_synergy, r_synergy = [], []
@@ -661,6 +703,16 @@ for index, row in training_df.iterrows():
     elo_b = get_team_avg_elo(red_team, match_season, player_elos)
     p_elo_a = get_team_avg_elo(blue_team, match_season, player_playoff_elos)
     p_elo_b = get_team_avg_elo(red_team, match_season, player_playoff_elos)
+
+    b_p_clutch = playoff_clutch_tracker.get(blue_team, {'wins': 0, 'games': 0})
+    r_p_clutch = playoff_clutch_tracker.get(red_team, {'wins': 0, 'games': 0})
+    b_playoff_wr = b_p_clutch['wins'] / b_p_clutch['games'] if b_p_clutch['games'] > 0 else 0.5
+    r_playoff_wr = r_p_clutch['wins'] / r_p_clutch['games'] if r_p_clutch['games'] > 0 else 0.5
+
+    blue_roster_clean = [resolve_ign(ign) for ign in team_rosters.get(blue_team, {}).get(match_season, set())]
+    red_roster_clean  = [resolve_ign(ign) for ign in team_rosters.get(red_team, {}).get(match_season, set())]
+    b_dna = sum([player_championship_wins.get(ign, 0) for ign in blue_roster_clean])
+    r_dna = sum([player_championship_wins.get(ign, 0) for ign in red_roster_clean])
     
     b_elo = elo_a
     r_elo = elo_b
@@ -782,8 +834,8 @@ for index, row in training_df.iterrows():
     r_g3 = get_g3_wr(red_team)
 
     # 12. Playoff Experience (total playoff games played historically)
-    b_po_exp = team_playoff_games_count.get(blue_team, 0)
-    r_po_exp = team_playoff_games_count.get(red_team,  0)
+    b_po_exp = sum([player_playoff_experience.get(ign, 0) for ign in blue_roster_clean])
+    r_po_exp = sum([player_playoff_experience.get(ign, 0) for ign in red_roster_clean])
 
     # 13. Series Momentum (did this team win the PREVIOUS game in this series?)
     # Game 1 = neutral (0.5). Game 2+ = look back at previous game winner.
@@ -914,6 +966,10 @@ for index, row in training_df.iterrows():
     r_side_elo.append(elo_b)
     b_playoff_elo.append(p_elo_a)
     r_playoff_elo.append(p_elo_b)
+    b_championship_dna.append(b_dna)
+    r_championship_dna.append(r_dna)
+    b_playoff_winrate.append(b_playoff_wr)
+    r_playoff_winrate.append(r_playoff_wr)
     b_prev_winner_exhaustion.append(blue_exhaustion_val)
     r_prev_winner_exhaustion.append(red_exhaustion_val)
     b_draft_exhaustion.append(b_exhaust)
@@ -1189,9 +1245,11 @@ for index, row in training_df.iterrows():
         for ign_raw in team_rosters.get(blue_team, {}).get(match_season, set()):
             ign = resolve_ign(ign_raw)
             pending_playoff_elo_updates[ign] = pending_playoff_elo_updates.get(ign, 0.0) + (k_playoff * (actual_a - p_expected_a))
+            player_playoff_experience[ign] = player_playoff_experience.get(ign, 0) + 1
         for ign_raw in team_rosters.get(red_team, {}).get(match_season, set()):
             ign = resolve_ign(ign_raw)
             pending_playoff_elo_updates[ign] = pending_playoff_elo_updates.get(ign, 0.0) + (k_playoff * (actual_b - p_expected_b))
+            player_playoff_experience[ign] = player_playoff_experience.get(ign, 0) + 1
 
     if is_match_end:
         for ign, delta in pending_elo_updates.items():
@@ -1383,6 +1441,11 @@ for index, row in training_df.iterrows():
             series_wins = current_series_wins[match_id]
             series_winner_team = max(series_wins, key=series_wins.get)
             champions_history[cur_s_int] = series_winner_team
+            
+            champ_roster = team_rosters.get(series_winner_team, {}).get(match_season, set())
+            for ign_raw in champ_roster:
+                ign = resolve_ign(ign_raw)
+                player_championship_wins[ign] = player_championship_wins.get(ign, 0) + 1
 
 # ==========================================
 # STEP 6: ATTACH ALL COLUMNS
@@ -1397,8 +1460,12 @@ training_df['diff_draft_overlap'] = diff_draft_overlap_list
 
 training_df['blue_side_elo'] = b_side_elo
 training_df['red_side_elo']  = r_side_elo
-training_df['blue_playoff_elo'] = b_playoff_elo
-training_df['red_playoff_elo']  = r_playoff_elo
+training_df['blue_playoff_elo']           = b_playoff_elo
+training_df['red_playoff_elo']            = r_playoff_elo
+training_df['blue_championship_dna']      = b_championship_dna
+training_df['red_championship_dna']       = r_championship_dna
+training_df['blue_playoff_winrate']       = b_playoff_winrate
+training_df['red_playoff_winrate']        = r_playoff_winrate
 training_df['blue_prev_winner_exhaustion'] = b_prev_winner_exhaustion
 training_df['red_prev_winner_exhaustion']  = r_prev_winner_exhaustion
 training_df['blue_heroes_stolen'] = b_heroes_stolen_list
@@ -1535,6 +1602,8 @@ final_features = [
     # Ratings
     'blue_side_elo', 'red_side_elo',
     'blue_playoff_elo', 'red_playoff_elo',
+    'blue_championship_dna', 'red_championship_dna',
+    'blue_playoff_winrate', 'red_playoff_winrate',
     'blue_synergy', 'red_synergy',
     'blue_counter', 'red_counter',
     'blue_draft_exhaustion', 'red_draft_exhaustion',

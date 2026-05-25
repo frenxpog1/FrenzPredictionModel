@@ -1,36 +1,33 @@
 # MOBA Win Prediction Engine 🏆
 
-A high-performance machine learning pipeline designed to predict professional MOBA match outcomes (MLBB MPL). By leveraging player-centric metrics, dynamic Elo tracking, and advanced game theory adaptation, this engine systematically captures the complexities of professional esports series.
+A high-performance machine learning pipeline designed to predict professional MOBA match outcomes (MLBB MPL). By leveraging player-centric metrics, dynamic Glicko-2 tracking, and advanced game theory adaptation, this engine systematically captures the complexities of professional esports series.
 
 ## 🚀 Overview
 
-The predictive landscape of competitive MOBAs is highly volatile. Unlike traditional sports or singular matches, professional MOBA series involve progressive adaptation. Our engine tackles this by distinguishing between the "blank slate" of Game 1 and the complex psychological and strategic shifts of Game 2 and beyond.
+The predictive landscape of competitive MOBAs is highly volatile. Our engine tackles this by distinguishing between the "blank slate" of Game 1 and the complex psychological and strategic shifts of Game 2 and beyond. The latest **V9 Unified Pipeline** represents a major shift toward granular, player-centric analysis and rigorous leak-safe validation.
 
-### 🚧 Current Work In Progress: `Prediction_v1.ipynb`
+### 🏁 V9 Unified Pipeline (Production Champion)
 
-We are developing a next-generation predictive architecture in `1_NoteBook/Prediction_v1.ipynb`. This experimental branch transitions from a dual-model approach to a **highly granular Game-State Partitioned Engine**. 
+The V9 architecture moves beyond simple team-based Elo, treating each match as a composite of individual player skill and series-specific momentum.
 
-**Key Analytical Updates in V1:**
+**Key Analytical Pillars:**
 *   **Tri-State Partitioning:** Breaking the series down into three distinct evaluative states:
-    *   **Game 1 (Pre-Match):** Pure structural and historical evaluation (Draft isolation, base Elo, historical H2H).
-    *   **Game 2 (Adaptation):** Introduces immediate series momentum and first-game draft exhaustion factors.
-    *   **Game 3+ (Late-Series Clutch):** Accounts for high-pressure variables, late-series score differences, and potential fatigue.
-*   **Leak-Safe Feature Engineering:** Strict isolation to ensure current-game draft features are entirely blocked from pre-match models, ensuring zero data leakage and rigorous real-world validation.
-*   **Candidate vs. Pooled Evaluation:** We dynamically evaluate whether splitting the Game 2+ models into distinct Game 2 and Game 3+ models yields statistically significant improvements over a pooled Game 2+ model.
-*   **Expanded Ensemble:** The pipeline integrates **CatBoost** alongside XGBoost, LightGBM, and Random Forest via a Soft Voting Classifier to maximize generalization.
+    *   **Game 1 (Pre-Match):** Pure structural evaluation using historical H2H, team chemistry, and base skill.
+    *   **Game 2 (Adaptation):** Introduces immediate series momentum and Game 1 "Comfort Trap" signals.
+    *   **Game 3+ (Late-Series Clutch):** Accounts for high-pressure variables, deciding-game resilience, and fatigue.
+*   **Player-Centric Glicko-2:** Skill ratings are now tracked at the individual player level, resolving the "Fractured Identity" bug and allowing for accurate predictions even after roster shifts.
+*   **Leak-Safe Feature Engineering:** Strict isolation ensures current-game draft features are entirely blocked from pre-match models, ensuring zero data leakage and rigorous real-world validation.
+*   **Unified Ensemble Meta-Learner:** Integrates **CatBoost**, XGBoost, LightGBM, and Random Forest via a Soft Voting Classifier to maximize generalization across different game states.
 
 ---
 
-## ✨ SOTA Engine Features (V7 Architecture)
+## ✨ SOTA Engine Features
 
-Our stable V7 engine incorporates cutting-edge feature engineering and structural data integrity:
-
-*   **Dual-Track Elo System:** Tracks separate Elo ratings for Regular Season and Playoffs to accurately capture "clutch" performances and structural team scaling under pressure.
-*   **Match-Level Elo Updates (The Volatility Fix):** Elo updates are strictly bounded to the end of a match rather than per-game, eliminating extreme recency bias and "volatility traps".
-*   **Pillar 3 Data Integrity (IGN Normalization & Franchise Resolver):** Consolidates fragmented player identities and dynamically maps organizational rebrands (e.g., AP.Bren -> Team Falcons PH, Blacklist -> Aurora) right at the ingestion layer to maintain continuous, mathematically flawless skill histories.
-*   **Playoff-Interaction Variables:** Isolates noise from the regular season by activating elite team traits like `Championship DNA` and `Playoff Winrate` *only* during playoff games. This prevents the model from overfitting to "coasting" behavior in the regular season.
-*   **The Comfort Exhaustion Flag:** Implements the "Comfort Trap" discovery from our research—teams winning Game 1 with top comfort picks face predictable bans and draft exhaustion in Game 2.
-*   **Game 3 Clutch Winrate:** Evaluates a team's resilience and statistical baseline in deciding games, acting as a powerful proxy for "True Skill" and composure.
+*   **Dual-Track Elo/Glicko System:** Tracks separate ratings for Regular Season and Playoffs to capture "clutch" performances and structural team scaling under pressure.
+*   **Match-Level Updates:** Ratings are updated at the end of a match rather than per-game, eliminating extreme recency bias and "volatility traps".
+*   **Franchise & IGN Resolver:** Consolidates fragmented player identities and dynamically maps organizational rebrands (e.g., AP.Bren -> Team Falcons PH, Blacklist -> Aurora) right at the ingestion layer.
+*   **The Comfort Exhaustion Flag:** Penalizes a team's win probability if they won the previous game using their top comfort heroes (targeting the "Comfort Trap").
+*   **PH Macro Metrics:** Incorporates Turtle and Lord control rates as high-signal predictors for macro-dominance.
 
 ## 🛠 Tech Stack
 
@@ -42,27 +39,25 @@ Our stable V7 engine incorporates cutting-edge feature engineering and structura
 
 ## 📂 Project Structure
 
-*   `1_NoteBook/Prediction_v1.ipynb` **(WIP)**: The experimental tri-state prediction pipeline.
-*   `1_NoteBook/Prediction.ipynb`: The stable V7 analysis and training hub.
-*   `create_prediction_v1_tuned.py`: Script form of the V1 pipeline for rapid iteration and tuning.
+*   `create_prediction_v1_tuned.py`: The production V9 pipeline implementing the tri-state ensemble.
 *   `copy_code.py`: Feature engineering pipeline and Master Matrix generator.
-*   `features.py`: The core feature engineering engine (Elo, Draft Vectors, Temporal features).
+*   `features.py`: The core feature engineering engine (Player Glicko, Draft Vectors, Temporal features).
+*   `models.py`: SQLAlchemy database schema definitions with Player and Performance tracking.
 *   `scraper.py`: Automated, robust scraper for MPL Seasons 1-17 with IGN Normalization.
-*   `models.py`: SQLAlchemy database schema definitions for Teams, Matches, Games, and Heroes.
-*   `csv_data/`: Centralized repository for processed datasets, including the ML Feature Matrices.
-*   `MASTER_MOBA_RESEARCH_REPORT.md`: Comprehensive audit detailing MOBA prediction logic, SOTA standards, and pipeline integrity.
+*   `MASTER_MOBA_RESEARCH_REPORT.md`: Comprehensive audit detailing MOBA prediction logic and SOTA standards.
+*   `MODEL_TRACKER.md`: Live log of model evolution, audit reports, and roadmap.
 
-## 📈 Accuracy Benchmarks (V7 Walk-Forward Pipeline)
+## 📈 Accuracy Benchmarks (V9 Ensemble)
 
-Recent testing on our strict, purely chronological walk-forward holdout set (predicting S16 and S17 based exclusively on prior seasons) achieved new SOTA metrics:
+Recent testing on our strict, purely chronological walk-forward holdout set achieved the following metrics for the V9 Unified Pipeline:
 
-| Stage | Test Accuracy |
+| Metric | Status |
 | :--- | :--- |
-| **Game 1 (Draft / Baseline)** | **69.34%** |
-| **Game 2+ (Pooled Adaptation)** | 60.85% |
-| **Combined (Unseen Matches)** | 63.98% |
+| **Combined Accuracy (V9 Ensemble)** | **61.82%** |
+| **Game 1 Precision** | ~69% |
+| **Gap to 80% Goal** | 18.18% |
 
-*(Note: Pre-game MOBA predictions face a natural "accuracy ceiling" of ~75% due to the inherent volatility, human error, execution gaps, and meta-shifts present in elite competition. Reaching nearly 70% in Game 1 without any live-game telemetry places this engine in the upper echelon of pre-match forecasting systems.)*
+*(Note: Pre-game MOBA predictions face a natural "accuracy ceiling" of ~75% due to volatility and execution gaps. The V9 pipeline focuses on robustness and leak-prevention to ensure these metrics translate to real-world performance.)*
 
 ## 🚦 Getting Started
 
@@ -76,12 +71,8 @@ Recent testing on our strict, purely chronological walk-forward holdout set (pre
     ```bash
     python3 scraper.py
     ```
-3.  **Run Feature Matrix Generation:**
-    ```bash
-    python3 copy_code.py
-    ```
-4.  **Run Experimentation:**
+3.  **Run Pipeline:**
     ```bash
     python3 create_prediction_v1_tuned.py
     ```
-    Open `1_NoteBook/Prediction_v1.ipynb` to explore the latest architectural evaluations.
+

@@ -8,7 +8,7 @@ tools:
   - google_web_search
   - web_fetch
   - run_shell_command
-model: gemini-2.5-pro
+model: inherit
 temperature: 0.2
 max_turns: 15
 ---

@@ -1,62 +1,95 @@
-# MOBA Win Prediction Engine 🏆
+# Predicting Professional MOBA Match Outcomes: A Split-Pipeline Approach to In-Series Adaptation
 
-A high-performance machine learning pipeline designed to predict professional MOBA match outcomes (MLBB MPL PH). By leveraging player-centric metrics, dynamic Elo tracking, and advanced game theory adaptation, this engine systematically captures the complexities of professional esports series.
-
-## 🚀 Overview
-
-The predictive landscape of competitive MOBAs is highly volatile. Our engine tackles this by distinguishing between the "blank slate" of Game 1 and the complex psychological and strategic shifts of Game 2 and beyond. The latest **70.43% SOTA Architecture** represents a major breakthrough in modeling in-series momentum and adaptation.
-
-### 🏁 The 70.43% SOTA Pre-Match Pipeline (Production Champion)
-
-The pipeline explicitly rejects "one size fits all" modeling, instead treating the series context as the ultimate feature.
-
-**Key Analytical Pillars:**
-*   **Dual-State Partitioning (Split-Pipeline Architecture):** 
-    *   **Game 1 (XGBoost):** Focuses heavily on historical Elo, macro team-level statistics, patch practice, and baseline structural strengths.
-    *   **Game 2+ (Hybrid Stacking Ensemble):** Blends CatBoost and Random Forest to ingest in-series momentum, adaptation, and psychological carry-over (e.g., `prev_stomp_margin`).
-*   **Dynamic, Player-Based Elo System:** Ratings are tracked at the individual player level and averaged for the active roster. It uniquely features Dual-Track ratings (General Elo vs Playoff-Only "Clutch" Elo) and responsive K-factors based on tournament stakes.
-*   **Differential Feature Mapping:** Converts raw strengths into relative matchup advantages (`diff_roster_stability`, `diff_playoff_exp`) to force the model to evaluate the specific head-to-head dynamic.
+**Project Status:** Active Research & Implementation  
+**Current State-of-the-Art (SOTA) Accuracy:** 70.43% (Chronological Holdout Validation)  
+**Domain:** Mobile Legends: Bang Bang (MPL Philippines)
 
 ---
 
-## ✨ Core Features & Signals
+## 1. Abstract
 
-*   **Momentum & Map Advantage Intersections:** Tracks advanced interactions like `momentum_x_side_advantage` to determine if a team with momentum also secured the statistically advantageous map side.
-*   **DNA & Clutch Metrics:** Uses `championship_dna`, `g3_clutch_wr`, and `reverse_sweep_rate` to quantify intangible mental fortitude.
-*   **Time-Weighted Training:** The Game 2+ models heavily weight recent games (`sample_weight=time_weight`), forcing the algorithms to prioritize modern meta adaptations over ancient history.
-*   **Strict Chronological Validation:** Operates on a pure 85/15 chronological train-test split to completely eliminate temporal data leakage.
+Predicting the outcome of professional Multiplayer Online Battle Arena (MOBA) matches is a notoriously complex challenge. Unlike traditional sports, MOBAs feature a highly dynamic drafting phase, rapid in-game snowball mechanics, and continuous meta-shifts via software patches. 
 
-## 🛠 Tech Stack
+This repository presents a **70.43% accurate** machine learning pipeline designed specifically for the MPL Philippines circuit. The core innovation of this research is the rejection of a singular modeling approach. Instead, we propose a **Split-Pipeline Architecture** that treats Game 1 as a structural, historical prediction problem (solved via XGBoost), and Game 2+ as a high-variance, psychological adaptation problem (solved via a time-weighted Stacking Ensemble of CatBoost and Random Forest).
 
-*   **Core:** Python 3.10+
-*   **Machine Learning:** XGBoost, CatBoost, Scikit-Learn (Random Forest)
-*   **Data Processing:** Pandas, NumPy
-*   **Experimentation:** Jupyter Notebooks (Highly documented, research-grade notebooks)
+This document outlines the methodology, feature engineering, and architectural decisions that led to breaking the theoretical 70% accuracy ceiling for pre-match predictions.
 
-## 📂 Project Structure
+---
 
-*   `create_prediction_v1_documented.py`: Generates the heavily documented, research-grade Jupyter Notebook containing the SOTA pre-match architecture.
-*   `1_NoteBook/Prediction_v1_documented.ipynb`: The primary executable environment for the 70.43% pipeline.
-*   `MASTER_MOBA_RESEARCH_REPORT.md`: Comprehensive audit detailing MOBA prediction logic and game-theoretic concepts.
-*   `MODEL_TRACKER.md`: Live log of model evolution, hyperparameter sweeps, and architectural breakthroughs.
+## 2. Methodology: The Split-Pipeline Architecture
 
-## 📈 Accuracy Benchmarks (SOTA Pre-Match Pipeline)
+Initial experiments demonstrated that a single model struggles to predict an entire Best-of-3 or Best-of-5 series. Game 1 operates in a vacuum; Game 2 is heavily influenced by the trauma, momentum, and strategic reveals of Game 1.
 
-Recent testing on our strict, purely chronological walk-forward holdout set (Season 16/17 context) achieved the following target-breaching metrics:
+Our pipeline explicitly partitions the problem space:
 
-| Metric | Accuracy | Correct Predictions | Notes |
-| :--- | :--- | :--- | :--- |
-| **Combined SOTA Accuracy** | **70.43%** | 262 / 372 | Target Breached! |
-| **Game 1 Precision (XGBoost)** | **78.83%** | 108 / 137 | Structural/Historical dominance. |
-| **Game 2+ Precision (CB/RF Blend)** | **65.53%** | 154 / 235 | High-variance momentum/adaptation phase. |
+### 2.1 Game 1: The Structural Baseline (XGBoost)
+Game 1 predictions rely purely on pre-series metadata.
+*   **Model Choice:** `XGBClassifier` (depth=3, lr=0.02, subsample=0.9). XGBoost excels at finding complex non-linear interactions in stable, macro-level tabular data without overfitting.
+*   **Primary Signals:** Player-averaged historical Elo, regular season rank differentials, patch practice volume, and historical head-to-head win rates.
+*   **Performance:** **78.83% Accuracy** (108/137 correct on holdout).
 
-*(Note: Pre-game MOBA predictions face a natural "accuracy ceiling" of ~75% due to in-game volatility, human error, and execution gaps. Breaking the 70% threshold pre-draft represents an elite understanding of team structure and momentum.)*
+### 2.2 Game 2+: The Adaptation Phase (Hybrid Stacking Ensemble)
+Once Game 1 concludes, the feature space expands to include in-series variables (momentum, previous game stomp margins, side swaps).
+*   **Model Choice:** A heavily weighted `VotingClassifier` blending Gradient Boosting and Bagging techniques.
+    *   *CatBoost (x2)*: Exceptionally adept at handling the dense, rapidly shifting categorical and numerical signals of in-series momentum.
+    *   *Random Forest (x3)*: Heavily weighted to act as an anchor. Its uncorrelated, low-variance error profile stabilizes the aggressive, high-variance predictions of the boosting models.
+*   **Primary Signals:** `series_momentum_blue`, `momentum_x_side_advantage`, and psychological carry-over metrics.
+*   **Performance:** **65.53% Accuracy** (154/235 correct on holdout).
 
-## 🚦 Getting Started
+---
+
+## 3. Core Feature Engineering & Game Theory
+
+A model is only as intelligent as its features. To prevent the model from memorizing raw team strengths, we enforce relative matchup evaluation.
+
+### 3.1 Differential Mapping (`diff_*`)
+Instead of providing the model with absolute values (e.g., Blue Team Roster Stability = 0.8, Red Team Roster Stability = 0.4), the pipeline computes the delta (`diff_roster_stability = +0.4`). This forces the algorithms to evaluate the specific structural advantage of the head-to-head matchup.
+
+### 3.2 Dynamic, Player-Based Elo System
+Standard Elo systems track organizations. In esports, rosters change constantly.
+*   **Player-Level Granularity:** Elo is calculated for individual players (`resolve_ign` ensures continuity) and a team's true strength is the dynamic average of its active roster on match day.
+*   **Dual-Track Tracking:** The system calculates a General Elo and a localized **Playoff-Only Elo**. This isolates a team's "clutch factor" under elimination pressure.
+*   **Responsive K-Factors:** We utilize $K = 24$ for regular-season matches and a highly volatile $K = 64$ for playoffs, recognizing that elimination brackets reveal true skill ceilings.
+*   **Off-Season Decay:** A 15% regression-to-the-mean is applied between seasons to account for meta-shifts and off-season rust.
+
+### 3.3 Modeling Intangibles: DNA and Momentum
+*   `championship_dna`: Quantifies historical organizational resilience.
+*   `momentum_x_side_advantage`: An interaction term measuring if the team that just gained momentum also rotated to the statistically favorable map side.
+*   `g3_clutch_wr` & `reverse_sweep_rate`: Identifies teams that structurally scale in high-pressure deciding games.
+
+---
+
+## 4. Addressing the Accuracy Ceiling & Future Work
+
+Pre-match MOBA prediction features a theoretical accuracy ceiling of ~75%. This is due to unpredictable in-game execution, random human error (e.g., a missed Smite objective), and draft-phase outplays.
+
+**The "Comfort Trap" Discovery**
+Our research identifies a critical vulnerability in Game 2 predictions: The Comfort Trap. When a team wins Game 1 using high-mastery (>60%) comfort heroes, they become predictable. In the MPL PH meta, teams falling for the Comfort Trap see their Game 2 win rate drop to **35.09%**. Future pipeline iterations aim to inject a `prev_winner_comfort_exhaustion` penalty feature to adjust momentum predictions dynamically based on draft reveals.
+
+---
+
+## 5. Validation Strategy: Zero Data Leakage
+
+Time-series forecasting is highly susceptible to data leakage (using future information to predict the past). 
+*   **Strict Chronological Split:** The dataset is split 85% Train / 15% Test based on exact `match_timestamp`. 
+*   **Delayed Elo Updates:** Elo rating updates are calculated per game but applied at the *end* of the series (`pending_updates`). This guarantees that Game 1 predictions only evaluate Elo as it existed before the series began.
+
+---
+
+## 6. Repository Architecture
+
+*   `create_prediction_v1_documented.py`: The build script. Generates the highly detailed, interactive Jupyter Notebook that serves as the executable research paper.
+*   `1_NoteBook/Prediction_v1_documented.ipynb`: The primary pre-match inference engine and simulator.
+*   `MASTER_MOBA_RESEARCH_REPORT.md`: Exhaustive 5-pillar audit detailing foundational MOBA prediction logic, the "Comfort Trap," and SOTA standards.
+*   `MODEL_TRACKER.md`: Live engineering log tracking hyperparameter sweeps, architecture shifts, and accuracy milestones.
+
+## 7. Execution Guide
+
+To reproduce the findings or run the Series Simulator:
 
 1.  **Generate the Documented Pipeline:**
     ```bash
     python3 create_prediction_v1_documented.py
     ```
 2.  **Run the Research Notebook:**
-    Navigate to `1_NoteBook/Prediction_v1_documented.ipynb` and execute the cells to see the dynamic Elo system, feature generation, and the Series Simulator in action!
+    Navigate to `1_NoteBook/Prediction_v1_documented.ipynb` and execute the cells sequentially to observe data loading, on-the-fly Elo generation, feature engineering, model training, and simulated inference.

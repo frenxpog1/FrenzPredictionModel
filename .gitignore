@@ -1,8 +1,13 @@
 .venv/
 __pycache__/
 .DS_Store
+catboost_info/
+scratch/
 *.db
 *.log
+*.html
+model_output.txt
+optimal_ultimate_config.json
 *.db.leak_backup
 *.db.backup-*
 .ipynb_checkpoints/

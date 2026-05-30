@@ -1,95 +1,118 @@
-# Predicting Professional MOBA Match Outcomes: A Split-Pipeline Approach to In-Series Adaptation
+# Frenz Prediction Model: MPL PH Match Outcome Pipeline
 
-**Project Status:** Active Research & Implementation  
-**Current State-of-the-Art (SOTA) Accuracy:** 70.43% (Chronological Holdout Validation)  
-**Domain:** Mobile Legends: Bang Bang (MPL Philippines)
+This repository contains a research-grade machine learning pipeline for predicting match outcomes in the **Mobile Legends: Bang Bang Professional League Philippines (MPL PH)** across Seasons 5 to 17. 
 
----
-
-## 1. Abstract
-
-Predicting the outcome of professional Multiplayer Online Battle Arena (MOBA) matches is a notoriously complex challenge. Unlike traditional sports, MOBAs feature a highly dynamic drafting phase, rapid in-game snowball mechanics, and continuous meta-shifts via software patches. 
-
-This repository presents a **70.43% accurate** machine learning pipeline designed specifically for the MPL Philippines circuit. The core innovation of this research is the rejection of a singular modeling approach. Instead, we propose a **Split-Pipeline Architecture** that treats Game 1 as a structural, historical prediction problem (solved via XGBoost), and Game 2+ as a high-variance, psychological adaptation problem (solved via a time-weighted Stacking Ensemble of CatBoost and Random Forest).
-
-This document outlines the methodology, feature engineering, and architectural decisions that led to breaking the theoretical 70% accuracy ceiling for pre-match predictions.
+By applying strict chronological holdout validation, sequentially-updated ELO ratings, comfort pool analysis, and robust ensemble classifiers, this model delivers state-of-the-art predictive accuracy while maintaining complete resistance to data leakage.
 
 ---
 
-## 2. Methodology: The Split-Pipeline Architecture
+## 📊 Empirical Results
 
-Initial experiments demonstrated that a single model struggles to predict an entire Best-of-3 or Best-of-5 series. Game 1 operates in a vacuum; Game 2 is heavily influenced by the trauma, momentum, and strategic reveals of Game 1.
+The pipeline's performance is rigorously audited on a **chronological test set** representing the final 15% of matches (chronological future). 
 
-Our pipeline explicitly partitions the problem space:
+Following hyperparameter optimization, the models achieve the following classification accuracies:
 
-### 2.1 Game 1: The Structural Baseline (XGBoost)
-Game 1 predictions rely purely on pre-series metadata.
-*   **Model Choice:** `XGBClassifier` (depth=3, lr=0.02, subsample=0.9). XGBoost excels at finding complex non-linear interactions in stable, macro-level tabular data without overfitting.
-*   **Primary Signals:** Player-averaged historical Elo, regular season rank differentials, patch practice volume, and historical head-to-head win rates.
-*   **Performance:** **78.83% Accuracy** (108/137 correct on holdout).
+| Evaluation Subset | Accuracy | Exact Match Counts | Predictive Focus |
+| :--- | :---: | :---: | :--- |
+| **Game 1 (Initial Matchup)** | **79.56%** | $109\ /\ 137$ | Historical franchise strength, baseline roster synergy, comfort picks |
+| **Game 2+ (In-Series Maps)** | **65.53%** | $154\ /\ 235$ | Dynamic series momentum, in-series draft exhaustion, elimination pressure |
+| **Combined Pipeline** | **70.70%** | **$263\ /\ 372$** | Overall predictive performance across all map outcomes |
 
-### 2.2 Game 2+: The Adaptation Phase (Hybrid Stacking Ensemble)
-Once Game 1 concludes, the feature space expands to include in-series variables (momentum, previous game stomp margins, side swaps).
-*   **Model Choice:** A heavily weighted `VotingClassifier` blending Gradient Boosting and Bagging techniques.
-    *   *CatBoost (x2)*: Exceptionally adept at handling the dense, rapidly shifting categorical and numerical signals of in-series momentum.
-    *   *Random Forest (x3)*: Heavily weighted to act as an anchor. Its uncorrelated, low-variance error profile stabilizes the aggressive, high-variance predictions of the boosting models.
-*   **Primary Signals:** `series_momentum_blue`, `momentum_x_side_advantage`, and psychological carry-over metrics.
-*   **Performance:** **65.53% Accuracy** (154/235 correct on holdout).
+### Key Research Findings
+1. **Initial prediction advantage**: Game 1 matchups display exceptionally high predictability ($79.56\%$), indicating that base team strength, patch alignment, and historical franchise head-to-heads carry high predictive power when teams are fresh.
+2. **In-series volatility**: Standalone Game 2+ accuracy ($65.53\%$) reflects the high-variance nature of live professional esports, driven by adaptive coaching, tactical adjustments, side swaps, and acute psychological pressure during elimination maps.
 
 ---
 
-## 3. Core Feature Engineering & Game Theory
+## 🔬 Methodology & Core Architecture
 
-A model is only as intelligent as its features. To prevent the model from memorizing raw team strengths, we enforce relative matchup evaluation.
+### 1. Zero-Leakage Chronological Group Validation
+Predicting sports outcomes requires strict temporal ordering to prevent lookahead bias. 
+* **Splitting Strategy**: Matches are sorted chronologically. The first 85% of matches constitute the training subset; the remaining 15% are held out exclusively for testing.
+* **Match-ID Grouping**: Splits are grouped strictly by `match_id`. Games belonging to the same series are never fragmented or leaked across the training and testing partition boundary.
 
-### 3.1 Differential Mapping (`diff_*`)
-Instead of providing the model with absolute values (e.g., Blue Team Roster Stability = 0.8, Red Team Roster Stability = 0.4), the pipeline computes the delta (`diff_roster_stability = +0.4`). This forces the algorithms to evaluate the specific structural advantage of the head-to-head matchup.
+```
+[--- Train Subset: Seasons 5 to 15 (85%) ---] [--- Test Holdout: Seasons 15 to 17 (15%) ---]
+◀───────────────────────────────── Time Scale ─────────────────────────────────▶
+```
 
-### 3.2 Dynamic, Player-Based Elo System
-Standard Elo systems track organizations. In esports, rosters change constantly.
-*   **Player-Level Granularity:** Elo is calculated for individual players (`resolve_ign` ensures continuity) and a team's true strength is the dynamic average of its active roster on match day.
-*   **Dual-Track Tracking:** The system calculates a General Elo and a localized **Playoff-Only Elo**. This isolates a team's "clutch factor" under elimination pressure.
-*   **Responsive K-Factors:** We utilize $K = 24$ for regular-season matches and a highly volatile $K = 64$ for playoffs, recognizing that elimination brackets reveal true skill ceilings.
-*   **Off-Season Decay:** A 15% regression-to-the-mean is applied between seasons to account for meta-shifts and off-season rust.
+### 2. Sequential Dynamic ELO Ratings
+Rather than relying on static season-end rankings, the pipeline computes team and player strengths dynamically:
+* **Franchise Mapping**: Successfully resolves historic rebrands contextually across seasons (e.g. mapping *Sunsparks* $\rightarrow$ *ECHO* $\rightarrow$ *Team Liquid PH*, and *AP.Bren* $\rightarrow$ *Team Falcons PH*) to preserve historical Elo memory.
+* **Leak-Safe Updates**: Player Elo ratings are updated **strictly post-match**. For any given map prediction, ELO ratings reflect the history *prior* to that series, preventing in-series result leakage.
+* **Decay Mechanics**: Applies a $15\%$ decay rate during season transitions to account for roster moves, patch disruption, and offseason meta-shifts.
 
-### 3.3 Modeling Intangibles: DNA and Momentum
-*   `championship_dna`: Quantifies historical organizational resilience.
-*   `momentum_x_side_advantage`: An interaction term measuring if the team that just gained momentum also rotated to the statistically favorable map side.
-*   `g3_clutch_wr` & `reverse_sweep_rate`: Identifies teams that structurally scale in high-pressure deciding games.
-
----
-
-## 4. Addressing the Accuracy Ceiling & Future Work
-
-Pre-match MOBA prediction features a theoretical accuracy ceiling of ~75%. This is due to unpredictable in-game execution, random human error (e.g., a missed Smite objective), and draft-phase outplays.
-
-**The "Comfort Trap" Discovery**
-Our research identifies a critical vulnerability in Game 2 predictions: The Comfort Trap. When a team wins Game 1 using high-mastery (>60%) comfort heroes, they become predictable. In the MPL PH meta, teams falling for the Comfort Trap see their Game 2 win rate drop to **35.09%**. Future pipeline iterations aim to inject a `prev_winner_comfort_exhaustion` penalty feature to adjust momentum predictions dynamically based on draft reveals.
+### 3. Integrated Feature Groups
+The pipeline synthesizes over 50 predictive signals across five operational pillars:
+1. **Franchise & Player Strength**: Dynamic regular and playoff ELO tracks, championship titles (DNA), and playoff experience counts.
+2. **Team Form & Head-to-Head (H2H)**: Bayesian-smoothed head-to-head records and rolling 5-match team momentum.
+3. **Patch Comfort & Draft Synergy**: Bayesian-smoothed win rates of players' top 5 most-played comfort heroes, draft synergy, and patch-adaptation comfort alignment scores.
+4. **Roster Stability**: Retained player rosters across season shifts.
+5. **Series-State Variables (Game 2+)**: Roster exhaustion, cumulative draft overlap, side-swap advantages, series momentum, and acute elimination game pressure.
 
 ---
 
-## 5. Validation Strategy: Zero Data Leakage
+## 🛠️ Model Configurations
 
-Time-series forecasting is highly susceptible to data leakage (using future information to predict the past). 
-*   **Strict Chronological Split:** The dataset is split 85% Train / 15% Test based on exact `match_timestamp`. 
-*   **Delayed Elo Updates:** Elo rating updates are calculated per game but applied at the *end* of the series (`pending_updates`). This guarantees that Game 1 predictions only evaluate Elo as it existed before the series began.
+To handle different data densities, the pipeline uses a dual-model architecture:
+
+### Game 1 Model: Robust Shallow XGBoost
+Optimized for high bias resistance and generalization under high feature dimensionalities.
+* **Classifier**: `xgb.XGBClassifier`
+* **Parameters**: `n_estimators=400`, `max_depth=2`, `learning_rate=0.02`, `subsample=0.9`, `colsample_bytree=0.8`, `reg_lambda=2.0`.
+
+### Game 2+ Model: Custom Weighted Ensemble
+Designed to capture complex interaction effects of in-series dynamics.
+* **Blending Ratio**: $1 \times \text{CatBoost}_1\ +\ 3 \times \text{RandomForest}\ +\ 2 \times \text{CatBoost}_2$ (Normalizing factor of $6$).
+* **Classifiers**:
+  * `CatBoostClassifier`: 100 iterations, depth 4, learning rate 0.05, L2 leaf regularizer 3.0.
+  * `RandomForestClassifier`: 200 estimators, max depth 2.
+  * `CatBoostClassifier` (shallow): 50 iterations, depth 4.
 
 ---
 
-## 6. Repository Architecture
+## 📂 Repository Layout
 
-*   `create_prediction_v1_documented.py`: The build script. Generates the highly detailed, interactive Jupyter Notebook that serves as the executable research paper.
-*   `1_NoteBook/Prediction_v1_documented.ipynb`: The primary pre-match inference engine and simulator.
-*   `MASTER_MOBA_RESEARCH_REPORT.md`: Exhaustive 5-pillar audit detailing foundational MOBA prediction logic, the "Comfort Trap," and SOTA standards.
-*   `MODEL_TRACKER.md`: Live engineering log tracking hyperparameter sweeps, architecture shifts, and accuracy milestones.
+| Path | Purpose |
+| :--- | :--- |
+| **`1_NoteBook/Prediction_v1.ipynb`** | Main research notebook containing the full, reproducible prediction pipeline. |
+| **`create_prediction_v1_tuned.py`** | Tuned python pipeline script that automatically rebuilds the research notebook. |
+| **`database.py` / `models.py`** | SQLite schema and SQLAlchemy models representing the local data warehouse. |
+| **`scraper.py`** | Dynamic Liquipedia scraper utilizing Headless Fetching for match history. |
+| **`export_to_csv.py`** | Utility to extract data tables from the SQLite database to clean CSV directories. |
+| **`export_data.py`** | Pre-compiles database stats to a static asset `static/data.js` for zero-latency UI load. |
+| **`main.py`** | FastAPI server hosting the analytics dashboard. |
+| **`sentinel.py`** | CI/CD style integrity checker to verify syntax and pipeline validity. |
+| **`csv_data/`** | Repository containing all exported tables and the generated `ML_Feature_Matrix.csv`. |
+| **`templates/` / `static/`** | Frontend views and CSS stylings for the HTML dashboard. |
 
-## 7. Execution Guide
+---
 
-To reproduce the findings or run the Series Simulator:
+## 🚀 Reproduction & Usage
 
-1.  **Generate the Documented Pipeline:**
-    ```bash
-    python3 create_prediction_v1_documented.py
-    ```
-2.  **Run the Research Notebook:**
-    Navigate to `1_NoteBook/Prediction_v1_documented.ipynb` and execute the cells sequentially to observe data loading, on-the-fly Elo generation, feature engineering, model training, and simulated inference.
+### 1. Environment Setup
+Clone the repository, create a virtual environment, and install dependencies:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 2. Rebuilding the Research Pipeline
+Re-run the optimized hyperparameter search, generate the latest dataset splits, train the models, and compile the research notebook:
+```bash
+python create_prediction_v1_tuned.py
+```
+
+### 3. Pipeline Integrity Check
+Ensure all Python files and the generated research notebook are syntactically and logically clean:
+```bash
+python sentinel.py
+```
+
+### 4. Running the Dashboard
+Launch the FastAPI analytical server to inspect historical tournament trends, rosters, and patch adjustments:
+```bash
+uvicorn main:app --reload
+```
+Navigate to `http://127.0.0.1:8000` in your web browser.

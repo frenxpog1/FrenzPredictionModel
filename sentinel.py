@@ -37,11 +37,11 @@ def check_notebook_syntax(file_path: str) -> List[Tuple[int, str, str]]:
     return errors
 
 def main():
-    print("🛡️ Sentinel V1: Syntax & Integrity Guardian")
+    print("Sentinel V1: Syntax and integrity check")
     print("="*40)
     
     targets = [
-        '1_NoteBook/Prediction.ipynb',
+        '1_NoteBook/Prediction_v1.ipynb',
         'features.py',
         'models.py',
         'model_zoo.py',
@@ -57,7 +57,7 @@ def main():
         if target.endswith('.ipynb'):
             nb_errors = check_notebook_syntax(target)
             if nb_errors:
-                print("❌ FAILED")
+                print("FAILED")
                 for cell_idx, line, msg in nb_errors:
                     if cell_idx == -1:
                         print(f"  [CRITICAL] JSON Error at line {line}: {msg}")
@@ -65,21 +65,21 @@ def main():
                         print(f"  [CELL {cell_idx}] Syntax Error at line {line}: {msg}")
                 failed = True
             else:
-                print("✅ OK")
+                print("OK")
         else:
             py_errors = check_python_syntax(target)
             if py_errors:
-                print("❌ FAILED")
+                print("FAILED")
                 for line, msg in py_errors:
                     print(f"  Line {line}: {msg}")
                 failed = True
             else:
-                print("✅ OK")
+                print("OK")
                 
     if failed:
         sys.exit(1)
     else:
-        print("\n✨ All systems clear.")
+        print("\nAll checks passed.")
 
 if __name__ == "__main__":
     main()

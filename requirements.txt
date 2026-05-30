@@ -1,0 +1,16 @@
+pandas
+numpy
+scipy
+scikit-learn
+xgboost
+lightgbm
+catboost
+optuna
+sqlalchemy
+fastapi
+uvicorn
+jinja2
+beautifulsoup4
+scrapling
+glicko2
+nbformat

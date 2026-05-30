@@ -51,11 +51,20 @@ def parse_matches(soup, season_num):
         if len(teams) != 2:
             continue
 
+        # Traverse up to find if the match is in a playoff/bracket section
+        stage = "Regular Season"
+        parent = match
+        while parent:
+            if parent.name == "div" and any(cls in parent.get("class", []) for cls in ["playoffs", "playoff", "bracket"]):
+                stage = "Playoffs"
+                break
+            parent = parent.parent
+
         matches.append(
             {
                 "match_id": generate_uuid(),
                 "season": season_num,
-                "stage": "Regular Season",
+                "stage": stage,
                 "match_timestamp": date_el.get_text(strip=True) if date_el else "",
                 "patch_version": "",
                 "team_a_name": teams[0],
@@ -103,13 +112,47 @@ def append_matches_csv(matches, path=CSV_DIR / "matches.csv"):
         return
 
     path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Load existing matches to deduplicate and preserve original UUIDs
+    existing_keys = {}
+    if path.exists() and path.stat().st_size > 0:
+        with path.open("r", newline="", encoding="utf-8") as handle:
+            reader = csv.DictReader(handle)
+            for row in reader:
+                # Unique key matching on season and resolved/stripped team names
+                key = (
+                    str(row["season"]),
+                    str(row["team_a_name"]).strip().lower(),
+                    str(row["team_b_name"]).strip().lower()
+                )
+                existing_keys[key] = row["match_id"]
+
+    new_matches = []
+    for match in matches:
+        key = (
+            str(match["season"]),
+            str(match["team_a_name"]).strip().lower(),
+            str(match["team_b_name"]).strip().lower()
+        )
+        if key in existing_keys:
+            # Duplicate match found. Do not append it again!
+            # Optionally update fields if we want, but definitely preserve original UUID
+            print(f"Skipping duplicate match or preserving match_id: {match['team_a_name']} vs {match['team_b_name']} (Season {match['season']})")
+        else:
+            new_matches.append(match)
+
+    if not new_matches:
+        print("No new matches found. matches.csv is fully up to date.")
+        return
+
     write_header = not path.exists() or path.stat().st_size == 0
 
     with path.open("a", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=MATCH_FIELDS)
         if write_header:
             writer.writeheader()
-        writer.writerows(matches)
+        writer.writerows(new_matches)
+    print(f"Successfully appended {len(new_matches)} new matches to matches.csv.")
 
 
 def save_rosters_to_db(rosters):

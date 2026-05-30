@@ -25,6 +25,7 @@ def startup_event():
     init_db()
 
 @app.get("/")
+@app.get("/index.html")
 def read_root(request: Request, db: Session = Depends(get_db)):
     matches = db.query(models.Match).order_by(models.Match.match_timestamp.desc()).all()
     patches = db.query(models.Patch).all()
@@ -42,11 +43,13 @@ def read_root(request: Request, db: Session = Depends(get_db)):
     )
 
 @app.get("/heroes")
+@app.get("/heroes.html")
 def list_heroes(request: Request, db: Session = Depends(get_db)):
     heroes = db.query(models.Hero).all()
     return templates.TemplateResponse(request, "heroes.html", {"heroes": heroes})
 
 @app.get("/items")
+@app.get("/items.html")
 def list_items(request: Request, db: Session = Depends(get_db)):
     items = db.query(models.Item).all()
     return templates.TemplateResponse(request, "items.html", {"items": items})

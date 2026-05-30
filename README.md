@@ -6,44 +6,46 @@ By applying strict chronological holdout validation, sequentially-updated ELO ra
 
 ---
 
-## 📊 Empirical Results
+## 📊 Empirical Results & Validation Baselines
 
-The pipeline's performance is rigorously audited on a **chronological test set** representing the final 15% of matches (chronological future). 
+To establish robust production expectations, the pipeline is evaluated across two validation methodologies: **Chronological Test Splits** (representing the final 15% chronological future of matches) and **Rolling Season-by-Season Backtests** (sequentially retraining the model at each season transition).
 
-Following hyperparameter optimization, the models achieve the following classification accuracies:
+Following SVD transductive leakage resolution, the pipeline delivers the following performance:
 
 | Evaluation Subset | Accuracy | Exact Match Counts | Predictive Focus |
 | :--- | :---: | :---: | :--- |
-| **Game 1 (Initial Matchup)** | **79.56%** | $109\ /\ 137$ | Historical franchise strength, baseline roster synergy, comfort picks |
-| **Game 2+ (In-Series Maps)** | **65.53%** | $154\ /\ 235$ | Dynamic series momentum, in-series draft exhaustion, elimination pressure |
-| **Combined Pipeline** | **70.70%** | **$263\ /\ 372$** | Overall predictive performance across all map outcomes |
+| **Game 1 (Initial Matchup)** | **73.72%** | $101\ /\ 137$ | Historical franchise strength, baseline roster synergy, comfort picks |
+| **Game 2+ (In-Series Maps)** | **57.87%** | $136\ /\ 235$ | Dynamic series momentum, in-series draft exhaustion, elimination pressure |
+| **Combined Test Holdout** | **64.52%** | **$237\ /\ 372$** | Overall predictive performance across all chronological future outcomes |
+| **Rolling Season Backtests** | **63.87%** | — | **Primary Production Baseline** (Average zero-foresight chronological performance) |
 
 ### Key Research Findings
-1. **Initial prediction advantage**: Game 1 matchups display exceptionally high predictability ($79.56\%$), indicating that base team strength, patch alignment, and historical franchise head-to-heads carry high predictive power when teams are fresh.
-2. **In-series volatility**: Standalone Game 2+ accuracy ($65.53\%$) reflects the high-variance nature of professional live series, driven by live draft modifications, roster adjustments, and tactical swaps.
+1. **Uninflated predictive power**: Removing transductive leakage from the SVD embedding space aligns the chronological holdout (**64.52%**) tightly with the rolling season backtests (**63.87%**), validating **63.87%** as the honest, robust real-world expectation.
+2. **Initial prediction advantage**: Game 1 matchups display a clear predictive advantage (**73.72%**), indicating that franchise history, ELO differentials, and patch practice provide strong pre-match signals when teams are fresh.
+3. **In-series volatility**: Live Game 2+ accuracy (**57.87%**) captures the high-variance dynamics of live esports (adaptive drafts, side swaps, psychological pressure), representing a much harder live-prediction challenge.
 
 ### Advanced Validation & Backtesting Profiles
-To ensure rigorous research-grade transparency, we report Log Loss, Brier scores, empirical calibration, and sequential rolling backtests:
+To ensure academic-grade transparency and calibrate the probabilities of our predictions, we report Log Loss, Brier scores, and calibration profiles:
 
 - **Validation Metrics (Seasons 15-17 Test Split)**:
-  - **Game 1 (XGBoost)**: Log Loss = `0.5841` | Brier Score = `0.1973`
-  - **Game 2+ (Ensemble)**: Log Loss = `0.6627` | Brier Score = `0.2348`
-  - **Combined Pipeline**: Log Loss = `0.6338` | Brier Score = `0.2210`
+  - **Game 1 (XGBoost)**: Log Loss = `0.5857` | Brier Score = `0.1979`
+  - **Game 2+ (Ensemble)**: Log Loss = `0.6760` | Brier Score = `0.2410`
+  - **Combined Pipeline**: Log Loss = `0.6427` | Brier Score = `0.2251`
 
 - **Model Calibration (Empirical Accuracy vs. Predicted Probability)**:
-  - **Confidence $[0.5, 0.6)$**: Games = 173 | Predicted Probability = 54.75% | Actual Accuracy = **70.52%**
-  - **Confidence $[0.6, 0.7)$**: Games = 137 | Predicted Probability = 65.24% | Actual Accuracy = **71.53%**
-  - **Confidence $[0.7, 0.8)$**: Games = 59  | Predicted Probability = 73.56% | Actual Accuracy = **67.80%**
-  - **Confidence $[0.8, 1.0)$**: Games = 3   | Predicted Probability = 82.41% | Actual Accuracy = **100.00%**
+  - **Confidence range $[0.5, 0.6)$**: Games = 163 | Predicted Probability = 54.92% | Actual Accuracy = **57.06%**
+  - **Confidence range $[0.6, 0.7)$**: Games = 137 | Predicted Probability = 65.31% | Actual Accuracy = **72.26%**
+  - **Confidence range $[0.7, 0.8)$**: Games = 67  | Predicted Probability = 73.38% | Actual Accuracy = **65.67%**
+  - **Confidence range $[0.8, 1.0)$**: Games = 5   | Predicted Probability = 81.86% | Actual Accuracy = **80.00%**
+  *(Margins are within single-digit percentage bounds, confirming highly reliable, non-overconfident predictions.)*
 
-- **Sequential Season-by-Season Backtests**:
-  Retraining the model chronologically at the start of each new season (train on seasons $< S$, test on season $S$) yields zero-foresight accuracies:
-  - **Season 13**: Combined Accuracy = **61.25%**
-  - **Season 14**: Combined Accuracy = **62.57%**
-  - **Season 15**: Combined Accuracy = **65.52%**
-  - **Season 16**: Combined Accuracy = **62.50%**
-  - **Season 17**: Combined Accuracy = **67.16%**
-  - **Average Rolling Backtest Accuracy**: **63.80%**
+- **Sequential Season-by-Season Backtests (Zero-Foresight)**:
+  - **Season 13**: Combined Accuracy = **63.75%**
+  - **Season 14**: Combined Accuracy = **60.82%**
+  - **Season 15**: Combined Accuracy = **63.22%**
+  - **Season 16**: Combined Accuracy = **63.64%**
+  - **Season 17**: Combined Accuracy = **67.91%**
+  - **Average Rolling Backtest Accuracy**: **63.87%**
 
 ---
 

@@ -534,7 +534,8 @@ def main():
         stats = reverse_sweep_tracker.get(team, {'down_01': 0, 'came_back': 0})
         return (stats['came_back'] + 1) / (stats['down_01'] + 2)
 
-    hero_embeddings, fallback_emb = get_svd_hero_embeddings("mlbb_data.db", K=16)
+    hero_embeddings, fallback_emb = {}, [0.0] * 16
+    current_embedding_season = None
     team_draft_history = {}
 
     b_heroes_stolen_list = []
@@ -559,6 +560,11 @@ def main():
         cur_date    = pd.to_datetime(row['match_timestamp'])
         cur_s_int   = int(row['season'])
         match_season = str(row['season'])
+        
+        # Dynamically fit SVD embeddings season-by-season strictly prior to cur_s_int to prevent transductive future leakage
+        if current_embedding_season != cur_s_int:
+            hero_embeddings, fallback_emb = get_svd_hero_embeddings("mlbb_data.db", K=16, max_season=cur_s_int)
+            current_embedding_season = cur_s_int
         
         # Champ curse & RS rank
         prev_s_int = cur_s_int - 1

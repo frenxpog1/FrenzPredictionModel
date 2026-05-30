@@ -3,11 +3,11 @@ import json
 import numpy as np
 from scipy.sparse.linalg import svds
 
-def get_svd_hero_embeddings(db_path="./mlbb_data.db", K=16):
+def get_svd_hero_embeddings(db_path="./mlbb_data.db", K=16, max_season=None):
     """
-    Loads historical drafts from the SQLite database, computes the Positive Pointwise
-    Mutual Information (PPMI) co-occurrence matrix, and performs Singular Value Decomposition
-    (SVD) to return a 16-dimensional dense embedding vector for each hero.
+    Loads historical drafts from the SQLite database (filtered strictly before max_season to prevent transductive leakage),
+    computes the Positive Pointwise Mutual Information (PPMI) co-occurrence matrix, and performs
+    Singular Value Decomposition (SVD) to return a K-dimensional dense embedding vector for each hero.
     
     Returns:
         embeddings (dict): Map of HeroName -> list of K floats.
@@ -15,8 +15,27 @@ def get_svd_hero_embeddings(db_path="./mlbb_data.db", K=16):
     """
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT picks FROM games WHERE picks IS NOT NULL")
-    rows = cursor.fetchall()
+    
+    rows = []
+    if max_season is not None:
+        try:
+            # Query only matches/games from seasons strictly prior to max_season
+            cursor.execute("SELECT picks FROM games WHERE picks IS NOT NULL AND season < ?", (max_season,))
+            rows = cursor.fetchall()
+        except Exception:
+            rows = []
+            
+    # Fallback to season <= max_season or all games if no rows returned (e.g. for Season 1 base)
+    if not rows:
+        try:
+            if max_season is not None:
+                cursor.execute("SELECT picks FROM games WHERE picks IS NOT NULL AND season <= ?", (max_season,))
+            else:
+                cursor.execute("SELECT picks FROM games WHERE picks IS NOT NULL")
+            rows = cursor.fetchall()
+        except Exception:
+            rows = []
+            
     conn.close()
 
     # Extract all team compositions

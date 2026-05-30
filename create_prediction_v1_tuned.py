@@ -444,5 +444,6 @@ try:
         nbformat.write(nb, f)
     print("✅ Prediction_v1.ipynb executed and saved successfully with all cell outputs!")
 except Exception as e:
-    print(f"⚠️ Error executing notebook programmatically: {e}")
+    print(f"❌ Error executing notebook programmatically: {e}")
+    sys.exit(1)
 

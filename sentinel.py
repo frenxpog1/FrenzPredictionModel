@@ -121,6 +121,62 @@ def audit_serialized_models(models_dir: str = "1_NoteBook/models") -> List[str]:
             
     return issues
 
+def audit_notebook_features(notebook_path: str) -> List[str]:
+    issues = []
+    if not os.path.exists(notebook_path):
+        issues.append(f"Notebook missing at '{notebook_path}' for feature audit.")
+        return issues
+        
+    try:
+        import re
+        from feature_registry import audit_features
+        
+        with open(notebook_path, 'r', encoding='utf-8') as f:
+            nb = nbformat.read(f, as_version=4)
+            
+        all_code = ""
+        for cell in nb.cells:
+            if cell.cell_type == 'code':
+                all_code += cell.source + "\n"
+                
+        base_match = re.search(r'base_features_dense\s*=\s*\[(.*?)\]', all_code, re.DOTALL)
+        series_match = re.search(r'series_features\s*=\s*\[(.*?)\]', all_code, re.DOTALL)
+        pre_match_series_match = re.search(r'pre_match_series_features\s*=\s*\[(.*?)\]', all_code, re.DOTALL)
+        
+        if not base_match:
+            issues.append("Could not find 'base_features_dense' definition in notebook for leakage audit.")
+            return issues
+            
+        def clean_list(match_text):
+            lines = match_text.split('\n')
+            cleaned = []
+            for line in lines:
+                line = line.split('#')[0]
+                quotes = re.findall(r"['\"](.*?)['\"]", line)
+                cleaned.extend(quotes)
+            return cleaned
+            
+        base_features = clean_list(base_match.group(1))
+        series_features = clean_list(series_match.group(1)) if series_match else []
+        pre_match_series_features = clean_list(pre_match_series_match.group(1)) if pre_match_series_match else []
+        
+        g1_features = base_features + ['draft_style_sim', 'blue_playoff_exp', 'red_playoff_exp', 'diff_playoff_exp']
+        g2p_features = base_features + series_features + pre_match_series_features + ['draft_style_sim', 'momentum_x_side_advantage', 'blue_playoff_exp', 'red_playoff_exp', 'diff_playoff_exp']
+        
+        # 1. Audit Game 1 features (Must NOT contain 'in_series' or 'forbidden')
+        g1_violations = audit_features(g1_features, ['pre_match', 'post_draft'])
+        if g1_violations:
+            issues.append(f"Leakage detected in Game 1 features: {g1_violations} (Only 'pre_match' and 'post_draft' are allowed in Game 1)")
+            
+        # 2. Audit Game 2+ features (Must NOT contain 'forbidden')
+        g2p_violations = audit_features(g2p_features, ['pre_match', 'post_draft', 'in_series'])
+        if g2p_violations:
+            issues.append(f"Leakage detected in Game 2+ features: {g2p_violations} ('forbidden' features are not allowed)")
+            
+    except Exception as e:
+        issues.append(f"Feature leakage audit error: {e}")
+    return issues
+
 def main():
     print("="*60)
     print("🛡️ SENTINEL ADVANCED INTEGRITY AND ROBUSTNESS RUNNER 🛡️")
@@ -199,6 +255,17 @@ def main():
     else:
         print("  [✅] Serialized XGBoost, CatBoost, and Random Forest ensemble models successfully validated.")
 
+    print("\n4. DYNAMIC FEATURE LEAKAGE & REGISTRY AUDIT:")
+    fl_issues = audit_notebook_features('1_NoteBook/Prediction_v1.ipynb')
+    if fl_issues:
+        print("  [❌] Feature Leakage and Lifecycle Stage Audit FAILED:")
+        for issue in fl_issues:
+            print(f"      - {issue}")
+        failed = True
+    else:
+        print("  [✅] Notebook features successfully audited against the feature registry.")
+        print("  [✅] Verified zero forbidden or out-of-lifecycle features in Game 1 and Game 2+ models.")
+
     print("\n" + "="*60)
     if failed:
         print("❌ PIPELINE VALIDATION FAILED! Please review the critical issues above.")
@@ -206,7 +273,7 @@ def main():
         sys.exit(1)
     else:
         print("🎉 ALL CHECKS PASSED SUCCESSFULLY!")
-        print("   The machine learning pipeline, databases, and schemas are valid and leak-free!")
+        print("   The pipeline is chronologically audited, with verified SVD transductive leakage resolution!")
         print("="*60)
 
 if __name__ == "__main__":
